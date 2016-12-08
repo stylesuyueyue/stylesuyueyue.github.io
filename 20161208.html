@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>苏雁雁_javascript内置对象_20161208</title>
+		<style type="text/css">
+			.box {
+				width: 1000px;
+				height: auto;
+				margin: 100px;
+			}
+			
+			p,
+			pre {
+				font-size: 16px;
+				font-family: "微软雅黑";
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<h1>String对象、<a href="#2">Array对象</a>、<a href="#3">Object对象</a></h1>
+			<h2>String对象</h2>
+			<h3>1.String对象实例的声明</h3>
+			<pre>
+		a.var str="字符串";
+		b.str="字符串";
+		c.var str1=new String("字符串");
+		d.str1=new String("字符串");
+			</pre>
+			<h3>2.String对象实例属性</h3>
+			<h4>(1).length属性</h4>
+			<p>1).属性可返回字符串中的字符数目。</p>
+			<pre>2).事例：var txt="Hello World!"
+            console.log(txt.length)	  //输出值12，英文中不论什么空格都算1个字符串，汉文则根据字的个数。			
+			</pre>
+			
+			<h4>(2).indexOf()属性</h4>
+			<p>1).返回某个指定的字符串值在字符串中首次出现的位置。</p>
+			<pre>3).语法：stringObject.indexOf(searchvalue,fromindex)
+searchvalue   必需。规定需检索的字符串值。 
+fromindex     可选的整数参数。规定在字符串中开始检索的位置。它的合法取值是 0 到 stringObject.length - 1。
+如省略该参数，则将从字符串的首字符开始检索。 				
+			</pre>
+			<pre>3).事例：var str="Hello world!"
+	 console.log( str.indexOf("Hello") );     //   0
+	 console.log( str.indexOf("World") );     //   -1 大写w找不到，故...
+	 console.log( str.indexOf("world") );		//    6	
+	 console.log( str.indexOf("o",5) );         //   7 从5开始检索，直到检索出o
+			</pre>
+			
+			<h4>(3).match() 属性</h4>
+			<p>1).在字符串内检索指定的值，或找到一个或多个正则表达式的匹配。</p>
+			<p>该方法类似 indexOf() 和 lastIndexOf()，但是它返回指定的值，而不是字符串的位置。</p>
+			<pre>2).语法：stringObject.match(searchvalue)
+             stringObject.match(regexp)
+searchvalue    必需。规定要检索的字符串值。 
+regexp    必需。规定要匹配的模式的 RegExp 对象。如果该参数不是 RegExp 对象，则需要首先把它传递
+给 RegExp 构造函数，将其转换为 RegExp 对象。 			
+			</pre>
+			<pre>3).事例：var str="Hello world!"
+console.log(str.match("world"));    //  world
+console.log(str.match("World"));     //  null
+console.log(str.match("worlld"));     //  ull
+console.log(str.match("world!"));	   //   world!  返回指定的值,不是字符串的位置
+			</pre>
+			
+			<h4>(4).substr() 属性</h4>
+			<p>1).在字符串中抽取从 start 下标开始的指定数目的字符。</p>
+			<pre>2).语法：stringObject.substr(start,length)
+start    必需。要抽取的子串的起始下标。必须是数值。如果是负数，那么该参数声明从字符串的尾部开始算起的位置。也就是说，
+-1 指字符串中最后一个字符，-2 指倒数第二个字符，以此类推。 
+length   可选。字符串中的字符数。必须是数值。如果省略了该参数，那么返回从 stringObject 的开始位置到结尾的字串。 
+			</pre>
+			<pre>3).事例：var str="Hello world!"
+            console.log(str.substr(3));    //   lo world! 从位置3开始到最后位置的值
+            console.log(str.substr(3,7));     //  lo worl  从位置3开始包括位置3，数7个字符的值
+			</pre>
+			<p>返回值：一个新的字符串，包含从 stringObject 的 start（包括 start 所指的字符） 处开始的 length 个字符。如果没有指定 length，
+				那么返回的字符串包含从 start 到 stringObject 的结尾的字符</p>
+		    <p>注释：substr() 的参数指定的是子串的开始位置和长度，因此它可以替代 substring() 和 slice() 来使用。</p>
+			
+			<h4>(5).substring() 属性</h4>
+			<p>1).用于提取字符串中介于两个指定下标之间的字符。</p>
+			<pre>2).语法：stringObject.substring(start,stop)
+start 必需。一个非负的整数，规定要提取的子串的第一个字符在 stringObject 中的位置。 
+stop 可选。一个非负的整数，比要提取的子串的最后一个字符在 stringObject 中的位置多 1。
+如果省略该参数，那么返回的子串会一直到字符串的结尾。
+			</pre>
+			<p>substring() 方法返回的子串包括 start 处的字符，但不包括 stop 处的字符。</p>
+			<pre>3).事例：var str="Hello world!"
+            console.log(str.substr(3));    //   lo world! 从位置3开始到最后位置的值
+            console.log(str.substr(3,7));     //  lo worl  从位置3开始包括位置3，数7个字符的值
+			</pre>
+			<p>说明：如果参数 start 与 stop 相等，那么该方法返回的就是一个空串（即长度为 0 的字符串）。如果 
+			start 比 stop 大，那么该方法在提取子串之前会先交换这两个参数</p>
+			<p>重要事项：与 slice() 和 substr() 方法不同的是，substring() 不接受负的参数。</p>
+			
+			<h4>(6).slice() 属性</h4>
+			<p>1).提取字符串的某个部分，并以新的字符串返回被提取的部分。</p>
+			<pre>2).语法：stringObject.slice(start,end)
+start 要抽取的片断的起始下标。如果是负数，则该参数规定的是从字符串的尾部开始算起的位置。也就是说，-1 
+指字符串的最后一个字符，-2 指倒数第二个字符，以此类推。 
+end 紧接着要抽取的片段的结尾的下标。若未指定此参数，则要提取的子串包括 start 到原字符串结尾的字符串。
+如果该参数是负数，那么它规定的是从字符串的尾部开始算起的位置。 
+			</pre>
+			<p>返回值：
+一个新的字符串。包括字符串 stringObject 从 start 开始（包括 start）到 end 结束（不包括 end）为止的所有字符。
+</p>
+			<pre>3).事例：var str="Hello happy world!"
+            console.log(str.slice(6));  //  happy world!  提取从位置 6 开始的所有字符
+            console.log(str.slice(6,11));   //  happy   提取从位置 6 到位置 11 的所有字符
+			</pre>
+			<p>slice() 与 substr() 有所不同，因为它用两个字符的位置来指定子串，而 substr() 则用字符位置和长度来指定子串。</p>		
+			
+			<h4>(7).split() 属性</h4>
+			<p>1).用于把一个字符串分割成字符串数组。</p>
+			<pre>2).语法：stringObject.split(separator,howmany)
+separator 必需。字符串或正则表达式，从该参数指定的地方分割 stringObject。 
+howmany 可选。该参数可指定返回的数组的最大长度。如果设置了该参数，返回的子串不会多于这个参数指定的数组。
+如果没有设置该参数，整个字符串都会被分割，不考虑它的长度。 
+			</pre>
+			<p>返回值：
+一个字符串数组。该数组是通过在 separator 指定的边界处将字符串 stringObject 分割成子串创建的。
+返回的数组中的字串不包括 separator 自身。
+</p>
+			<pre>3).事例一：var str="How are you doing today?"
+			console.log(str.split(" ") )  //按空格分割：How,are,you,doing,today?
+			console.log(str.split("") )   //一个个分割：H,o,w, ,a,r,e, ,y,o,u, ,d,o,i,n,g, ,t,o,d,a,y,?
+			console.log(str.split(" ",3))  //按空格分割,返回3个字符串长度：How,are,you
+			
+事例二："2:3:4:5".split(":")	   //将返回["2", "3", "4", "5"]
+"|a|b|c".split("|")	       //将返回["", "a", "b", "c"]
+			</pre>
+
+           <h4>(8).charAt() 属性</h4>
+			<p>1).可返回指定位置的字符。</p>
+			<pre>2).语法：stringObject.charAt(index)
+index 必需。表示字符串中某个位置的数字，即字符在字符串中的下标。 
+			</pre>
+			<pre>3).事例一：var str="Hello world!"
+		console.log(str.charAt(1));      //返回位置 1 的字符,e
+			</pre>
+			<p>注释：字符串中第一个字符的下标是 0。如果参数 index 不在 0 与 string.length 之间，该方法将返回一个空字符串。</p>
+			
+			<h4>(9).replace() 属性</h4>
+			<p>1).用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串</p>
+			<pre>2).语法：stringObject.replace(regexp/substr,replacement)
+regexp/substr   必需。规定子字符串或要替换的模式的 RegExp 对象。
+		请注意，如果该值是一个字符串，则将它作为要检索的直接量文本模式，而不是首先被转换为 RegExp 对象。 
+replacement     必需。一个字符串值。规定了替换文本或生成替换文本的函数。 
+ 
+			</pre>
+			<pre>3).事例一：var str="Visit Microsoft!"
+			console.log(str.replace(/Microsoft/, "W3School"));  //"W3School" 替换字符串中的 "Microsoft"得到Visit W3School!
+事例二：	var str="Welcome to Microsoft! "
+str=str + "We are proud to announce that Microsoft has "
+str=str + "one of the largest Web Developers sites in the world."
+console.log(str.replace(/Microsoft/g, "W3School"));  //每当 "Microsoft" 被找到，它就被替换为 "W3School"
+
+           //输出：Welcome to W3School! We are proud to announce that W3School
+		has one of the largest Web Developers sites in the world.
+			</pre>
+			<p>注释：字符串中第一个字符的下标是 0。如</p>
+			
+			<h2><a name="2">Array对象</a></h2>
+			<h3>1.Array对象实例的声明</h3>
+			<pre>
+		a.var arr=["字","符","串"];
+		b.arr=["字","符","串"];
+		c.var arr2 = new Array(size);  // size 是期望的数组元素个数。
+		  arr2 = Array( );
+		d.arr3 = new  Array(3,1);   //3,1表示数组组成元素  （括号里有一个数和多个数的区别）		
+			</pre>
+			<h3>2.isArray()函数</h3>
+			<p>1).JavaScript中对对象类型判断</p>
+            <pre>2).事例var arr=[1];
+console.log(Array.is Array(arr));
+            </pre>
+			<h3>3.String对象实例属性</h3>
+			<h4>(1).join() 属性</h4>
+			<p>1).用于把数组中的所有元素放入一个字符串。</p>
+			<pre>2).语法：arrayObject.join(separator)
+separator 可选。指定要使用的分隔符。如果省略该参数，则使用逗号作为分隔符。 
+			</pre>
+			<pre>2).事例：var arr = new Array(3)
+arr[0] = "George";
+arr[1] = "John";
+arr[2] = "Thomas";
+console.log( arr.join() )		//  George,John,Thomas	
+console.log( arr.join(".") )      //  George.John.Thomas
+			</pre>
+
+			<h4>(2).push() 属性</h4>
+			<p>1).向数组的末尾添加一个或多个元素，并返回新的长度。</p>
+			<pre>2).语法：arrayObject.push(newelement1,newelement2,....,newelementX)
+newelement1     必需。要添加到数组的第一个元素。 
+newelement2     可选。要添加到数组的第二个元素。 
+newelementX     可选。可添加多个元素。  
+			</pre>
+			<pre>2).事例：var arr =[ ];
+arr.push( "George","John" ) 
+arr[2] = "Thomas"
+console.log( arr )          //输出：George,John,Thomas
+console.log( arr.push("James") )         //输出字符串长度:4
+console.log( arr )                   //把指定的值添加到数组后的新长度。George,John,Thomas,James
+			</pre>
+
+			<h4>(3).pop() 属性</h4>
+			<p>1).用于删除并返回数组的最后一个元素。</p>
+			<pre>2).语法：arrayObject.pop()
+pop() 方法将删除 arrayObject 的最后一个元素，把数组长度减 1，并且返回它删除的元素的值。如果数组已经为空，
+则 pop() 不改变数组，并返回 undefined 值。
+			</pre>
+			<pre>2).事例：var arr = new Array(3)
+arr[0] = "George";
+arr[1] = "John";
+arr[2] = "Thomas";
+document.write(arr)					// George,John,Thomas
+document.write( arr.pop() )            // Thomas    返回它删除的元素的值
+document.write(arr)                  // George,John  
+			</pre>
+
+
+			<h4>(4).unshift() 属性</h4>
+			<p>1).向数组的开头添加一个或更多元素，并返回新的长度。</p>
+			<pre>2).语法：arrayObject.unshift(newelement1,newelement2,....,newelementX)
+			</pre>
+			<pre>2).事例：var arr =[ ];
+arr.push( "George","John" ) 
+arr[2] = "Thomas"
+console.log( arr )          //输出：George,John,Thomas
+console.log( arr.unshift( "William") )         //输出字符串长度:4
+console.log( arr )                   //把一个元素添加到数组的开头。William,George,John,Thomas
+			</pre>
+
+			<h4>(5).shift() 属性</h4>
+			<p>1).用于把数组的第一个元素从其中删除，并返回第一个元素的值。</p>
+			<pre>2).语法：arrayObject.shift()
+如果数组是空的，那么 shift() 方法将不进行任何操作，返回 undefined 值。请注意，该方法不创建新数组，
+而是直接修改原有的 arrayObject。
+			</pre>
+			<pre>2).事例：var arr = new Array(3)
+arr[0] = "George";
+arr[1] = "John";
+arr[2] = "Thomas";
+document.write(arr)					// George,John,Thomas
+document.write( arr.shift() )            // George    返回它删除的元素的值
+document.write(arr)                  // John,Thomas 
+			</pre>
+
+			<h4>(6).splice() 属性</h4>
+			<p>1).向/从数组中添加/删除项目，然后返回被删除的项目，改变原始数组。</p>
+			<pre>2).语法：arrayObject.splice(index,howmany,item1,.....,itemX)
+index      必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。 
+howmany     必需。要删除的项目数量。如果设置为 0，则不会删除项目。 
+item1, ..., itemX     可选。向数组添加的新项目。 
+			</pre>
+			<pre>2).事例：var arr = ["George","John","Thomas","James","Adrew","Martin"]
+arr.splice( 2,1,"William" )
+document.write( arr )         // 删除位于 index 2 的元素，并添加一个新元素来替代被删除的元素：
+					George,John,William,James,Adrew,Martin
+			</pre>
+
+			<h4>(7).slice() 属性</h4>
+			<p>1).从已有的数组中返回选定的元素。</p>
+			<pre>2).语法：arrayObject.slice(start,end)
+start   必需。规定从何处开始选取。如果是负数，那么它规定从数组尾部开始算起的位置。也就是说，-1 指最后一个元素，
+-2 指倒数第二个元素，以此类推。 
+end    可选。规定从何处结束选取。该参数是数组片断结束处的数组下标。如果没有指定该参数，那么切分的数组包含从
+ start 到数组结束的所有元素。如果这个参数是负数，那么它规定的是从数组尾部开始算起的元素。 
+<strong>包含从 start 到 end （不包括该元素）的 arrayObject 中的元素。</strong>
+			</pre>
+			<pre>2).事例：var arr = ["George","John","Thomas"]
+			var arr2 = ["George","John","Thomas","James","Adrew","Martin"]
+document.write( arr.slice(1) )            // John,Thomas
+document.write( arr.slice(2,4) )                  // Thomas,James
+			</pre>
+
+			<h4>(8).reverse()属性</h4>
+			<p>1).用于颠倒数组中元素的顺序。</p>
+			<pre>2).语法：arrayObject.reverse()</pre>
+			<pre>2).事例：var arr =["George","John","Thomas"]
+document.write( arr.reverse() )            // Thomas,John,George
+			</pre>
+
+			<h4>(9).sort() 属性</h4>
+			<p>1).用于对数组的元素进行排序。</p>
+			<pre>2).语法：arrayObject.sort(sortby)
+sortby 		可选。规定排序顺序。必须是函数。 
+			</pre>
+			<pre>2).事例：var arr = ["George","John","Thomas","James","Adrew","Martin"]
+	var arr2 = ["10","5","40","25","1000", "1"]
+	function sortNumber(a,b){
+    return a - b
+}
+document.write( arr.sort( ) ) 		//按字母顺序排序：Adrew,George,James,John,Martin,Thomas
+document.write( arr2.sort( ) )        //从小到大排序：1,10,1000,25,40,5
+document.write( arr.sort(sortNumber) )         //  1,5,10,25,40,1000
+			</pre>
+
+			<!-- <h4>(10).sort() 属性</h4>
+			<p>1).用于对数组的元素进行排序。</p>
+			<pre>2).语法：arrayObject.sort(sortby)
+sortby 		可选。规定排序顺序。必须是函数。 
+			</pre>
+			<pre>2).事例：var arr = ["George","John","Thomas","James","Adrew","Martin"]
+	var arr2 = ["10","5","40","25","1000", "1"]
+	function sortNumber(a,b){
+    return a - b
+}
+document.write( arr.sort( ) ) 		//按字母顺序排序：Adrew,George,James,John,Martin,Thomas
+document.write( arr2.sort( ) )        //从小到大排序：1,10,1000,25,40,5
+document.write( arr.sort(sortNumber) )         //  1,5,10,25,40,1000
+			</pre> -->
+
+			<h2>Object对象</h2>
+			<h3>1.Object对象的声明</h3>
+			<pre>
+		a.var obj = { };   //通用格式
+		 var obj = { name:"张三",age:400,sex:"男" }
+		b.var obj2 = new Object( );
+			</pre>
+			<h3>2.Object对象访问</h3>						
+			<pre>事例：var obj = { name:"张三",age:400,sex:"男" }
+            console.log( obj.name );	    // 张三
+            console.log( obj["name"]);	    // 400
+            var i;
+            for (i in obj){
+                console.log( i );	 // name  age  sex
+                console.log( obj[i]);    // 张三  400  男
+                console.log( i+":"+obj[i]);    // name:张三  age:400  sex:男
+            }	
+			</pre>
+		</div>
+	</body>
+
+</html>
