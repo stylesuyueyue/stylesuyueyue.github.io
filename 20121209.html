@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>苏雁雁_javascript内置对象_20161209</title>
+		<style type="text/css">
+			.box {
+				width: 1000px;
+				height: auto;
+				margin: 100px;
+			}
+			
+			p,pre {
+				font-size: 16px;
+				font-family: "微软雅黑";
+			}
+			h3{color: blue;}
+			/*pre{color: purple;}*/
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<h1>Date对象</h1>
+			<h2>Date对象实例属性</h2>
+            <h3>1.Date() 属性</h3>
+            <pre>事例：console.log( Date() )    //Sun Dec 11 20:56:47 2016  电脑设置的时间</pre>
+
+            <h3>2.getDate() 属性</h3>
+            <p>(1)从 Date 对象返回一个月中的某一天 (1 ~ 31)。</p>
+            <pre>(2)事例1：var birthday = new Date("July 21, 1983 01:15:00")
+console.log( birthday.getDate() )       //  21 取得当前月份的日期
+</pre>
+<pre>(2)事例2：var d = new Date()
+console.log( d.getDate() )       // 电脑设置里的月份的日期
+</pre>
+
+            <h3>3.getDay() 属性</h3>
+            <p>(1)从 Date 对象返回一周中的某一天 (0 ~ 6)。</p>
+            <pre>(2)事例1：var d=new Date()
+var weekday=new Array(7)
+weekday[0]="Sunday"
+weekday[1]="Monday"
+weekday[2]="Tuesday"
+weekday[3]="Wednesday"
+weekday[4]="Thursday"
+weekday[5]="Friday"
+weekday[6]="Saturday"
+document.write( "Today it is " + weekday[d.getDay()] )    // Today it is Sunday
+</pre>
+<pre>(2)事例2：var d=new Date()
+document.write( d.getDay() )                              //  0
+</pre>
+
+  			<h3>4.getMonth() 属性</h3>
+            <p>(1)从 Date 对象返回月份 (0 ~ 11)。</p>
+            <pre>(2)事例1：var d=new Date()
+document.write( d.getMonth() )                   // 11
+</pre>
+<pre>(2)事例2：var d=new Date()
+var month=new Array(12)
+month[0]="January"
+month[1]="February"
+month[2]="March"
+month[3]="April"
+month[4]="May"
+month[5]="June"
+month[6]="July"
+month[7]="August"
+month[8]="September"
+month[9]="October"
+month[10]="November"
+month[11]="December"
+document.write( "The month is " + month[d.getMonth()] )      // The month is December
+</pre>
+
+            <h3>5.getFullYear() 属性</h3>
+            <p>(1)从 Date 对象以四位数字返回年份。</p>
+            <pre>(2)事例1：var d = new Date()
+document.write( d.getFullYear() )                       // 2016
+</pre>
+<pre>(2)事例2：var born = new Date("July 21, 1983 01:15:00")
+document.write( "I was born in " + born.getFullYear() )              // I was born in 1983
+</pre>
+
+          <h3>6.getHours() 属性</h3>
+          <p>(1)返回 Date 对象的小时 (0 ~ 23)。</p>
+          <pre>(2)事例：var born = new Date("July 21, 1983 01:15:00")
+document.write( born.getHours() )      				 //   1
+</pre>
+		  <h3>7.getMinutes() 属性</h3>
+            <p>(1)返回 Date 对象的分钟 (0 ~ 59)。</p>
+            <pre>(2)事例：var born = new Date("July 21, 1983 01:15:00")
+document.write( born.getMinutes() )						// 15
+</pre>
+
+			<h3>8.getSeconds() 属性</h3>
+            <p>(1)返回 Date 对象的秒数 (0 ~ 59)。</p>
+            <pre>(2)事例：var Birthday = new Date("July 21, 1983 01:15:00")
+document.write( Birthday.getSeconds() )						// 0
+</pre>
+			
+			<h1>Math对象</h1>
+			<h2>Math对象实例属性</h2>
+            <h3>1.ceil(x) 属性</h3>
+            <p>(1)可对一个数进行上舍入。</p>
+            <pre>(2)事例：document.write( Math.ceil(0.60) )				// 1
+document.write( Math.ceil(0.40) )       		  // 1
+document.write( Math.ceil(5) )     					// 5
+document.write( Math.ceil(5.1) )					// 6
+document.write( Math.ceil(-5.1) )        			//-5
+document.write( Math.ceil(-5.9) )					// -5    取大值	
+</pre>
+
+            <h3>2.floor(x) 属性</h3>
+            <p>(1)可对一个数进行下舍入。</p>
+            <pre>(2)事例1：var birthday = new Date("July 21, 1983 01:15:00")
+console.log( birthday.getDate() )       //  21 取得当前月份的日期
+</pre>
+<pre>(2)事例2：document.write( Math.ceil(0.60) )				// 0
+document.write( Math.ceil(0.40) )       		  // 0
+document.write( Math.ceil(5) )     					// 5
+document.write( Math.ceil(5.1) )					// 5
+document.write( Math.ceil(-5.1) )        			//-6
+document.write( Math.ceil(-5.9) )					// -6    取小值	
+</pre>
+
+			
+            <h3>3.random() 属性</h3>
+            <p>(1)0.0 ~ 1.0 之间的一个伪随机数[0,1)。</p>
+            <pre>(2)事例：document.write(Math.random())				//0.5102011267837616   </pre>
+            <pre>function getRandomArbitrary(min,max){
+            return  Math.random(1*(max-min)+min);
+}
+            console.log( getRandomArbitrary(0,10) )
+            </pre>	
+            
+        </div>
+    </body>
+</html>
