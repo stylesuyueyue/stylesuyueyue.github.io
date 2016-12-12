@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>苏雁雁_javascript内置对象event_20161208</title>
+		<style type="text/css">
+			.box {
+				width: 1200px;
+				height: auto;
+				margin: auto;
+			}
+			
+			p,
+			pre {
+				font-size: 18px;
+				font-family: "微软雅黑";
+			}
+			.img{float:left;}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<h1>Event事件</h1>
+			<h2>1.event事件类型</h2>
+			<pre>1).  //节点事件：<标签  onclick = "alert('点我有惊喜')"> 我是p标签 < /标签>
+<p onclick = "alert('点我有惊喜')">我是p标签,点击有惊喜</p>	
+2).  //HTML Dom on事件：<标签  id="pp"> p2 < /标签>
+	var pp=document.getElementById("pp");
+	pp.onclick = function(){ alert('点我没惊喜') }
+	
+3).  //HTML Dom W3C标准事件：      <标签  id="pp"> p2 < /标签>
+   // note:浏览器支持性   
+	 pp.addEventListener( "click",clickHandler,false );
+	 function  clickHandler( e ){ 
+	 	alert("双十一啦！")
+	 	console.log(e.target);        //  [object HTMLParagraphElement]
+	 }	 
+			</pre>
+			
+			<h2>2.event事件事例</h2>
+			<h3>(1).鼠标事件</h3>
+			<pre>1).点击加载图片
+
+<img src="http://a1.qpic.cn/psb?/V143g8u60T94kH/OeLrfXb7LN77lmCOoCvhj23113KAoGEEEHu6KfBjv.s!/b/dLEAAAAAAAAA&bo=8QF4AQAAAAADAKw!&rf=viewer_4" class="img">
+      var img=document.getElementById("img");
+	var pp=document.getElementById("pp");
+	var b=true;
+	pp.addEventListener("click",function(){
+		if(b){
+			img.setAttribute("src","img/6.jpg");
+		}else{
+			img.setAttribute("src","");
+		}    b=!b;    },false);
+
+效果图：
+<img src="http://a1.qpic.cn/psb?/V143g8u60T94kH/FnxP7izTT5sAzQZ6rr1uQzXAlUaIyi8bZtaETLgG0rY!/b/dPYAAAAAAAAA&bo=4ABtAAAAAAADAKg!&rf=viewer_4">
+			</pre>
+
+			<pre>2).事件流：事件，是文档或浏览器窗口中发生的一些特定的交互瞬间。事件流，描述的是页面中接受事件的顺序。</pre>
+			<h3>事件冒泡：</h3>
+			<pre>事件冒泡是由IE开发团队提出来的，即事件开始时由最具体的元素（文档中嵌套层次最深的那个节点）接收，然后逐级向上传播。
+< body>
+    < div id="myDiv">< /div>      
+< /body>
+当用户点击了< div>元素，click事件将按照< div>—>< body>—>< html>—>document的顺序进行传播。若在< div>和< body>上都定义了click事件，如下：
+< script type="text/javascript">
+        var div=document.getElementById("myDiv");
+        div.onclick=function(event){
+            alert("div");
+        };
+        document.body.onclick=function(event){
+            alert("body");
+        };    
+< /script>    		              点击< div>，将先输出“div”，再输出“body”。	
+			</pre>
+
+			<h3>事件捕获：</h3>
+			<pre>是先由最上一级的节点先接收事件，然后向下传播到具体的节点。当用户点击了< div>元素，采用事件捕获，则click事件将按照
+document—>< html>—>< body>—>< div>的顺序进行传播。若在< div>和< body>上都定义了click事件，如下：
+< script type="text/javascript">
+        var div=document.getElementById("myDiv");    
+        div.addEventListener("click",function(event){
+            alert("div");
+        },true);
+        document.body.addEventListener("click",function(event){
+            alert("body");
+        },true);
+        
+< /script>		              点击< div>，将先输出“body”，再输出“div”。		
+			</pre>
+
+			<h3>DOM事件流：</h3>
+			<p>包含三个阶段：事件捕获阶段，处于目标阶段和事件冒泡阶段。首先发生的是事件捕获，然后是实际的目标接收到事件，
+			最后阶段是冒泡阶段。</p>
+            <pre><img src="http://images.cnitblog.com/i/605421/201403/251744464047587.jpg">            	
+            </pre>
+
+			<pre>3).确定鼠标的坐标，并使图片随鼠标移动：
+
+<img src="http://a3.qpic.cn/psb?/V143g8u60T94kH/plta8dVbUrTz*qxzND6wC0T.j7YTSh.svfmU.2d2ZYk!/b/dPgAAAAAAAAA&bo=GAKkAQAAAAADAJo!&rf=viewer_4">
+preventDefault();     cursor();      clientY();           clientX();
+			</pre>
+            
+			<pre>4).jpg图片压缩命令：点文件空白处，按shift键并右击，打开命令窗口。输入jpeg-recompress xxx.jpg compressed.jpg,
+enter键，得到压缩图片。
+			</pre>
+
+			<pre>5).获取验证码：< button id="btn">获取验证码< /button >
+			var btn=document.getElementById('btn');
+			var t=59;
+			btn.addEventListener("click",clickHandler,false);
+			function clickHandler(){
+				btn.innerHTML=t+"s秒后重获验证码";
+				btn.disabled=true;
+				sivl=setInterval(updateTime,1000);
+			}
+			function updateTime(){
+				t--;
+				btn.innerHTML=t+"s秒后重获验证码";
+				if (t<=0){
+					if (sivl){
+						clearInterval(sivl);
+					}
+					btn.innerHTML="获取验证码";
+					btn.disabled=false;
+					t=5;
+				}
+			}				
+			</pre>
+            
+            <h3>(2).键盘事件</h3>
+			<pre>
+<img src="http://a3.qpic.cn/psb?/V143g8u60T94kH/zzLhn*M7yl3ozq71xSas8RBNCGKDziKAlxuBpyU997Q!/b/dHkBAAAAAAAA&bo=uwIGAgAAAAADAJg!&rf=viewer_4">	
+disabled();       onfocus();       keyCode;			
+			</pre>
+			<h2>3.Error</h2>
+			<p>引用错误、范围错误、语法错误、类型错误</p>
+		</div>
+	</body>
+
+</html>
