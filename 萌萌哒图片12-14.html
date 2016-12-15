@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<canvas id="canvas" width="1000" height="1000"></canvas>
+		<script type="text/javascript">
+			var canvas = document.getElementById('canvas');
+			var ctx = canvas.getContext('2d');
+			ctx.beginPath(); //头
+			ctx.lineWidth = 8;
+			ctx.strokeStyle = "#32180C";
+			ctx.moveTo(130, 300);
+			ctx.bezierCurveTo(-30, 280, 50, 20, 250, 15);
+			ctx.bezierCurveTo(440, 20, 520, 300, 340, 310);
+			ctx.stroke();
+
+			ctx.beginPath(); // 左耳
+			//			ctx.fillStyle = "#FFFFD9";			
+			ctx.moveTo(180, 28);
+			ctx.lineWidth = 4;
+			ctx.quadraticCurveTo(100, 20, 100, 78)
+				//			ctx.fill();
+			ctx.stroke();
+
+			ctx.beginPath(); //右耳
+			ctx.lineWidth = 4;
+			ctx.moveTo(320, 30);
+			ctx.quadraticCurveTo(420, 6, 400, 100)
+			ctx.stroke();
+
+			ctx.beginPath(); // 右耳直线
+			ctx.moveTo(370, 60);
+			ctx.lineTo(390, 35)
+			ctx.stroke();
+
+			ctx.beginPath(); // 左眼
+			ctx.fillStyle = "#34180C";
+			ctx.arc(160, 140, 30, 0, 2 * Math.PI);
+			ctx.fill();
+			ctx.stroke();
+
+			ctx.beginPath(); // 右眼
+			//			ctx.fillStyle = "#34180C";
+			ctx.arc(300, 140, 35, 0, 2 * Math.PI);
+			ctx.fill();
+			ctx.stroke();
+
+			ctx.beginPath(); //鼻子 
+			//			ctx.fillStyle = "#34180C";
+			ctx.arc(220, 180, 5, 0, 2 * Math.PI);
+			ctx.fill();
+			ctx.stroke();
+
+			ctx.beginPath(); // 左眼珠
+			ctx.fillStyle = "#FFF";
+			ctx.arc(175, 125, 6, 0, 2 * Math.PI);
+			ctx.fill();
+
+			ctx.moveTo(145, 120); //左睫毛
+			ctx.lineTo(140, 105)
+			ctx.stroke();
+
+			ctx.beginPath(); // 右眼珠
+			ctx.fillStyle = "#FFF";
+			ctx.arc(320, 120, 7, 0, 2 * Math.PI);
+			ctx.fill();
+
+			ctx.moveTo(280, 125); //左睫毛
+			ctx.lineTo(270, 105)
+			ctx.stroke();
+
+			ctx.beginPath(); //右眉毛
+			ctx.moveTo(290, 60);
+			ctx.quadraticCurveTo(300, 45, 315, 60)
+			ctx.stroke();
+
+			ctx.beginPath(); //左腮红
+			ctx.moveTo(128, 150);
+			ctx.fillStyle = "#FFCDE7";
+			ctx.bezierCurveTo(110, 130, 40, 170, 110, 170);
+			ctx.quadraticCurveTo(130, 170, 128, 150);
+			ctx.fill();
+			
+			ctx.beginPath(); //右腮红
+			ctx.moveTo(340, 155);
+			ctx.fillStyle = "#FFCDE7";
+			ctx.bezierCurveTo(360, 150, 420, 150, 360, 180);
+			ctx.quadraticCurveTo(300, 180, 340, 155);
+			ctx.fill();
+
+			ctx.beginPath();
+			ctx.moveTo(140, 50); //左眉毛
+			ctx.lineTo(160, 55)
+
+			ctx.moveTo(30, 190); //左边胡子
+			ctx.lineTo(45, 190)
+
+			ctx.moveTo(30, 210);
+			ctx.lineTo(45, 205)
+
+			ctx.moveTo(30, 230);
+			ctx.lineTo(45, 225)
+
+			ctx.moveTo(115, 150); //左脸颊
+			ctx.lineTo(105, 165);
+
+			ctx.moveTo(105, 150);
+			ctx.lineTo(95, 165);
+
+			ctx.moveTo(415, 210); //右边胡子
+			ctx.lineTo(470, 225);
+
+			ctx.moveTo(410, 230);
+			ctx.lineTo(470, 250);
+
+			ctx.moveTo(400, 250);
+			ctx.lineTo(470, 270)
+
+			ctx.moveTo(350, 160); //右脸颊
+			ctx.lineTo(340, 175);
+
+			ctx.moveTo(360, 160);
+			ctx.lineTo(350, 175);
+
+			ctx.moveTo(370, 160);
+			ctx.lineTo(360, 175);
+			ctx.stroke();
+
+			ctx.beginPath(); //鼻毛
+			ctx.moveTo(195, 185);
+			ctx.lineWidth = 3;
+			ctx.quadraticCurveTo(205, 202, 218, 185)
+			ctx.quadraticCurveTo(235, 202, 250, 190)
+			ctx.stroke();
+			
+			ctx.beginPath(); //爱心
+			ctx.lineWidth = 8;
+			ctx.moveTo(220, 250);
+			ctx.fillStyle="#FF0000";
+			ctx.bezierCurveTo(80, 170, 90, 350, 230, 420);
+			ctx.bezierCurveTo(360, 350, 420, 170, 216, 250);
+			ctx.fill();
+			ctx.stroke();
+			
+			ctx.beginPath(); //右手
+			ctx.moveTo(120, 300);
+			ctx.lineWidth=4;
+			ctx.fillStyle="#fff";
+			ctx.bezierCurveTo(140, 280, 150, 290, 140, 320);
+			ctx.quadraticCurveTo(100, 330, 120, 300);
+			ctx.fill();
+			ctx.stroke();
+			
+			ctx.beginPath(); //左手
+			ctx.moveTo( 336, 308);
+			ctx.lineWidth=4;
+			ctx.fillStyle="#fff";
+			ctx.bezierCurveTo(300, 300, 300, 330, 310, 350);
+			ctx.fill();
+			ctx.stroke();
+			
+			ctx.beginPath(); //左脚
+			ctx.moveTo( 240, 415);
+			ctx.lineWidth=4;
+			ctx.quadraticCurveTo(250, 450, 270, 415);
+			ctx.lineTo(350, 415);
+			ctx.quadraticCurveTo(360, 450, 380, 410);
+			ctx.lineTo(380, 305);
+			ctx.stroke();
+			
+			ctx.beginPath(); //尾巴
+			ctx.moveTo( 380, 360);
+			ctx.lineTo(410, 340);
+			ctx.quadraticCurveTo(430, 340, 410, 360);
+			ctx.lineTo(380, 385);
+			ctx.stroke();
+		</script>
+	</body>
+
+</html>
