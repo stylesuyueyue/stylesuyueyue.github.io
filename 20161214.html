@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>苏雁雁_Html5画布canvas_20161214</title>
+		<style type="text/css">
+			.box {
+				width: 1200px;
+				height: auto;
+				margin: auto;
+			}
+			
+			p,
+			pre {
+				font-size: 17px;
+				font-family: "微软雅黑";
+			}
+			img{/*float:left;*/width:550px;}
+			.images{width: 200px;}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<h1>canvas画布</h1>
+			<h3>1.什么是 Canvas？</h3>
+			<pre>HTML5 的 canvas 元素使用 JavaScript 在网页上绘制图像。
+画布是一个矩形区域，您可以控制其每一像素。
+canvas 拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法。
+			</pre>
+
+			<h3>2.创建 Canvas 元素</h3>
+			<pre>向 HTML5 页面添加 canvas 元素:< canvas id="myCanvas" width="200" height="100">< /canvas>
+
+canvas 元素本身是没有绘图能力的。所有的绘制工作必须在 JavaScript 内部完成：
+		< script type="text/javascript">
+			var c=document.getElementById("myCanvas");
+			var cxt=c.getContext("2d");
+			cxt.fillStyle="#FF0000";
+			cxt.fillRect(0,0,150,75);
+		< /script>
+		</pre>			
+
+			<h3>3.主要属性事例</h3>
+			<h4>(1).矩形 rect()</h4>
+			<pre>JavaScript:		var c = document.getElementById("myCanvas");
+				var ctx = c.getContext("2d");   //是内建的 HTML5 对象，拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法
+				ctx.lineWidth="6";        //设置线条宽度 
+				ctx.strokeStyle="red";  		// 设置线条的颜色
+				ctx.rect (5,5,290,140);  		// x,y,宽,高       //创建矩形
+				ctx.stroke();         	// 绘制路径
+				ctx.fillStyle = "#0000ff";				//填充矩形内部颜色，不加默认为黑色		
+				ctx.fillRect(10,10,100,100); 			//绘制“被填充”的矩形
+</pre>
+			
+			<h4>(2).圆 arc()</h4>
+			<pre>语法：context.arc( x,y,r,sAngle,eAngle,counterclockwise );    	  		// x,y,半径,起始角，以弧度计,结束角，以弧度计。规定应该逆时针还是顺时针绘图,False = 顺时针，true = 逆时针。
+			JavaScript:		var c=document.getElementById("myCanvas");
+			var ctx=c.getContext("2d");
+			ctx.beginPath();				//声明开始绘制路径
+			ctx.lineWidth="3";
+			ctx.strokeStyle="blue";
+			ctx.arc (100,75,50,0,2*Math.PI);         			//创建弧/曲线（用于创建圆或部分圆）。
+			ctx.fillStyle="red";  					// 填充内部颜色，必须有fill(),否则填不上色
+			ctx.fill();		
+			ctx.stroke();
+<img src="http://a2.qpic.cn/psb?/V143g8u60T94kH/.Any4MTjEt9UUiaY4bFaIBV4lCEVZdx0gSqB4lef2SY!/m/dN0AAAAAAAAA&bo=6wB5AAAAAAADB7A!&rf=photolist" class="images"/>
+</pre>
+
+            <h4>(3).直线 moveTo()  lineTo()</h4>
+			<pre>JavaScript:		var c=document.getElementById("myCanvas");
+			var ctx=c.getContext("2d");
+			ctx.lineWidth = 5;
+			ctx.strokeStyle = "#56ABFF"
+			ctx.beginPath();
+			ctx.moveTo(10,10);					//起始点位置	
+			ctx.lineTo(10,100);					//下一点	位置	
+			ctx.lineTo(100,100);				//下下一点位置
+			ctx.closePath();         			//闭合路径
+			ctx.stroke();
+<img src="http://a3.qpic.cn/psb?/V143g8u60T94kH/YAL5nMEr5LwAIHuFRzliWDc1pjOzqf32937fz7Z4K1Y!/m/dN4AAAAAAAAA&bo=fACYAAAAAAADB8Y!&rf=photolist" class="images"/>
+</pre>
+			
+			<h4>(4).贝塞尔曲线 bezierCurveTo()：三次；quadraticCurveTo()：二次</h4>
+			<pre>JavaScript:		var c=document.getElementById("myCanvas");
+			var ctx=c.getContext("2d");
+			ctx.beginPath();
+			ctx.lineWidth = 5;
+			ctx.strokeStyle = "#56ABFF"
+			ctx.moveTo(10, 10)     //起点
+			ctx.bezierCurveTo(10, 10, 10, 100, 100, 10)    // 控制点坐标1和2，结束点坐标
+			ctx.quadraticCurveTo(20,100,200,20);			//以上面结束点为起点。控制点坐标，结束点坐标
+			ctx.stroke()
+<img src="http://a2.qpic.cn/psb?/V143g8u60T94kH/pf8xHupRmvSJJ.pfC5jRwnuwc9CSr5liYUOlr5UufaA!/m/dAkBAAAAAAAA&bo=1gBeAAAAAAADB6o!&rf=photolist" class="images"/>				<img src="http://a3.qpic.cn/psb?/V143g8u60T94kH/vqvaFvQlkZ1zSrHV0JVcJlV5g7wOd1TrQ3iCAmBEDBo!/m/dHoBAAAAAAAA&bo=VAENAQAAAAADB3s!&rf=photolist" class="images"/>
+			</pre>
+			
+			<h4>(5).创建线性渐变（用在画布内容上） createLinearGradient();
+				<br/>  创建放射状/环形的渐变:createRadialGradient()</h4>
+			<pre>< script type="text/javascript">
+var c = document.getElementById("myCanvas");					
+//  var grd = ctx.createRadialGradient(75, 50, 5, 90, 60, 100)				放射状/环形
+var cxt = c.getContext("2d");
+var grd = cxt.createLinearGradient(0,0,175,50);				//渐变起始点和终点坐标
+	grd.addColorStop(0,"#FF0000");					//介于 0.0 与 1.0 之间的值，表示渐变中开始与结束之间的位置;显示的 CSS 颜色值
+	grd.addColorStop(1,"#00FF00");
+cxt.fillStyle=grd;								//以渐变色grd填充内部
+cxt.fillRect(0,0,175,50);						//绘制“被填充”的矩形	
+< /script>
+</pre>
+			
+			<h4>(6).缩放  scale() </h4>
+			<pre>JavaScript:           var c=document.getElementById("myCanvas");
+		var ctx=c.getContext("2d");
+		ctx.strokeRect(5,5,25,15);					//绘制矩形（不填色）。笔触的默认颜色是黑色。
+		ctx.scale(2,2);								//缩放当前绘图，更大或更小。绘图将定位于距离画布左上角两倍远的位置。
+		ctx.strokeRect(5,5,25,15);
+		ctx.scale(2,2);								//在以上基础上缩放
+		ctx.strokeRect(5,5,25,15);
+		ctx.scale(2,2);
+		ctx.strokeRect(5,5,25,15);
+<img src="http://a1.qpic.cn/psb?/V143g8u60T94kH/8SloX2eY1Igk0t24LtWb3Ye8WsGqTkj1YZKlhyffo4w!/m/dNwAAAAAAAAA&bo=AQG9AAAAAAADB58!&rf=photolist" class="images"/>
+</pre>
+			
+			<h4>(7).平移  translate()  </h4>
+			<pre>JavaScript:		var c=document.getElementById("myCanvas");
+			var ctx=c.getContext("2d");
+			ctx.fillRect(10,10,100,50);
+			ctx.translate(70,70);
+			ctx.fillRect(10,10,100,50);				//当您在 translate() 之后调用诸如 fillRect() 之类的方法时，值会添加到 x 和 y 坐标值上。
+			</pre>
+			
+			<h4>(8).平移 rotate()  </h4>
+			<pre>JavaScript:		var c=document.getElementById("myCanvas");
+			var ctx=c.getContext("2d");
+			ctx.rotate( 20*Math.PI/180 );					//将矩形旋转 20 度
+			ctx.fillRect(50,20,100,50);
+			</pre>
+			
+			<h4>(9).合成 globalCompositeOperation</h4>
+			<pre>JavaScript:		var c=document.getElementById("myCanvas");
+			var ctx=c.getContext("2d");
+			ctx.fillStyle="red";			//红矩形:源图像
+			ctx.fillRect(150,20,75,50);
+			ctx.globalCompositeOperation="destination-over";			//在源图像上方显示目标图像。
+			ctx.fillStyle="blue";			//蓝矩形：目标图像
+			ctx.fillRect(180,50,75,50);
+<img src="http://a2.qpic.cn/psb?/V143g8u60T94kH/TK1mT6H*IdnV9TI7PWSNYvZrEReUbcn8OrZD30ozB*w!/b/dHgBAAAAAAAA&bo=1QJsAQAAAAADB5g!&rf=viewer_4" />
+			</pre>
+			
+			<h4>(10).图像绘制 drawImage()</h4>
+			<pre>JavaScript:		var c=document.getElementById("myCanvas");
+			var ctx=c.getContext("2d");		
+			var img=document.getElementById("tulip");
+			ctx.drawImage(img,10,10);
+	
+			或// var img=new Image();  
+			  img.src="images/1.jpg";
+			  img.onload=function () {
+			     ctx.clearRect(0,0,100,100);    //清楚100px以内的无用画布
+			     ctx.drawImage(img,10,10);    //数字表示x,y
+			    //   ctx.drawImage(img,10,10,100,100);    //数字表示x,y,宽，高
+			    //剪切图片       ctx.drawImage(img,0,0,80,80,0,0,50,50);    //数字表示开始截图的位置x,y,宽,高和截过图后放于画布位置，宽高。
+			}
+</pre>
+			<pre>要使用的视频：JavaScript （每 20 毫秒，代码就会绘制视频的当前帧）：
+		var v=document.getElementById("video1");
+		var c=document.getElementById("myCanvas");
+		ctx = c.getContext('2d');
+		v.addEventListener( 'play',function() { var i=window.setInterval(function() 
+		{ctx.drawImage(v,0,0,270,135)},20); },false);
+		v.addEventListener('pause',function() { window.clearInterval(i); },false);
+		v.addEventListener('ended',function() { clearInterval(i); },false);
+</pre>
+
+			<h3>4.主要属性内容</h3>
+			<pre><img src="http://a3.qpic.cn/psb?/V143g8u60T94kH/vLnaM52DQM.M5*YSkdZZJht0BhYkseItmnfkM3Rz4Lc!/b/dB8BAAAAAAAA&bo=1wJJAgAAAAADB7w!&rf=viewer_4"><img src="http://a1.qpic.cn/psb?/V143g8u60T94kH/73KaJumqcGt8WjMKmuFhD2SclP51ZmphHqnKcnFwAU0!/b/dCABAAAAAAAA&bo=3wJoAgAAAAADAJI!&rf=viewer_4">
+
+<img src="http://a1.qpic.cn/psb?/V143g8u60T94kH/GRin.dZlmxSzaq1Z5gdcde0j5t8brg24WxPJqzePraI!/b/dCABAAAAAAAA&bo=2AJzAgAAAAADAI4!&rf=viewer_4"><img src="http://a2.qpic.cn/psb?/V143g8u60T94kH/TJ624gl964TC8gR6MIRY.1tjXsrfnldpljb0B0KkeJI!/b/dKwAAAAAAAAA&bo=yAKAAgAAAAADAG0!&rf=viewer_4">
+			</pre>	
+		</div>
+	</body>
+</html>
