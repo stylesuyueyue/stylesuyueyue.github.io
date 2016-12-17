@@ -16,7 +16,10 @@
 				font-size: 17px;
 				font-family: "微软雅黑";
 			}
-			.img{float:left;}
+			
+			.img {
+				float: left;
+			}
 		</style>
 	</head>
 
@@ -24,21 +27,50 @@
 		<div class="box">
 			<h1>Event事件</h1>
 			<h2>1.event事件类型</h2>
-			<pre>1).  //节点事件：<标签  onclick = "alert('点我有惊喜')"> 我是p标签 < /标签>
+			<pre>1).  //节点事件：< p  onclick = "alert('点我有惊喜')"> 我是p标签 < /p>
 <p onclick = "alert('点我有惊喜')">我是p标签,点击有惊喜</p>	
-2).  //HTML Dom on事件：<标签  id="pp"> p2 < /标签>
+2).  //HTML Dom on事件：< p  id="pp"> p2 < /p>
 	var pp=document.getElementById("pp");
 	pp.onclick = function(){ alert('点我没惊喜') }
 	
-3).  //HTML Dom W3C标准事件：      <标签  id="pp"> p2 < /标签>
+3).  //HTML Dom W3C标准事件：      < p  id="pp"> p2 < /p>
    // note:浏览器支持性   
 	 pp.addEventListener( "click",clickHandler,false );
 	 function  clickHandler( e ){ 
 	 	alert("双十一啦！")
 	 	console.log(e.target);        //  [object HTMLParagraphElement]
-	 }	 
+	 	//  target 事件属性可返回事件的目标节点（触发该事件的节点），如生成事件的元素、文档或窗口。
+	 }	
 			</pre>
-			
+			<pre>4).  事件代理/委托：           利用事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。
+实例：  子节点实现相同的功能：	< ul id="ul1">
+							    < li>111< /li>
+							    < li>222< /li>
+							    < li>333< /li>
+							    < li>444< /li>
+							< /ul>		
+实现功能是点击li，弹出123：    window.onload = function(){
+						    var oUl = document.getElementById("ul1");
+						    var aLi = oUl.getElementsByTagName('li');
+						    for(var i=0;i< aLi.length;i++){
+						        aLi[i].onclick = function(){
+						            alert(123);
+						        }
+						    }
+						}	
+dom 操作，首先要找到ul，然后遍历li，然后点击li的时候，又要找一次目标的li的位置，才能执行最后的操作，每次点击都要找一次li.	
+事件委托的方式:  window.onload = function(){
+			    var oUl = document.getElementById("ul1");
+			   oUl.onclick = function(){
+			        alert(123);
+			    }
+			}
+用父级ul做事件处理，当li被点击时，由于冒泡原理，事件就会冒泡到ul上，因为ul上有点击事件，所以事件就会触发
+<p><a href="http://www.cnblogs.com/liugang-vip/p/5616484.html">网上解析</a></p>
+			</pre>
+			<pre>5).自定义事件:    var even = new Event('build');
+添加监听函数： even.addEventListener('build',function(){....},false);		
+			</pre>
 			<h2>2.event事件事例</h2>
 			<h3>(1).鼠标事件</h3>
 			<pre><strong>1).点击加载图片</strong>
@@ -53,7 +85,9 @@
 		}else{
 			img.setAttribute("src","");
 		}    b=!b;    },false);
-
+		
+//		setAttribute() 方法创建或改变某个新属性。
+//		document.getElementsByTagName("INPUT")[0].setAttribute("type","button");
 效果图：
 <img src="http://a1.qpic.cn/psb?/V143g8u60T94kH/FnxP7izTT5sAzQZ6rr1uQzXAlUaIyi8bZtaETLgG0rY!/b/dPYAAAAAAAAA&bo=4ABtAAAAAAADAKg!&rf=viewer_4">
 			</pre>
@@ -92,29 +126,29 @@ document—>< html>—>< body>—>< div>的顺序进行传播。若在< div>和<
 			</pre>
 
 			<h3>DOM事件流：</h3>
-			<p>包含三个阶段：事件捕获阶段，处于目标阶段和事件冒泡阶段。首先发生的是事件捕获，然后是实际的目标接收到事件，
-			最后阶段是冒泡阶段。</p>
-            <pre><img src="http://images.cnitblog.com/i/605421/201403/251744464047587.jpg">            	
+			<p>包含三个阶段：事件捕获阶段，处于目标阶段和事件冒泡阶段。首先发生的是事件捕获，然后是实际的目标接收到事件， 最后阶段是冒泡阶段。
+			</p>
+			<pre><img src="http://images.cnitblog.com/i/605421/201403/251744464047587.jpg">            	
             </pre>
 
 			<pre>3).确定鼠标的坐标，并使图片随鼠标移动：
 
 <img src="http://a3.qpic.cn/psb?/V143g8u60T94kH/plta8dVbUrTz*qxzND6wC0T.j7YTSh.svfmU.2d2ZYk!/b/dPgAAAAAAAAA&bo=GAKkAQAAAAADAJo!&rf=viewer_4">
-preventDefault();     cursor();      clientY();           clientX();
+preventDefault()   //阻止元素发生默认的行为;     cursor();      clientY();           clientX();
 			</pre>
-            
+
 			<pre><strong>4).jpg图片压缩命令：</strong>点文件空白处，按shift键并右击，打开命令窗口。输入jpeg-recompress xxx.jpg compressed.jpg,
 enter键，得到压缩图片。
 			</pre>
 
 			<pre><strong>5).获取验证码：</strong>< button id="btn">获取验证码< /button >
-			var btn=document.getElementById('btn');
-			var t=59;
+			var btn = document.getElementById('btn');
+			var t = 59;
 			btn.addEventListener("click",clickHandler,false);
 			function clickHandler(){
-				btn.innerHTML=t+"s秒后重获验证码";
-				btn.disabled=true;
-				sivl=setInterval(updateTime,1000);
+				btn.innerHTML = t+"s秒后重获验证码";
+				btn.disabled = true;      			     // 禁用按钮  disabled
+				sivl = setInterval(updateTime,1000);
 			}
 			function updateTime(){
 				t--;
@@ -123,25 +157,25 @@ enter键，得到压缩图片。
 					if (sivl){
 						clearInterval(sivl);
 					}
-					btn.innerHTML="获取验证码";
-					btn.disabled=false;
-					t=5;
+					btn.innerHTML = "获取验证码";
+					btn.disabled = false;   			  // 启用按钮 disabled = false
+					t = 5;
 				}
-			}				
+			}	
+<img src="http://a3.qpic.cn/psb?/V143g8u60T94kH/zzLhn*M7yl3ozq71xSas8RBNCGKDziKAlxuBpyU997Q!/b/dHkBAAAAAAAA&bo=uwIGAgAAAAADAJg!&rf=viewer_4">
 			</pre>
-            
-            <h3>(2).键盘事件</h3>
-	     <pre>
-<img src="http://a3.qpic.cn/psb?/V143g8u60T94kH/zzLhn*M7yl3ozq71xSas8RBNCGKDziKAlxuBpyU997Q!/b/dHkBAAAAAAAA&bo=uwIGAgAAAAADAJg!&rf=viewer_4">	
-disabled();       onfocus();       keyCode;
+
+			<h3>(2).键盘事件</h3>
+			<pre><img src="http://a2.qpic.cn/psb?/V143g8u60T94kH/dzJd7L5f00cgPxCbpJxA*bbHDilv7G3DtfqgTWJTcCw!/b/dAkBAAAAAAAA&bo=RgIsAQAAAAADB0s!&rf=viewer_4"/>	
+disabled();       onfocus()   //在元素获得焦点时触发;     focus();             keyCode;
           </pre>
-             <h3>(3).属性列表</h3>
-	     <pre>属性列表，这些属性可插入 HTML 标签来定义事件动作。</pre>
-	     <pre>
+			<h3>(3).属性列表</h3>
+			<pre>属性列表，这些属性可插入 HTML 标签来定义事件动作。</pre>
+			<pre>
 <img src="http://a1.qpic.cn/psb?/V143g8u60T94kH/kON7rksPb9oQ9IVyDgiRLiqrkDHecZYBpqSZvzHIJjo!/b/dHoBAAAAAAAA&bo=1QJhAgAAAAADB5Y!&rf=viewer_4">	     			
-	  </pre> 
-	<h2>3.Error</h2>
-	 <p>引用错误(ReferenceError)、范围错误、语法错误(SytaxError)、类型错误</p>
+	  </pre>
+			<h2>3.Error</h2>
+			<p>引用错误(ReferenceError)、范围错误(RangeError)、语法错误(SytaxError)、类型错误(TypeError)</p>
 		</div>
 	</body>
 
