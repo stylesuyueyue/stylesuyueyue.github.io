@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<title>2016-12-06工具使用总结</title>
 		<style>
-		     .box{width:1200px;height:auto;margin:auto;} 
+		     .box{width:1100px;height:auto;margin:auto;font-family: 微软雅黑;line-height:30px;} 
 		</style>
 	</head>
 	<body>
@@ -14,17 +14,20 @@
              简介:GitHub 是一个面向开源及私有软件项目的托管平台，因为只支持 Git 作为唯一的版本库格式进行托管，故名 GitHub。
 GitHub 于 2008 年 4 月 10 日正式上线，除了 Git 代码仓库托管及基本的 Web 管理界面以外，还提供了订阅、讨论组、文本渲染、在线文件编辑器、协作图谱（报表）、代码片段分享（Gist）等功能。目前，其注册用户已经超过350万，托管版本数量也是非常之多，其中不乏知名开源项目 Ruby on Rails、jQuery 等。
 </p>
-	        <p>1.服务器的搭建：打开github.com官网，注册sing up或登录github(注意:settings中email验证通过)，
+	        <p>服务器的搭建：打开github.com官网，注册sing up或登录github(注意:settings中email验证通过)，
 	                创建仓库New repository(仓库名：用户名.github.io),创建后进入下一页面。点击settings进入，再点击下面的Launch
 	        automatic page generator,进入后点击continue to。</p>
-	        <ol>
-	        	<li>方法/步骤1 在GitHub新建托管项目:</li>
+	        网上搜索的方法：
+	        <ul>
+	        方法/步骤1 在GitHub新建托管项目:
 	        	<li>要托管到github，那你就应该要有一个属于你自己的github帐号，所以你应该先到github.com注册,打开浏览器
                                      在地址栏输入地址：github.com,填写用户名、邮箱、密码,点击Sign up即可简单地注册</li>
                 <li>完成注册，进入github平台，点击new repositories ,新建一个新项目（你也可以加入到一个已有的项目）</li>
                 <li>新建项目的操作，其实很简单，输入项目名就可以直接Create了</li>
                 <li>此时的界面，我想大家都应该很熟悉了。点击右边栏的剪切板图标，记录下你的项目地址</li>
-                <li>方法/步骤2 上传项目至GitHub</li>
+            </ul>
+            <ul>
+                方法/步骤2 上传项目至GitHub
                 <li>首先你要在本地计算机中安装一个git客户端。你可以直接使用GitHub客户端，也可以用其他。因本人使用的是msysgit，所以这里以msysgit作为介绍（msysgit同样也是目前最为广泛及实用的工具之一）。
                                   打开msysgit.github.io,下载并安装最新版本的msysgit安装完成后，进入到要托管的项目根目录，右键启动Git Bash命令行</li>
                  <li>输入git  clone  接着将先前记录下来的地址复制到后面，回车</li>
@@ -35,7 +38,7 @@ cd test进入到该托管项目的根目录。</li>
                  <li>最后输入git push -u origin master将你本地的仓库提交到你的github账号里，此时会要求你输入你的github的账号和密码。</li>
 		<li>回到你的github.com中的项目里面的文件是不是已经发生改变了？至此，github项目已经成功更新。
 		更多的github的操作，你可以自己慢慢的体会。但有了这第一步认识，我相信你以后的摸索会更加容易得多。</li>
-	        </ol>
+	        </ul>
 	        <h3>HBuilder</h3>
 	        <p>2.HBuilder软件的应用：打开该软件，通过帮助里的HBuilder入门可得知怎么使用。</p>
 	        <h3>Svn</h3>
