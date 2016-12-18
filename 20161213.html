@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>苏雁雁_javascript函数function_20161213</title>
+		<title>苏雁雁_javascript函数function_20161208</title>
 		<style type="text/css">
 			.box {
 				width: 1200px;
@@ -24,7 +24,7 @@
 		<div class="box">
 			<h1>function函数</h1>
 			<h3>1.主要内容</h3>
-			<pre>-内存 堆栈 池
+			<pre>-栈内存   堆内存  常量池
 -Js编译运行机制    引擎   语法解释器
 -Js 直译的脚本语言  运行在依靠其他环境。
 -Js垃圾清除机制  ；市面浏览器 标记清除   IE浏览器 引用计数  （比如延时器）
@@ -33,16 +33,169 @@
 -作用域  局部 全局   函数块级作用域
 -闭包
 			</pre>
-
+			<pre>function fName(){
+	return function(){
+	    var num = 1
+	    console.log(num)    // 1
+	}
+	function fun(){ 
+		console.log("我是fun函数")
+	}	
+			//	fun()   //调用不了fun函数
+} 
+// console.log(num)            //ReferenceError引用错误
+var foo = fName();
+console.log(fName());           //  function(){ var num = 1      console.log(num)   }
+console.log(foo());               //   undefined</pre>	
 			<h3>2.this 是 执行时的环境，而不是声明时的环境</h3>
 			<pre><img src="http://a1.qpic.cn/psb?/V143g8u60T94kH/3HDY85E0*uYCwD1tPMbeAq5ioQADcoUdqGYmsNgIMkI!/b/dN4AAAAAAAAA&bo=xgKpAQAAAAADAEk!&rf=viewer_4" width="500">
 <img src="http://a1.qpic.cn/psb?/V143g8u60T94kH/4fxDUrN5ECT3bINrxwXKUtiaVKurvn4O2WTVqMzTzOs!/b/dN4AAAAAAAAA&bo=eAMcAgAAAAADAEA!&rf=viewer_4" width="500">
+this:引用的是函数据以操作的对象,或者说函数调用语句所处的作用域;
+// 当在全局作用域调用函数时,this对象引用的就是window;
+  window.color = "red";
+  alert(this.color);        // 打印全局的color;=>red;
+  var box = {
+    color:'blue',
+    sayColor:function(){
+      alert(this.color);    // 打印局部的color;=>blue;
+    }
+  };
 			</pre>
 
+			<pre><h4>function函数：</h4>1.1 Js中同名函数的覆盖
+	在Js中函数是没有重载，定义相同函数名、不同参数签名的函数，后面的函数会覆盖前面的函数。调用时，只会调用后面的函数。
+		var n1 = 1; 
+		function add(value1) {
+		    return n1 + 1;
+		}
+		alert(add(n1));				//调用的是下面的函数，输出：3 
+		function add(value1, value2) {
+		    return value1 + 2;
+		}
+		alert(add(n1));				//输出：3
+
+1.2 函数的默认返回值
+	若函数没有指明返回值，默认返回的是'undefined'
+		function showMsg() {
+		}
+		alert(showMsg());			//输出：undefined
+
+1.3 闭包函数
+	函数A内部声明了个函数B，函数B引用了函数B之外的变量，并且函数A的返回值为函数B的引用。那么函数B就是闭包函数。
+	
+	全局引用与局部引用：
+		function funA() {
+		    var i = 0;
+		    function funB() { 		//闭包函数funB
+		        i++;
+		        alert(i)
+		    }
+		    return funB;
+		}
+		var allShowA = funA(); 			//全局变量引用：累加输出1,2,3,4等
+		 
+		function partShowA() {
+		    var showa = funA();				//局部变量引用：只输出1
+		    showa();
+		}	 
+allShowA是个全局变量，引用了函数funA。
+执行函数partShowA(),因为内部只声明了局部变量showa来引用funA，执行完毕后因作用域的关系，释放showa占用的资源。
+
+闭包的关键就在于作用域：全局变量占有的资源只有当页面变换或浏览器关闭后才会释放。var allShowA = funA() 时，相当于allShowA引用了funB()，从而使funB()里的资源不被GC回收，因此funA()里的资源也不会。
+
+1.4 有参闭包函数
+		function funA(arg1,arg2) {
+		    var i = 0;
+		    function funB(step) {
+		        i = i + step;
+		        alert(i)
+		    }
+		    return funB;
+		}
+		var allShowA = funA(2, 3); 			//调用的是funA arg1=2，arg2=3
+		allShowA(1);					//调用的是funB step=1,输出 1
+		allShowA(3);					//调用的是funB setp=3,输出 4
+
+1.5 父函数funA内的变量共享
+		function funA() {
+		    var i = 0;
+		   function funB() {
+		        i++;
+		        alert(i)
+		    }
+		    allShowC = function () {		// allShowC引用匿名函数,与funB共享变量i
+		        i++;
+		        alert(i)
+		    }
+		    return funB;
+		}
+		var allShowA = funA();
+		var allShowB = funA();			//allShowB引用了funA，allShowC在内部重新进行了绑定，与allShowB共享变量i
+
+1.6 函数返回值（return）
+
+	当一个函数被调用，通常会从函数的｛开始执行到｝结束。如果想提前结束该函数的执行可以使用return语句，
+	此时，return语句后面的所有语句将永远不会执行。如：
+	function test(){
+	    alert("first");
+	    return;
+	    alert("second"); // 该语句永远被不会执行
+	}
+	test();
+
+	// 一个函数总是会返回值，如果没有使用return返回值，默认返回undefined。如：
+	function test(){
+	    alert("first"); 
+	}
+	alert(test()); // 输出：undefined
+
+	// 一个函数总是会返回值，如果没有使用return返回值，默认返回undefined。如：
+	function test(){
+	    alert("first"); 
+	}
+	alert(test()); // 输出：undefined
+			</pre>	
 			<h3>3.-面向对象语言的要求。</h3>
 			<pre><img src="http://a1.qpic.cn/psb?/V143g8u60T94kH/J.jX5QTIo2klZkFm2xWcdinokhJ0kqFS8kTSTaRgR0I!/b/dN4AAAAAAAAA&bo=MAMqAQAAAAADAD0!&rf=viewer_4">
 <img src="http://a2.qpic.cn/psb?/V143g8u60T94kH/DNJz3WjmCFWmdvwCDOYNgqlEELUnJnTQ*2mcY2442zk!/b/dNwAAAAAAAAA&bo=fgHvAAAAAAADALU!&rf=viewer_4">				
 			</pre>
+			<pre>封装一个函数：function trace(msg){ console.log(msg)}  
+			var arr = [ ]		
+			trace( arr.push("王五") )		// 1
+
+			聚集：var a = 1;
+			var obj = {
+				foo:function(){
+					var b = 5;
+					console.log(a);     // 1
+					return b;
+				},
+				c:10,				
+			}
+			    obj.c =obj.foo();
+				console.log(obj.foo())       // 5
+				console.log(obj.c);           // 5
+
+			继承：function fun(){
+				this.a = 1;
+				this.f = function(){
+				    alert("哎！")
+				}
+			}
+			var foo = new fun();
+			console.log(foo.f());   //继承方法和属性
+
+			多态：function Person(){
+				this.eye = "black";
+				this.nose = "两个";
+				this.run = function(){
+					alert("跑步");
+				}	
+			};
+				var nF = new Person();
+				nF.run();
+			</pre>
+			
 			<h3>4.-链式调用  要了解</h3>
 			<h3>5.-所有要new的函数 都写成大写。</h3>
 			<h4>6.- 做万年历</h4>	
