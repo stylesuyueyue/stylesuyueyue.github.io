@@ -163,7 +163,7 @@ allShowA是个全局变量，引用了函数funA。
 			var arr = [ ]		
 			trace( arr.push("王五") )		// 1
 
-			聚集：var a = 1;
+	聚集：    var a = 1;
 			var obj = {
 				foo:function(){
 					var b = 5;
@@ -176,7 +176,7 @@ allShowA是个全局变量，引用了函数funA。
 				console.log(obj.foo())       // 5
 				console.log(obj.c);           // 5
 
-			继承：function fun(){
+	继承：      function fun(){
 				this.a = 1;
 				this.f = function(){
 				    alert("哎！")
@@ -185,7 +185,7 @@ allShowA是个全局变量，引用了函数funA。
 			var foo = new fun();
 			console.log(foo.f());   //继承方法和属性
 
-			多态：function Person(){
+	多态：      function Person(){
 				this.eye = "black";
 				this.nose = "两个";
 				this.run = function(){
