@@ -100,7 +100,7 @@ function move() {
 XML 标签对大小写敏感
 XML 必须正确地嵌套
 XML 文档必须有根元素
-</pre><h3>4.HTNL:SVG</h3><p>(1).什么是SVG？</p><pre>SVG 指可伸缩矢量图形 (Scalable Vector Graphics) 
+</pre><h3>4.HTML:SVG</h3><p>(1).什么是SVG？</p><pre>SVG 指可伸缩矢量图形 (Scalable Vector Graphics) 
 SVG 用于定义用于网络的基于矢量的图形 
 SVG 使用 XML 格式定义图形 
 SVG 图像在放大或改变尺寸的情况下其图形质量不会有损失 
@@ -116,29 +116,29 @@ SVG 是万维网联盟的标准
 < !DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 < svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
 
-< rect   x="20" y="20" width="300" height="100" style="fill:rgb(0,0,255);stroke-width:1;stroke:rgb(0,0,0);fill-opacity:0.1;stroke-opacity:0.9"/>
-//   opacity 属性定义整个元素的透明值（合法的范围是：0 - 1）
+	< rect   x="20" y="20" width="300" height="100" style="fill:rgb(0,0,255);stroke-width:1;stroke:rgb(0,0,0);fill-opacity:0.1;stroke-opacity:0.9"/>
+	//   opacity 属性定义整个元素的透明值（合法的范围是：0 - 1）
 
-< circle   cx="100" cy="50" r="40" stroke="black" stroke-width="2" fill="red"/>
-//   cx 和 cy 属性定义圆点的 x 和 y 坐标。
+	< circle   cx="100" cy="50" r="40" stroke="black" stroke-width="2" fill="red"/>
+	//   cx 和 cy 属性定义圆点的 x 和 y 坐标。
 
-< ellipse   cx="300" cy="150" rx="200" ry="80" style="fill:rgb(200,100,50);stroke:rgb(0,0,100);stroke-width:2"/>
-//   cx 属性定义圆点的 x 坐标   cy 属性定义圆点的 y 坐标    rx 属性定义水平半径     ry 属性定义垂直半径 
+	< ellipse   cx="300" cy="150" rx="200" ry="80" style="fill:rgb(200,100,50);stroke:rgb(0,0,100);stroke-width:2"/>
+	//   cx 属性定义圆点的 x 坐标   cy 属性定义圆点的 y 坐标    rx 属性定义水平半径     ry 属性定义垂直半径 
 
-< line   x1="0" y1="0" x2="300" y2="300" style="stroke:rgb(99,99,99);stroke-width:2"/>
-//   x1、x2属性在 x 轴定义线条的开始、结束       y1、y2属性在 y 轴定义线条的开始、结束  
+	< line   x1="0" y1="0" x2="300" y2="300" style="stroke:rgb(99,99,99);stroke-width:2"/>
+	//   x1、x2属性在 x 轴定义线条的开始、结束       y1、y2属性在 y 轴定义线条的开始、结束  
 
-< polygon   points="220,100 300,210 170,250 123,234" style="fill:#cccccc;stroke:#000000;stroke-width:1"/>
-//   points 属性定义多边形每个角的 x 和 y 坐标
+	< polygon   points="220,100 300,210 170,250 123,234" style="fill:#cccccc;stroke:#000000;stroke-width:1"/>
+	//   points 属性定义多边形每个角的 x 和 y 坐标
 
-< polyline   points="0,0 0,20 20,20 20,40 40,40 40,60" style="fill:white;stroke:red;stroke-width:2"/>
+	< polyline   points="0,0 0,20 20,20 20,40 40,40 40,60" style="fill:white;stroke:red;stroke-width:2"/>
 
-< path   d="M250 150 L150 350 L350 350 Z" />
-//    下面的命令可用于路径数据：
-//   M = moveto          L = lineto        H = horizontal lineto         V = vertical lineto 
-//   C = curveto         S = smooth curveto            Q = quadratic Belzier curve 
-//   T = smooth quadratic Belzier curveto             A = elliptical Arc          Z = closepath 
-//   注释：以上所有命令均允许小写字母。大写表示绝对定位，小写表示相对定位。
+	< path   d="M250 150 L150 350 L350 350 Z" />
+	//    下面的命令可用于路径数据：
+	//   M = moveto          L = lineto        H = horizontal lineto         V = vertical lineto 
+	//   C = curveto         S = smooth curveto            Q = quadratic Belzier curve 
+	//   T = smooth quadratic Belzier curveto             A = elliptical Arc          Z = closepath 
+	//   注释：以上所有命令均允许小写字母。大写表示绝对定位，小写表示相对定位。
 < /svg>
 </pre>
 		</div>
