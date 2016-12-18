@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>苏雁雁_javascript分页和周测分析_20161208</title>
+		<style type="text/css">
+			.box {
+				width: 1200px;
+				height: auto;
+				margin: auto;
+			}
+			
+			p,
+			pre {
+				font-size: 17px;
+				font-family: "微软雅黑";
+			}
+			.img{float:left;}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<h2>分页</h2>
+
+			<h2>周测分析</h2>
+			<pre>1.< a href="javascript:close();">点我< /a>：作用是关闭当前窗口;
+2.alert()属于window对象的方法;
+3.javascript函数默认返回值是undefined;
+4.function test(){
+	alert(this);
+}
+test();
+test2 = function(){
+	alert(this);
+}
+test2();     //  弹出的都是[object Window]
+
+5.var a = 1;
+function test(){
+	a ++;
+	alert(a);				// NaN   (计算机计算错误时返回nan：a++a)
+	var a =2;
+	alert(a);				//  2	
+}
+test();
+			</pre>
+		</div>
+	</body>
+</html>
