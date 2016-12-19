@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>苏雁雁_闭包this指向和视频播放器_20161208</title>
+		<style type="text/css">
+			.box {
+				width: 1200px;
+				height: auto;
+				margin: auto;
+				font-family: "微软雅黑";
+			}
+			
+			p,
+			pre {
+				font-size: 18px;
+				font-family: "微软雅黑";
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<!--<h1>闭包this指向、视频播放器</h1>-->
+			<h2>闭包this指向</h2>
+			<pre>1.全局指向：Global--window--BOM--Browser Object Model(浏览器对象)
+	// 函数直接在全局中调用，this指向window。
+	var num = 10;
+	function foo(){
+		this.num = 1;
+	}
+       foo();           alert(num);    // 1
+       
+2.对象：this指向对象
+         var obj = {};
+         var num = 3;
+         obj.num = 5;
+         obj.f=function(){
+         	alert(this.num);
+         }
+         obj.f();  // 5
+         alert("全局num " +num);   // 3
+
+3.函数返回指向：
+         var num = 1;
+         function foo(){
+         	return function(){
+         		return this.num
+         	}
+         }
+         var foo();
+         console.log(f());   // 1
+
+4.apply()方法：    // 改变函数内部this指向对象
+         var num = 10;
+         var obj = {};
+         obj.num = 1;
+         var o = { num:400 };
+         obj.f = function (){
+         	alert(this.num);
+         }
+         //      obj.f();     // 1
+        // 		console.log(this.num);      ==>console.log(num)   // 10
+        //		console.log(this.o.num);     ==>console.log(o.num)    // 400
+         
+        //如果第一个参数为空，函数内部this指向window。
+        obj.f.apply();    // this指向window   ===>10
+        obj.f.apply(o);     // this指向对象o   ===>400
+        obj.f.apply(obj);    				  ===>1
+ 
+5.标签属性this指向当前标签对象
+        < p onclick="fun(this)">点我瞅瞅< /p> 
+         function fun( obj ){
+        		alert( obj ) ;
+        	}  <p onclick="fun(this)"><strong>点我瞅瞅</strong></p>
+        <script>
+        	function fun(obj){
+        		alert(obj);
+        	}
+        </script>
+6.问题1：this指向谁？ （window）
+         var say = "Hellow World!";
+         var obj = {};
+         obj.say = "Hellow Object!";
+         obj.foo=function(){
+         	return function(){
+         		return this.say;
+         	}
+         }
+         alert( obj.foo()() )   // Hellow World!   ===>var f = obj.foo(); alert( f() )// 使函数在全局调用   
+         
+7.问题2：问题1：this指向谁？ （obj）
+         var say = "Hellow World!";
+         var obj = {};
+         obj.say = "Hellow Object!";
+         obj.foo = function(){
+         	var that = this;
+         	return function(){
+         		return that.say;
+         	}
+         }
+         alert( obj.foo()() )    // Hellow Object!
+         
+            <h3>object-apply方法：</h3><pre>
+            	var o = { num:400 };
+            	var num = 10;
+            	var obj = {};
+            	obj.num = 1;
+            	obj.f =function(){
+            		alert(this.num);
+            	}
+            	obj.f.apply(o)     // 400
+            	obj.f.apply( )      // 10
+            	obj.f.call(o)        // 400
+            	
+1.call和apply相同点: 
+a） 产生的效果或作用完全相同；
+b） 至少有一个参数；
+c） 第一个参数必须有且是一个对象（Object）。
+
+2.call和apply区别
+传递参数的方式。用法上不同，主要是参数不完全同
+			
+			<h3>原型：</h3><pre>原型是一个对象，其他对象可以通过它实现属性继承。
+//原型：  function Cat(name,color){
+			this.section = "猫科";
+			this.name = name;
+			this.color = color;
+	    }		
+		//		var damao = new Cat("大猫","黑色");
+		//		var ermao = new Cat("二猫","黄白色");
+		//		console.log(Cat.prototype);      //  "[object Object]"
+		//		console.log(Cat.prototype.prototype);        // "undefined"
+		
+		var damao = new Cat();
+		console.log(damao.__proto__);			// "[object Object]"
+		var arr=[ ];
+		console.log(arr.__proto__);				// ""
+		
+// _proto_与	prototype	  不懂！！！
+		var Person = function(){}
+		var p = new Person();
+		alert(p._proto_);
+		alert(p._proto_===Person.prototype);
+		
+// ECMA:  使damao、ermao与Cat建立联系
+         var Cat = {  name:"",color:""  }
+         var damao = { name:"大猫",color:"黑色"};
+         var ermao = { name:"二猫",color:"黄白色"};
+          		 
+ 		 var o = {};
+ 		 var f = function(){ this.name = "nihao";alert(this.name);}
+ 		 f.apply(o);         //  nihao   o = {"nihao"}
+ 		 
+// 原型继承：
+			</pre>
+			<h4>Object：实例对象拥有数组push方法</h4><pre>
+	var o = {};
+	var arr = [1,2,3];
+	push = Array.prototype.push;
+	o.push("nihao");
+	o.push("nice to meet you");
+	//      o = {"nihao","nice to meet you"}
+			</pre>
+      
+          <h4>视频播放器：</h4><pre>html5-videos支持视频格式：Ogg,MP4,Webm.
+          	
+          </pre>
+
+		</div>
+	</body>
+
+</html>
