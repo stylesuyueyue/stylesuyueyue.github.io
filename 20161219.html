@@ -16,6 +16,7 @@
 			pre {
 				font-size: 18px;
 				font-family: "微软雅黑";
+				line-height: 27px;
 			}
 		</style>
 	</head>
@@ -23,7 +24,7 @@
 	<body>
 		<div class="box">
 			<!--<h1>闭包this指向、视频播放器</h1>-->
-			<h2>闭包this指向</h2>
+			<h2>(一)闭包this指向</h2>
 			<pre>1.全局指向：Global--window--BOM--Browser Object Model(浏览器对象)
 	// 函数直接在全局中调用，this指向window。
 	var num = 10;
@@ -42,7 +43,7 @@
          obj.f();  // 5
          alert("全局num " +num);   // 3
 
-3.函数返回指向：
+3.函数返回指向：  this指向window
          var num = 1;
          function foo(){
          	return function(){
@@ -50,9 +51,9 @@
          	}
          }
          var foo();
-         console.log(f());   // 1
+         console.log(f());   // 1  (全局调用)
 
-4.apply()方法：    // 改变函数内部this指向对象
+4.Object-apply()方法：    // 改变函数内部this指向对象
          var num = 10;
          var obj = {};
          obj.num = 1;
@@ -64,7 +65,7 @@
         // 		console.log(this.num);      ==>console.log(num)   // 10
         //		console.log(this.o.num);     ==>console.log(o.num)    // 400
          
-        //如果第一个参数为空，函数内部this指向window。
+        //如果apply()第一个参数为空，函数内部this指向window。
         obj.f.apply();    // this指向window   ===>10
         obj.f.apply(o);     // this指向对象o   ===>400
         obj.f.apply(obj);    				  ===>1
@@ -102,7 +103,7 @@
          }
          alert( obj.foo()() )    // Hellow Object!
          
-            <h3>object-apply方法：</h3><pre>
+            <h3>(二)apply()和call()方法：</h3><pre>
             	var o = { num:400 };
             	var num = 10;
             	var obj = {};
@@ -121,8 +122,50 @@ c） 第一个参数必须有且是一个对象（Object）。
 
 2.call和apply区别
 传递参数的方式。用法上不同，主要是参数不完全同
-			
-			<h3>原型：</h3><pre>原型是一个对象，其他对象可以通过它实现属性继承。
+
+3.JavaScript中的apply()方法和call()方法使用介绍:
+	1)、每个函数都包含两个非继承而来的方法：apply()和call()。 
+	2)、他们的用途相同，都是在特定的作用域中调用函数。 
+	3)、接收参数方面不同，apply()接收两个参数，一个是函数运行的作用域(this)，另一个是参数数组。
+	call()方法第一个参数与apply()方法相同，但传递给函数的参数必须列举出来。 
+
+4.例1.      window.firstName = "diz"; 
+		window.lastName = "song"; 
+		var myObject = { firstName: "my", lastName: "Object" }; 
+		function HelloName() { 
+		　　console.log("Hello " + this.firstName + " " + this.lastName, " glad to meet you!"); 
+		} 
+		HelloName.call(window);       //  HelloName.call(this);   this可以不写，也表示window
+		HelloName.call(myObject);        //  改变函数赖以运行的作用域
+		运行结果为： 
+			Hello diz song glad to meet you! 
+			Hello my Object glad to meet you
+		
+		// 传统方法：HelloName(); //Hello diz song glad to meet you! 
+			myObject.HelloName = HelloName; 
+			myObject.HelloName(); //Hello my Object glad to meet you!
+		解析：
+			要想让HelloName()函数的作用域在对象myObject上，我们需要动态创建myObject的HelloName属性，
+			此属性作为指针指向HelloName()函数，这样，当我们调用myObject.HelloName()时，函数内部的
+			this变量就指向myObjecct，也就可以调用该对象的内部其他公共属性了。 
+					
+     例2.     function sum(num1, num2) { 
+		return num1 + num2; 
+		} 
+		console.log(sum.call(window, 10, 10)); //20 
+		console.log(sum.apply(window,[10,20])); //30 
+		
+      例3.     function temp1() { 
+		console.log(this);      // this指向：Object {} 
+		function temp2() { 
+		console.log(this);       // this指向：Window 
+		} 
+		temp2(); 
+		} 
+		var Obj = {}; 
+		temp1.call( Obj );       //  改变this指向
+
+			<h3>(三)原型链：</h3><pre>原型是一个对象，其他对象可以通过它实现属性继承。        
 //原型：  function Cat(name,color){
 			this.section = "猫科";
 			this.name = name;
@@ -152,20 +195,108 @@ c） 第一个参数必须有且是一个对象（Object）。
  		 var o = {};
  		 var f = function(){ this.name = "nihao";alert(this.name);}
  		 f.apply(o);         //  nihao   o = {"nihao"}
- 		 
-// 原型继承：
-			</pre>
-			<h4>Object：实例对象拥有数组push方法</h4><pre>
+<h4>1._proto_与prototype</h4> 1). __proto__是每个对象都有的一个属性，而prototype是函数才会有的属性!!!
+      使用Object.getPrototypeOf()代替__proto__!!!
+      __proto__是内部原型，prototype是构造器原型（构造器其实就是函数）
+ 2).构造器构造的是对象。
+     所有构造器/函数的__proto__都指向Function.prototype，它是一个空函数（Empty function）
+     Number./(Boolean./String./Object./Function./Array./RegExp./Error./Date.)__proto__ === Function.prototype  
+     // true
+   
+<h4>2.原型链继承：</h4>使用原型链实现继承:（不懂）
+ 例1：   function SuperClass(){
+	  this.name = "women"
+	}
+	SuperClass.prototype.sayWhat = function(){
+	  return this.name + ":i`m a girl!";
+	}
+	function SubClass(){
+	  this.subname = "your sister";
+	}
+	SubClass.prototype = new SuperClass();
+	SubClass.prototype.subSayWhat = function(){
+	  return this.subname + ":i`m a beautiful girl";
+	}
+	var sub = new SubClass();
+	console.log(sub.sayWhat());     //women:i`m a girl!
+	解析：
+	SubClass继承了SuperClass的属性和方法，这个继承的实现是通过将SuperClass的实例赋值给SubClass的原型对象，
+	这样SubClass的原型对象就被SuperClass的一个实例覆盖掉了，拥有了它的全部属性和方法，同时还拥有一个指向SuperClass
+	原型对象的指针。
+	在使用原型链实现继承时有一些需要我们注意的地方：
+         注意继承后constructor的变化。此处sub的constructor指向的是SuperClass，因为SubClass的原型指向了SuperClass的原型。
+         在了解原型链时，不要忽略掉在末端还有默认的Object对象，这也是我们能在所有对象中使用toString等对象内置方法的原因。
+
+例2：function SuperClass(){
+	  this.name = "women";
+	  this.bra = ["a","b"];
+	}
+	function SubClass(){
+	  this.subname = "your sister";
+	}
+		SubClass.prototype = new SuperClass();
+		var sub1 = new SubClass();
+		sub1.name = "man";
+		sub1.bra.push("c");
+		console.log(sub1.name);//man
+		console.log(sub1.bra);//["a","b","c"]
+		var sub2 = new SubClass();
+		console.log(sub1.name);//woman
+		console.log(sub2.bra);//["a","b","c"]
+
+例3：经典继承：function SuperClass() {
+		  this.name = "women";
+		  this.bra = ["a", "b"];
+		}
+		function SubClass() {
+		  this.subname = "your sister";
+		  //将SuperClass的作用域赋予当前构造函数，实现继承
+		  SuperClass.call(this);
+		}	 
+		var sub1 = new SubClass();
+		sub1.bra.push("c");
+		console.log(sub1.bra);//["a","b","c"]
+		var sub2 = new SubClass();
+		console.log(sub2.bra);//["a","b"]
+		<a href="http://www.jb51.net/article/55540.htm">网上看看</a></pre>
+<h4>(四)Object：实例对象拥有数组push方法</h4><pre>
 	var o = {};
 	var arr = [1,2,3];
-	o.push = Array.prototype.push;
+	<strong>o.push = Array.prototype.push;</strong>
 	o.push("nihao");
 	o.push("nice to meet you");
 	//      o = {"nihao","nice to meet you"}
-			</pre>
-      
-          <h4>视频播放器：</h4><pre>html5-videos支持视频格式：Ogg,MP4,Webm.
-          	
+		</pre><h4>(五)视频播放器：</h4><pre>html5-videos支持视频格式：Ogg,MP4,Webm.
+步骤：1.需求分析：
+          1）视频显示范围      2）右键选项     3）视频进度条     4）视频进度条缩略图  
+	   5）播放和暂停功能    6）上一个视频和下一个视频     7）音量控制    8）视频当前播放时间和视频总时长
+	   9）视频全屏       10）视频进度条拖动进度播放  
+	   
+	2.分析哪些是必须的：除2，4，9不是必须的，其它都是
+	3.写代码：body里先写入< video width="400px" id="videos" src=""> 浏览器不支持 < /video>
+		
+    4.< video> 标签的属性：autoplay    如果出现该属性，则视频在就绪后马上播放。
+    	controls      如果出现该属性，则向用户显示控件，比如播放按钮。
+    	height      width       src
+    	loop          如果出现该属性，则当媒介文件完成播放后再次开始播放。
+    	preload       如果出现该属性，则视频在页面加载时进行加载，并预备播放。
+		             如果使用 "autoplay"，则忽略该属性。
+			auto - 当页面加载后载入整个视频 
+			meta - 当页面加载后只载入元数据 
+			none - 当页面加载后不载入视频
+	例：< video controls="controls" autoplay="autoplay"> < /video>
+		
+    5.（1）点击播放
+     （2） 进度条：currentTime    设置或返回音频/视频中的当前播放位置（以秒计）
+         duration       返回当前音频/视频的长度（以秒计）
+      （3） 缓存进度：buffered        返回表示音频/视频已缓冲部分的 TimeRanges 对象
+    TimeRanges 对象属性：     length - 获得音视频中已缓冲范围的数量 
+						start(index) - 获得某个已缓冲范围的开始位置 
+						end(index) - 获得某个已缓冲范围的结束位置 
+	例：myVid=document.getElementById("video1");
+		alert("Start: " + myVid.buffered.start(0) + " End: " + myVid.buffered.end(0));
+      （4）点击下一个视频
+      （5）点击拖拽视频进度
           </pre>
 
 		</div>
