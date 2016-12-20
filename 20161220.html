@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>苏雁雁_视频播放器和跑马灯_20161208</title>
+		<style type="text/css">
+			.box {
+				width: 1200px;
+				height: auto;
+				margin: auto;
+				font-family: "微软雅黑";
+			}
+			
+			p,
+			pre {
+				font-size: 18px;
+				font-family: "微软雅黑";
+			}
+			
+			span {
+				border: 1px solid #999;
+				float: left;
+			}
+			
+			#incontent {
+				width: 292px;
+			}
+			
+			#content {
+				width: 146px;
+				overflow: hidden;
+				margin-left: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<h3>视频播放器</h3>
+			<pre>   1.视频播放时点击拖拽：监听的是其父级别的对象。
+    mousedown，mousemove，mouseup：分三种情况设置函数。鼠标移入时获取其x轴坐标，在确保没有多余的边框值时，进度条长度
+     等于该值。
+              			var b = false;								
+				duLength.addEventListener('mousedown',function playVs(e){
+					b = true;
+				});				
+				duLength.addEventListener('mousemove',function playVs(e){					
+					if(b){
+						var x2 = e.clientX;
+					cuLength.style.width = x2 + "px";
+					}					
+				});				
+				window.addEventListener('mouseup',function playVs(e){
+					b = false;
+				});           // window使得当鼠标不在进度框时也能控制
+				
+	2.选择播放视频：为每个视频加上一个时间，点击时触发
+	3.选择播放类型：顺序还是随机还是重复
+	4.声音控制
+	5.全屏设置
+	最后整改：使得每个事件都能单独控制，用单独的函数封装。
+			</pre>
+			<h3>跑马灯：滚动条</h3>
+			<div id="content">
+				<div id="incontent">
+					<span id="sp1">欢迎光临，下次再来</span>
+					<span id="sp2">欢迎光临，下次再来</span>
+				</div>
+			</div>
+			<pre>element.scrollHeight         返回元素的整体高度
+element.scrollLeft               返回元素左边缘与视图之间的距离。
+element.scrollTop                返回元素上边缘与视图之间的距离。
+element.scrollWidth               返回元素的整体宽度。
+思想：一个显示框，一个移动框即装载字幕的框。显示框是移动框的一半，隐藏(overflow: hidden)溢出显示框的部分。
+	overflow-x: auto;overflow-x: auto;显示x、y轴滚动条（如果想只有x轴滚动条，显示框内部框架的宽要比显示框宽大）。
+	捕捉相应元素，利用定时器循环运行函数，使跑马灯运行。函数里运用if条件限制，当element.scrollLeft等于一段字体长度时，
+	设置element.scrollLeft为0，element.scrollLeft在字体长度内自加加。移动框内设置两条相同字体，为使循环更衔接，没有停顿感。
+			</pre>
+		</div>
+		<script type="text/javascript">
+			var content = document.getElementById('content');
+			var incontent = document.getElementById('incontent');
+			setInterval(function() {
+				content.scrollLeft++;
+				if(content.scrollLeft >= 146) {
+					content.scrollLeft = 0;
+				}
+			}, 10);
+		</script>
+
+	</body>
+
+</html>
