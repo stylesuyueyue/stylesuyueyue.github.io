@@ -158,7 +158,7 @@ c） 第一个参数必须有且是一个对象（Object）。
 			<h4>Object：实例对象拥有数组push方法</h4><pre>
 	var o = {};
 	var arr = [1,2,3];
-	push = Array.prototype.push;
+	o.push = Array.prototype.push;
 	o.push("nihao");
 	o.push("nice to meet you");
 	//      o = {"nihao","nice to meet you"}
