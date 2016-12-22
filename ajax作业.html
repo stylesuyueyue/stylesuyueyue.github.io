@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<!--<button id="btn">点击显示</button>-->
+		<p>显示区域：</p>
+		<table id="box" border="1px">
+			<tr>
+				<th>姓名</th>
+				<th>性别</th>
+				<th>年龄</th>
+				<th>电话号码</th>
+				<th>所在大学</th>
+				<th>专业</th>
+				<th>学院</th>
+				<th>入学时间</th>
+			</tr>
+		</table>
+		<script type="text/javascript">
+//			var btn = document.getElementById("btn");
+			var obj, len, tb, rows, cells;
+			var xhr = new XMLHttpRequest();
+
+//			btn.addEventListener('click', hitEvent);
+
+//			function hitEvent() {
+				xhr.onreadystatechange = function() {
+					if(xhr.readyState == 4 && xhr.status == 200) {
+
+						obj = JSON.parse(xhr.responseText);
+						len = obj.length;
+						tb = document.getElementById('box');
+
+						for(var i = 0; i < len; i++) {
+							rows = tb.insertRow(-1);
+							for(var j in obj[i]) {
+								cells = rows.insertCell(-1);
+								cells.innerHTML = obj[i][j];
+							}
+						}
+					}
+				}
+				xhr.open("GET", "ajaxfiles/data.json");
+				xhr.send();
+//			}
+		</script>
+	</body>
+
+</html>

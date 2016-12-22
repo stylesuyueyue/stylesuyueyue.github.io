@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>苏雁雁_AJAX和JSON_20161222</title>
+		<style type="text/css">
+			.box {
+				width: 1200px;
+				height: auto;
+				margin: auto;
+				font-family: "微软雅黑";
+			}
+			
+			p,
+			pre {
+				font-size: 16px;
+				font-family: "微软雅黑";
+				line-height: 30px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<h2>TCP/IP、AJAX、JSON</h2>
+			<h3>TCP/IP协议</h3>
+			<strong>TCP/IP简介</strong>
+			<pre>
+(1).TCP/IP 是因特网的通信协议。
+(2).TCP/IP 是供已连接因特网的计算机进行通信的通信协议。
+(3).TCP/IP 指传输控制协议/网际协议（Transmission Control Protocol / Internet Protocol）。
+(4).TCP/IP 定义了电子设备（比如计算机）如何连入因特网，以及数据如何在它们之间传输的标准。
+(5).TCP 使用固定的连接,用于应用程序之间的通信。
+(6).IP 是无连接的,用于计算机之间的通信.
+
+<strong>三次握手协议</strong>
+指的是在发送数据的准备阶段，服务器端和客户端之间需要进行三次交互。
+第一次握手：建立连接时，客户端发送syn包(syn=j)到服务器，并进入SYN_SEND状态，等待服务器确认；
+第二次握手：服务器收到syn包，必须确认客户的syn（ack=j+1），同时自己也发送一个SYN包（syn=k），即SYN+ACK包，
+               此时服务器进入SYN_RECV状态；
+第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1)，此包发送完毕，客户端和服务器进入
+		ESTABLISHED状态，完成三次握手。完成三次握手，客户端与服务器开始传送数据，
+<img src="http://f.hiphotos.baidu.com/baike/s%3D220/sign=ea6613328a82b90139adc431438ca97e/a1ec08fa513d26977c74304855fbb2fb4316d87b.jpg">
+			</pre>
+			<h3>AJAX</h3>
+			<h4>1.AJAX简介</h4>
+			<pre>
+	(1).AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。
+	(2).AJAX 不是新的编程语言，而是一种使用现有标准的新方法。
+	(3).AJAX 最大的优点是在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容。
+	(4).AJAX 不需要任何浏览器插件，但需要用户允许JavaScript在浏览器上执行。
+	(5).AJAX 是一种用于创建快速动态网页的技术。
+	(6).AJAX是基于现有的Internet标准，并且联合使用它们：	
+				  a. XMLHttpRequest 对象 (异步的与服务器交换数据)
+				  b. JavaScript/DOM (信息显示/交互)
+				  c. CSS (给数据定义样式)
+				  d. XML (作为转换数据的格式)
+	(7). AJAX应用程序与浏览器和平台无关的！
+	应用程序案例：新浪微博、Google 地图、开心网等等</pre>
+			<h4>2.AJAX - 创建 XMLHttpRequest 对象</h4>
+			<pre>
+<strong>(1).XMLHttpRequest 对象</strong>
+   a. XMLHttpRequest 是 AJAX 的基础。
+   b. 所有现代浏览器均支持 XMLHttpRequest 对象（IE5 和 IE6 使用 ActiveXObject）。
+   c. XMLHttpRequest 用于在后台与服务器交换数据。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。
+
+<strong>(2).创建 XMLHttpRequest 对象	</strong>
+    < script>
+    	var xhr;
+    	if(window.XTMLHttpRequest){
+    		//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+    		xhr =new XMLHttpRequest();
+    	}else{   		
+            // IE6, IE5 浏览器执行代码
+            xhr =new ActiveXObject("Microsoft.XMLHttp");
+    	}
+    < /script>
+    	
+<strong>(3).AJAX - 向服务器发送请求请求	</strong>
+  1).向服务器发送请求
+      XMLHttpRequest 对象用于和服务器交换数据。如需将请求发送到服务器,使用 XMLHttpRequest对象的 open() 和 send() 方法：
+      xhr.open("GET","ajax_info.txt",true);
+      xhr.send();
+      <img src="http://a2.qpic.cn/psb?/V143g8u60T94kH/jQRa08wkoWeZhyopJ12MwRQkWLFKydyOuA6eqmDCz*w!/b/dG8BAAAAAAAA&bo=3wILAQAAAAADAPI!&rf=viewer_4" />
+  2).GET 与 POST区别：
+	    与 POST 相比，GET 更简单也更快，并且在大部分情况下都能用。
+	    在以下情况中，请使用 POST 请求：
+		    a.无法使用缓存文件（更新服务器上的文件或数据库）。
+		    b.向服务器发送大量数据（POST 没有数据量限制）。
+		    c.发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠。
+  3).url - 服务器上的文件:
+        open() 方法的 url 参数是服务器上文件的地址：xmlhttp.open("GET","ajax_test.html",true);
+       文件可以是任何类型的文件，比如 .txt 和 .xml，或者服务器脚本文件，比如 .asp 和 .php 
+  4).异步 - True 或 同步 - False？
+       AJAX 指的是异步 JavaScript 和 XML（Asynchronous JavaScript and XML）。
+       XMLHttpRequest 对象如果要用于 AJAX 的话，其 open() 方法的 async 参数必须设置为 true
+       
+<strong>(4).AJAX - 服务器 响应	</strong>
+    如需获得来自服务器的响应，请使用 XMLHttpRequest 对象的 responseText 或 responseXML 属性。
+  1).responseText 属性  :返回字符串形式的响应。
+      document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+  2).response 属性 ： 包括responseText、responseXML 
+      document.getElementById("myDiv").innerHTML = xhr.response;
+      
+<strong>(5).AJAX - onreadystatechange 事件</strong>
+	 XMLHttpRequest 对象的三个重要的属性：onreadystatechange、readyState、status.
+	 onreadystatechange 	存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。
+	 readyState 等于 4 且status状态为 200 时，表示响应已就绪。
+事例：
+       var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(msg) {
+		if(xhr.readyState == 4) {
+			if(xhr.status == 200) {
+				//	console.log(msg.response);
+				document.getElementById("box").innerHTML = xhr.response
+			}
+		}
+	}
+		// xhr.onload =function(msg){
+		// 		document.getElementById("box").innerHTML =xhr.response
+		// 		}
+	xhr.open("GET", "ajaxfiles/xhr.txt"); //访问本地文件
+	xhr.send();   
+<img src="http://a1.qpic.cn/psb?/V143g8u60T94kH/JtotKNPYYvzYziulw4lvVzWg7kayTILrIHnpcoWXa4I!/b/dN4AAAAAAAAA&bo=fwO0AQAAAAADAOw!&rf=viewer_4" />	
+<img src="http://a3.qpic.cn/psb?/V143g8u60T94kH/wxgLeKt78AKi7R7RBrd3FbzJd8tx0xDQpt.g6D8XN0k!/b/dN0AAAAAAAAA&bo=dgO1AQAAAAADAOQ!&rf=viewer_4" />	    	    
+			</pre>
+			<h4>3.AJAX 高级</h4>
+			<h3>JSON</h3>
+			<strong>1.JSON - 简介</strong>
+			<pre>
+	(1).JSON: JavaScript Object Notation(JavaScript 对象表示法)
+	(2).JSON 是存储和交换文本信息的语法。类似 XML。
+	(3).JSON 比 XML 更小、更快，更易解析。	
+       (4).JSON 指的是 JavaScript 对象表示法（JavaScript Object Notation）。
+       (5).JSON 是轻量级的文本数据交换格式。
+       (6).JSON 独立于语言 *。
+       (7).JSON 具有自我描述性，更易理解。
+       *  JSON 使用 Javascript语法来描述数据对象，但是 JSON 仍然独立于语言和平台。JSON 解析器
+        和 JSON 库支持许多不同的编程语言。 目前非常多的动态（PHP，JSP，.NET）编程语言都支持JSON。
+        事例：
+		{ "sites": [
+		{ "name":"菜鸟教程" , "url":"www.runoob.com" }, 
+		{ "name":"google" , "url":"www.google.com" }, 
+		{ "name":"微博" , "url":"www.weibo.com" }
+		] }
+		
+<strong>2.JSON 语法</strong>
+    JSON 语法是 JavaScript 对象表示法语法的子集。    
+    数据在名称/值对中  :   "name" : "菜鸟教程"
+    数据由逗号分隔；花括号保存对象
+    方括号保存数组   :  { "name":"菜鸟教程" , "url":"www.runoob.com" }
+事例：
+	var sites = [
+	    { "name":"runoob" , "url":"www.runoob.com" }, 
+	    { "name":"google" , "url":"www.google.com" }, 
+	    { "name":"微博" , "url":"www.weibo.com" }
+	];	
+	sites[0].name;
+	<span><a href="ajax作业.html">作业</a></span>
+			</pre>
+	</body>
+</html>
