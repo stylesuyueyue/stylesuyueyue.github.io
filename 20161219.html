@@ -102,18 +102,7 @@
          	}
          }
          alert( obj.foo()() )    // Hellow Object!
-         
-            <h3>(二)apply()和call()方法：</h3><pre>
-            	var o = { num:400 };
-            	var num = 10;
-            	var obj = {};
-            	obj.num = 1;
-            	obj.f =function(){
-            		alert(this.num);
-            	}
-            	obj.f.apply(o)     // 400
-            	obj.f.apply( )      // 10
-            	obj.f.call(o)        // 400
+
 8.闭包函数：
       function kk(a, b) {
 				var k = 1;
@@ -128,7 +117,18 @@
 //					return k++;  //1
 //				}"			
 			console.log(u()); //闭包实现累加      输出tt函数里变量值
-
+         
+            <h3>(二)apply()和call()方法：</h3><pre>
+            	var o = { num:400 };
+            	var num = 10;
+            	var obj = {};
+            	obj.num = 1;
+            	obj.f =function(){
+            		alert(this.num);
+            	}
+            	obj.f.apply(o)     // 400
+            	obj.f.apply( )      // 10
+            	obj.f.call(o)        // 400
 1.call和apply相同点: 
 a） 产生的效果或作用完全相同；
 b） 至少有一个参数；
