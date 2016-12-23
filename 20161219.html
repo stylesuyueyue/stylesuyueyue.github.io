@@ -156,9 +156,9 @@ c） 第一个参数必须有且是一个对象（Object）。
 		console.log(sum.apply(window,[10,20])); //30 
 		
       例3.     function temp1() { 
-			console.log(this);      // this指向：Object {} 
+			console.log(this);      //  this指向：Object {} 
 			function temp2() { 
-				console.log(this);       // this指向：Window 
+				console.log(this);       //  this指向：Window 
 			} 
 			temp2(); 
 		} 
