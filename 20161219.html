@@ -114,7 +114,21 @@
             	obj.f.apply(o)     // 400
             	obj.f.apply( )      // 10
             	obj.f.call(o)        // 400
-            	
+8.闭包函数：
+      function kk(a, b) {
+				var k = 1;
+				return function tt() {
+//					return ++k;   //2
+					return k++;  //1
+				}
+			}
+			var u = kk(1, 2);
+			console.log(u); //闭包实现累加       //输出 "function tt() {
+//					return ++k;   //2
+//					return k++;  //1
+//				}"			
+			console.log(u()); //闭包实现累加      输出tt函数里变量值
+
 1.call和apply相同点: 
 a） 产生的效果或作用完全相同；
 b） 至少有一个参数；
