@@ -73,7 +73,7 @@ element.scrollLeft               返回元素左边缘与视图之间的距离�
 element.scrollTop                返回元素上边缘与视图之间的距离。
 element.scrollWidth               返回元素的整体宽度。
 思想：一个显示框，一个移动框即装载字幕的框。显示框是移动框的一半，隐藏(overflow: hidden)溢出显示框的部分。
-	overflow-x: auto;overflow-x: auto;显示x、y轴滚动条（如果想只有x轴滚动条，显示框内部框架的宽要比显示框宽大）。
+	overflow-x: auto;overflow-y: auto;显示x、y轴滚动条（如果想只有x轴滚动条，显示框内部框架的宽要比显示框宽大）。
 	捕捉相应元素，利用定时器循环运行函数，使跑马灯运行。函数里运用if条件限制，当element.scrollLeft等于一段字体长度时，
 	设置element.scrollLeft为0，element.scrollLeft在字体长度内自加加。移动框内设置两条相同字体，为使循环更衔接，没有停顿感。
 			</pre>
