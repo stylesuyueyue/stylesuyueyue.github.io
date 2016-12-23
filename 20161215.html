@@ -53,14 +53,14 @@
 			                 (2)创建并画图像，把图像的中心点与起始点重合。<br>
 			                 (3)位按钮添加点击事件，通过rotate+重新drawImage()方法旋转。<br>
 			</p>
-			<pre>2、JS封装的方法有函数方式、对象的方式、闭包的方式。
-				举例
-				1）函数方式
+			<pre><strong>2、JS封装的方法有函数方式、对象的方式、闭包的方式。</strong>
+			举例
+			1）函数方式
 				function kk(a,b){
 				   内部对a，b怎么处理就不需要关心了
 				}
 
-				2）对象方式
+			2）对象方式
 				function kk(a,b){
 				   this.x = a;
 				   this.y = b;
@@ -68,7 +68,7 @@
 				var k = new kk(1,2);//通过面向对象的方式
 				alert(k.x);
 				
-				3）闭包方式
+			3）闭包方式
 				function kk(a,b){
 				   var k = 1;
 				   return function tt(){
