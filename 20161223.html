@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>苏雁雁_设计模式和深浅拷贝_20161223</title>
+		<style type="text/css">.box {
+	width: 1200px;
+	height: auto;
+	margin: auto;
+	font-family: "微软雅黑";
+}
+
+p,
+pre {
+	font-size: 16px;
+	font-family: "微软雅黑";
+}</style>
+	</head>
+	<body>
+		<div class="box">
+			<h3>设计模式：</h3>
+			<pre>概念：  设计模式是一套被反复使用的、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了重用代码、
+	     让代码更容易被他人理解、保证代码可靠性。
+	     
+设计模式的类型：总共有 25 种设计模式，可以分为三大类：创建型模式（Creational Patterns）、结构型模式（Structural Patterns）、
+		           行为型模式（Behavioral Patterns）。
+		           观察者模式即发布订阅模式。单例模式常用于弹窗，最简单。
+		           
+MVC 模式：MVC 模式代表 Model-View-Controller（模型-视图-控制器） 模式，用于应用程序的分层开发。
+	          Model（模型） - 模型代表一个存取数据的对象或 JAVA POJO。它也可以带有逻辑，在数据变化时更新控制器。
+	          View（视图） - 视图代表模型包含的数据的可视化，即显示数据。
+	          Controller（控制器） - 控制器作用于模型和视图上。它控制数据流向模型对象，并在数据变化时更新视图。它使视图与模型分离开。
+事例：	        // 显示数据
+		< button id="btn">点击< /button>		
+		< script src="js/controller.js" type="text/javascript">< /script>
+		< script src="js/model.js" type="text/javascript">< /script>
+			
+		model.js ：//存储数据
+				var btn =document.getElementById('btn');
+				btn.onclick =fun;
+		controller.js ://处理数据
+				function fun(){
+					alert("but");   }
+			</pre>
+			<h3>浅拷贝和深拷贝</h3>
+		 <pre>     浅拷贝只是增加了一个指针指向已经存在的内存，而深拷贝就是增加一个指针并且申请一个新的内存，使这个增加的指针指向这个
+新的内存，采用深拷贝的情况下，释放内存的时候就不会出现在浅拷贝时重复释放同一内存的错误。
+	
+事例：//浅拷贝、浅复制
+			var obj ={ a:1,arr:[2,3]};
+			var objCopy =copyObject(obj);
+			function copyObject(_obj){
+				var temp ={};
+				for(var p in _obj){ //索引
+					if(_obj.hasOwnProperty(p)){
+						temp[p] =_obj[p];
+					}
+				}
+				return temp;
+			}
+			console.log(objCopy.a);
+			
+	//深拷贝、深复制
+			var cloneObj = function(obj){ 
+				var str, newobj = obj.constructor === Array ? [] : {}; 
+				if(typeof obj !== 'object'){ return; 
+				} else if(window.JSON){ 
+					str = JSON.stringify(obj), //系列化对象
+					newobj = JSON.parse(str); //还原 
+					} else { 
+						for(var i in obj){ newobj[i] = typeof obj[i] === 'object' ? 
+						cloneObj(obj[i]) : obj[i]; 
+						} 
+					} 
+					return newobj; 
+			};		
+			</pre>
+		</div>
+	</body>
+</html>
