@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>苏雁雁_JQuery 实例_20161228</title>
+		<style type="text/css">
+			.box {
+				width: 1200px;
+				height: auto;
+				margin: auto;
+				font-family: "微软雅黑";
+			}
+			
+			p,
+			pre {
+				font-size: 17px;
+				font-family: "微软雅黑";
+				line-height: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<h3>JQuery 实例</h3>
+			<pre>   <b>AJAX查询:</b>
+	$.ajax( { type:"GET/POT" ,  url:"" , data:"_data"(外部传入的数据) , dataType:"text/JSON/JSONP", 
+	             success:function{} , error:function{}} )	
+    1.先获取接口文档或接口数据.
+    2.获取服务器数据：a.需要给服务器传递的参数；
+        b.跨域：JSONP callback：非XMLHttpRequest对象交互。通过script标签来和服务器交互（src="http//.wwww.ex.com"）。
+    3.解析从服务器获取到的数据：a.解析数据过程中（脱离后台交互）。 
+                      b.显示数据：界面布局及其他。
+    4.其他功能：a.需要的功能（数据过滤：由服务器完成，我们只传参数。）
+                 b.重新规划数据。
+    5.双击弹出改行详细信息介绍。 
+    <b>主要代码：</b>
+    <div style="float: left;"><b>var _url = "http://www.hemijiaoyu.com/service/searchApply";
+	var _data = {};
+	_data.pageNum = 1; //数据第多少页
+	_data.pageSize = 20; //一页多少行数据
+    //数据过滤或筛选
+	var $name = $("#username").val();
+	var $phone = $("#phone").val();
+	var $college = $("#college").val();
+	if($name != "") {
+		_data.name = $name;     
+	}                // 将要查询的相应文本框值传给服务器，服务器根据条件筛选  
+	if($phone != "") {
+	    _data.mobile = $phone;
+	}
+	if($college != "") {
+		_data.college = $college;  }</b></div>
+ <div>              <b>$.ajax(  {type: "get",             // jquery ajax格式要记住
+                        url: _url,               // 获取地址
+			data: _data,     dataType: "JSON",
+			success: function(msg) {
+				var arr = msg.list;
+				var len = arr.length;
+				var str = "";
+				for(var i = 0; i < len; i++) {
+				    var obj = arr[i];
+				    str += "< tr id =" + i+ ">"     // 为tr附上ID值i
+				    for(var j in obj) {
+					  if(j != "homeTel") {
+						 str += "< td>" + obj[j] + "< /td>";   }
+				    }    str += "< /tr>";	}    $("#tbd").html(str);</b></div>
+	$("tr").dblclick(function(e) {
+		<b>var num2=arr[e.currentTarget.id]</b>             //currentTarget父级节点，e.currentTarget.id获取tr的id值
+		console.log(arr[e.currentTarget.id])                // 输出数组第多少个object
+		console.log($("#tname").val(num2.name))
+		$("#mask").show(function(){
+			<b>$("#tname").val(num2.name);</b>            // 获取object里所需要的属性，并赋值给对应框里
+			$("#birthday").val(num2.birthday);
+			$("#collegea").val(num2.college);
+			$("#mobile").val(num2.mobile);
+			$("#qq").val(num2.qq);
+			$("#address").val(num2.homeAddress);
+			$("#father").val(num2.fatherName);
+			$("#fatherMobile").val(num2.fatherMobile);
+			$("#mother").val(num2.matherName);
+			$("#motherMobile").val(num2.matherMobile);       } ); })    
+ }, error: function() { return "发生错误!"  },   
+  <a href="jquery 实例12-28.html">实例效果显示</a>
+			</pre>
+		</div>
+	</body>
+</html>
