@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>苏雁雁_JQuery_20161226</title>
+		<style type="text/css">
+			.box {
+				width: 1200px;
+				height: auto;
+				margin: auto;
+				font-family: "微软雅黑";
+			}
+			
+			p,
+			pre {
+				font-size: 16px;
+				font-family: "微软雅黑";
+				line-height: 30px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<h2>JQuery</h2>
+			<h3>1.什么是 jQuery ？</h3>
+			<pre>
+  1).jQuery是一个JavaScript函数库,是目前最流行的 JS 框架。
+  2).jQuery是一个轻量级的"写的少，做的多"的JavaScript库,极大地简化了 JavaScript 编程。
+  3).jQuery库包含以下功能:HTML 元素选取;HTML 元素操作;CSS 操作HTML ;事件函数;JavaScript 特效和动画;HTML DOM 遍历和修改
+      AJAX;Utilities;Jquery还提供了大量的插件。     </pre>
+			<h3>2.jQuery 安装</h3>
+			<pre>  1).网页中添加 jQuery:可以通过多种方法在网页中添加 jQuery.从 jquery.com 下载 jQuery 库;
+      从 CDN 中载入 jQuery, 如从 Google 中加载 jQuery.
+  2).下载 jQuery:有两个版本的 jQuery 可供下载：
+   Production version - 用于实际的网站中，已被精简和压缩。
+   Development version - 用于测试和开发（未压缩，是可读的代码）
+    以上两个版本都可以从 <a href="http://jquery.com/download/">jquery.com </a>中下载。
+   jQuery 库是一个 JavaScript 文件，可以使用 HTML 的 < script> 标签引用它：
+   < head>  < script src="jquery-1.10.2.min.js">< /script>  < /head></pre>
+			<h3>3.jQuery 语法</h3>
+			<pre>基础语法： $(selector).action()
+    美元符号定义 jQuery;  选择符（selector）"查询"和"查找" HTML 元素;  jQuery 的 action() 执行对元素的操作.
+实例:       $(this).hide() - 隐藏当前元素
+	    $("p").hide() - 隐藏所有 < p> 元素
+	    $("p.test").hide() - 隐藏所有 class="test" 的 < p> 元素
+	    $("#test").hide() - 隐藏所有 id="test" 的元素
+
+文档就绪事件:	$(document).ready(function(){      // 开始写 jQuery 代码...       });
+<strong>原生Javascript与JQuery代码入口区别：</strong>   window.onload:多次声明，只执行最后一个。
+									jquery：多次声明，全部调用。  </pre>
+			<h3>4.jQuery  选择器</h3>
+			<pre>jQuery 选择器基于元素的 id、类、类型、属性、属性值等"查找"（或选择）HTML 元素。 它基于已经存在的 CSS 选择器，
+	除此之外，它还有一些自定义的选择器。jQuery 中所有选择器都以美元符号开头：$()。
+    <a href="selecter(1).svg">查看选择器类型</a>
+事例：  <div style="float: left;"> $(function () {
+				//        $("#id1").click(function () {
+				//            alert("啊，戳中我了！");
+				//        });
+        /****************ID选择器**********************/
+		        $("#span1").click(function () {
+		            $("#id1").toggleClass("class");
+		        });
+        /****************Class选择器**********************/
+		        $("#span4").click(function () {
+		            $(".class1").toggleClass("class");
+		        });
+        /****************标签选择器**********************/
+		        $("#span6").click(function () {
+		            $("span").toggleClass("class");
+		        });
+        /****************组合选择器**********************/
+		        $("#span7").click(function () {
+		            $("#id1,#id3,.class1").toggleClass("class");
+		        });
+        /****************后代（家族）选择器**********************/
+		        $("#span8").click(function () {
+		            $("ul span").toggleClass("class");
+		        });
+        /****************子代（父子）选择器**********************/
+		        $("#span9").click(function () {
+		            $("#li3>#id1").toggleClass("class");
+		        });
+		        $("#span10").click(function () {
+		            $("#li3>span").toggleClass("class");
+		        });</div><div>
+        /****************相邻元素选择器**********************/
+		        $("#span11").click(function () {
+		            $("#id1+span").toggleClass("class");
+		        });
+        /****************兄弟(同辈)元素选择器**********************/
+		        $("#span12").click(function () {
+		            $("#id1~span").toggleClass("class");
+		        });
+        /****************过滤选择器**********************/
+		        $("#span13").click(function () {
+		            $(".class1:even").toggleClass("class");
+		        });
+		        $("#span14").click(function () {
+		            $(".class1:odd").toggleClass("class");
+		        });
+		        $("#span15").click(function () {
+		            $("#li5 span:has(a)").toggleClass("class");
+		        });
+        /****************属性选择器**********************/
+		        $("#span16").click(function () {
+		            $("input[name='input1']").toggleClass("class");
+		        });
+		        $("#span17").click(function () {
+		            $("input[name!='input2']").toggleClass("class");
+		        });
+		        $("#span18").click(function () {
+		            $("input[name*='input3']").toggleClass("class");
+		        });
+		        $("#span19").click(function () {
+		            $("input[name$='4']").toggleClass("class");    });      });	</div></pre>
+		    <h3>5.jQuery 事件</h3>
+		    <pre><img src="http://a3.qpic.cn/psb?/V143g8u60T94kH/*M*AHGLGMxgVTUQ*rIIm02pzSfaQ6rmU8VQBxfM*LIg!/b/dN0AAAAAAAAA&bo=3AK6AAAAAAADB0Y!&rf=viewer_4">
+<strong>常用的 jQuery 事件方法: </strong>
+	1).  $(document).ready():  在文档完全加载完后执行函数.
+	2).  click():  当按钮点击事件被触发时会调用一个函数。	例：$("p").click( function(){ $(this).hide(); } );
+	3).  dblclick():  当双击元素时，会发生 dblclick 事件.   例：$("p").dblclick( function(){ $(this).hide();} );
+       4).  mouseenter():  当鼠标指针穿过元素时，会发生 mouseenter 事件。
+          例：$("#p1").mouseenter( function(){ alert('您的鼠标移到了 id="p1" 的元素上!');} );
+       5).  mouseleave():  鼠标指针离开元素时，会发生 mouseleave 事件。
+	6).  mousedown():   当鼠标指针移动到元素上方，并按下鼠标按键时，会发生 mousedown 事件。
+	7).  mouseup():  当在元素上松开鼠标按钮时，会发生 mouseup 事件。
+	8).  hover():  用于模拟光标悬停事件。
+	9).  focus():  当元素获得焦点时，发生 focus 事件.    
+	   例： $("input").focus(  function(){ $(this).css("background-color","#cccccc");} );
+      10). blur():  当元素失去焦点时，发生 blur 事件。
+          例：$("input").blur( function(){ $(this).css("background-color","#ffffff");} );
+
+事例：<div style="float: left;">   $(window).resize(function () {
+        $("#span").text(parseInt($("#span").text()) + 1);
+    });
+    $(window).scroll(function () {
+        $("#span").text(parseInt($("#span").text()) + 1);
+    });
+    $(function () {
+        $("#click1").click(function () {
+            $("#click1").toggleClass("class1");
+        });
+        $("#click1").hover(function () {
+            $("#click1").toggleClass("class1",true);
+        },function () {
+            $("#click1").toggleClass("class1",false);
+        });
+        $("#inpt").focus(function () {
+            $("#inpt").toggleClass("class1",true);
+        });
+        $("#inpt").blur(function () {
+            $("#inpt").toggleClass("class1",false);
+        });
+        </div><div>
+        $("#inpt2").keydown(function () {
+            $("#inpt2").toggleClass("class1");
+        });
+        $("#inpt3").keyup(function () {
+            $("#inpt3").toggleClass("class1");
+        });
+        $("#inpt4").keypress(function () {
+            $("#inpt4").toggleClass("class1");
+        });
+        $("#sp1").on("click",function () {
+            $("#sp1").toggleClass("class1");
+        });
+        $("#sp2").bind("click",function () {
+            $("#sp2").toggleClass("class1");
+        });
+        $("#sp3").click(function () {
+            alert("我要触发trigger事件了");
+            $("#sp1").trigger("click");
+        });
+        $("#sp4").click(function () {
+            $("#ds").append('<span onclick="alert(123)";>我是来代替live的</span>');      });        });</div>
+ </pre>
+     <h3>二级省市联动</h3>
+     <pre>原生Javascript版： var arr = [
+        {"河南":["郑州市","商丘市","开封市"]},
+        {"四川":["成都市","绵阳市"]}  ];
+    var st1 = document.getElementById("st1");
+    var st2 = document.getElementById("st2");
+    st1.onchange = function (e) {
+        for(var i = 0;i<arr.length;i++){
+            for(var j in arr[i]){
+                console.log(j);
+                if(st1.options[st1.selectedIndex].innerText == j){
+                    var arr1 = arr[i][j];
+                    var str = "<select><option>选择市</option>";
+                    for(var k = 0;k<arr1.length;k++){
+                        if(k == 0){
+                            str += "<option selected>" + arr1[k] + "< /option>";
+                        }else{
+                            str += "< option>" + arr1[k] + "< /option>";
+                        }
+                    }     str += "< /select>";
+                           st2.innerHTML = str;}  }  }  }
+     JQuery版：var arr = [
+				 {"河南":["郑州市","商丘市","开封市"]},
+        		   {"四川":["成都市","绵阳市"]}  ];
+			$("#slt1").change(function() {
+				for(var i = 0; i < arr.length;i++) {
+					for(var j in arr[i]){
+						var m =$("#slt1").get(0).options[$("#slt1").get(0).selectedIndex].text;
+						if(m ==j){
+							var arr2 =arr[i][j];    var str;
+							for(var k =0;k<arr2.length;k++){
+								str +="<option>"+arr2[k]+"</option>";
+							} $("#slt2").html(str); } } } })  
+     </pre>
+		</div>
+	</body>
+</html>
