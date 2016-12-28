@@ -200,7 +200,12 @@ console.log($("#div").remove())     //删除div这个节点
 	  (3).其他: serialize：序列表表格内容为字符串。
 			serializeArray：序列化表格元素 (类似 '.serialize()' 方法) 返回 JSON 数据结构数据。
 例：//jquery AJAX     数据获取和处理
-<div style="float: left;">	                    var _data = {};
+<div style="float: left;">	                  //第一种增加object
+					//var _data ={
+					//	pageNum:1,
+					//	pageSize20   }					
+					var _data = {};
+					//第二种增加obj
 			_data.pageNum = 1;   _data.pageSize = 20;
 			<b>$.ajax</b>( {
 				//	url: "ajaxfiles/txt.txt",
@@ -214,16 +219,16 @@ console.log($("#div").remove())     //删除div这个节点
 				var str = "< table border='1' style='width: 1000px;'>";
 				var arr = msg.list;</div>	
 	<div>			for(var i = 0; i < arr.length; i++) {
-						var obj = arr[i];
-						str += "< tr>";
-						for(var j in obj) {
-							if(j != "homeTel") {
-							str += "< td>" + obj[j] + "< /td>"; }
-						}str += "< /tr>";  }
-							str += "< /table>";
-							$("#div").html(str);
-						},error: function(error) {
-							console.log("错误：" + error);        }    })</div>	
+					var obj = arr[i];
+					str += "< tr>";
+					for(var j in obj) {
+					    if(j != "homeTel") {
+					    str += "< td>" + obj[j] + "< /td>"; }
+					}str += "< /tr>";  }
+					    str += "< /table>";
+					    $("#div").html(str);
+					},error: function(error) {
+					   console.log("错误：" + error);        }    })</div>	
 
 			</pre>
 		</div>
