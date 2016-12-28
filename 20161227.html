@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+		<head>
+		<meta charset="UTF-8">
+		<title>苏雁雁_JQuery DOM操作、jQuery 效果、jQuery - AJAX_20161227</title>
+		<style type="text/css">
+			.box {
+				width: 1200px;
+				height: auto;
+				margin: auto;
+				font-family: "微软雅黑";
+			}
+			
+			p,
+			pre {
+				font-size: 17px;
+				font-family: "微软雅黑";
+				line-height: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<h2>JQuery DOM操作、jQuery 效果、jQuery - AJAX</h2>
+			<h3>JQuery DOM操作</h3>
+			<pre>  $(document).ready()   ==>jQuery(document).ready()
+  < button id="btn">点击< /button>
+  console.log(document.getElementById("btn"))     //输出< button id="btn">点击< /button>
+  console.log($("#btn"))                 // 输出数组[button#btn]
+  
+  <a href="DOM(1).svg">JQuery DOM内容框架</a>
+<b>1.jQuery 操作 html</b>
+  <b>(1).html元素/节点:</b>
+    <b>1.1).获得内容 - text()、html() 以及 val()</b>
+	text() - 设置或返回所选元素的文本内容
+	html() - 设置或返回所选元素的内容（包括 HTML 标记）
+	val() - 设置或返回表单字段的值
+例：
+	console.log($("#div").text("< span>我是span< /span>"))        //  < span>我是span< /span>:文本内容      // text相当于JavaScript里的innertext
+	console.log($("#div").html("< span>我是span< /span>"))        //  我是span            //  html相当于JavaScript里的innerHTML	
+	console.log($("#div").html())                     //空值时获取标签其中内容	
+	console.log($("input").val("hello world!"))           // val相当于JavaScript里的input value
+	
+    <b>1.2).text()、html() 以及 val() 的回调函数</b>
+        回调函数有两个参数：被选元素列表中当前元素的下标i，以及原始（旧的）值origText。return函数新值返回您希望使用的字符串。 
+例：$("#btn").click(function(){
+	    $("#div").text( function(i,origText){
+	        return "旧文本: " + origText + " 新文本: Hello world! (index: " + i + ")"; 
+    });     });                //  旧文本:div内容(不包括效果)           新文本: Hello world!（index：0）  
+    
+    $("#btn").click(function(){
+    $("#div").html(function(i,origText){
+        return "旧 html: " + origText + " 新 html: Hello <b>world!</b> (index: " + i + ")"; 
+    });     });					//  旧 html:div内容(包括效果)           新文本: Hello world!（index：0）/(world有加粗效果)
+    
+  <b>(2).html属性:</b>
+    <b>2.1).获取属性 - attr( name|properties|key,value|fn )</b>
+	a.attr方法里要写设置的属性，不填写值时，获取值为空字符串string。
+	b.attr方法里填写字符串,console返回数组，数组第0个索引是被选元素。
+	c.attr方法后面很神奇的有个返回函数，返回函数如果return值，会把所有的选择器选择的标签都替换掉。
+	d.attr方法的函数里还可以传递两个值，第一个值：当前标签的索引；第二个值：当前标签attr第一个参数传递的属性的值，
+	如果为空，返回空字符串。
+例：$("img").attr("src");           //  name 描述:返回文档中所有图像的src属性值。
+	$("img").attr( { src: "test.jpg", alt: "Test Image" } );           // properties 描述:为所有图像设置或改变src和alt属性。
+	$("img").attr( "src","test.jpg" );            //key,value 描述:为所有图像设置或改变src属性。
+	< p>< a href="//www.runoob.com" id="runoob">菜鸟教程< /a>< /p>
+	$("button").click(function(){
+	  $("img").attr("alt", function(i,origValue){
+	    return origValue="错误";                // origValue表示alt里的值。 
+	  });    });             // 参数key,回调函数 描述:图片传出错误时 ，出现alt错误提示    
+	  
+    <b>2.2).removeAttr():</b> 从被选元素移除一个或多个属性。 
+       $("p").removeAttr("style");       //移除p标签里的style属性。
+    
+  <b>(3).html文档处理:</b>
+    <b>3.1).jQuery - 添加元素</b> 
+       a. append() - 在被选元素的结尾插入内容
+	b. prepend() - 在被选元素的开头插入内容
+	c. after() - 在被选元素之后插入内容
+	d. before() - 在被选元素之前插入内容
+	e. clone()     复制   console.log($("#div").clone().prependTo("p"))     //复制div到p内容前面  
+例：console.log($("#div").append("hello!"));            // div内容结尾加入hello!        空值输出数组
+	console.log($("#div").append("< ul>< li>hello world!< /li>< /ul>"));       //你好 hello world!     div内容结尾后面增加(子集)
+	console.log($("< ul>< li>hello world!< /li>< /ul>").appendTo("#div"));            // appendTo与append语法相反，结果相同
+		
+	console.log($("#div").prepend("< ul>< li>hello world!< /li>< /ul>"));      //  hello world! 你好       div内容前面增加(子集)
+	console.log($("< ul>< li>hello world!< /li>< /ul>").prependTo("#div"));	       //prependTo与prepend语法相反，结果相同  
+		
+	console.log($("#div").after("< ul>< li>hello world!< /li>< /ul>"));               //div后面增加(同级)
+	console.log($("< ul>< li>hello world!< /li>< /ul>").insertAfter("#div"));          // insertAfter与after
+	
+	console.log($("#div").before("< ul>< li>hello world!< /li>< /ul>"));             //div前面增加(同级)
+	console.log($("< ul>< li>hello world!< /li>< /ul>").insertBefore("#div"));        // insertBefore与before	
+   <b>3.2).jQuery - 删除元素</b>
+       remove() - 删除被选元素（及其子元素）
+       empty() - 从被选元素中删除子元素
+例：console.log($("#div").empty())    //清空div里面的内容
+console.log($("#div").remove())     //删除div这个节点
+   <b>3.3).jQuery - 包裹元素</b> 
+        wrap( html|element|fn )：把所有匹配的元素用其他元素的结构化标记包裹起来。
+ 	unwrap()：移出元素的父元素。
+ 	wrapAll(html|ele): 将所有匹配的元素用单个元素包裹起来。 	
+例：$("p").wrap("< div class='wrap'>< /div>");           // 把所有的段落用一个新创建的div包裹起来
+	$("p").wrap(document.getElementById('content'));         // 用ID是"content"的div将每一个段落包裹起来
+	< div class="inner">Hello< /div>
+	$('.inner').wrap(function() {
+	  return '< div class="' + $(this).text() + '" />';  });    // 用原先div的内容作为新div的class，并将每一个元素包裹起来
+	结果 ：< div class="Hello">   < div class="inner">Hello< /div>   < /div>
+	接上例：$(".Hello").unwrap()             //快速取消 .wrap()方法的效果   < div class="inner">Hello< /div>
+			
+<b>2.jQuery 操作 CSS</b>	
+  <b>(1).css类操作:</b>
+        (1).addClass() - 向被选元素添加一个或多个类
+	(2).removeClass() - 从被选元素删除一个或多个类
+	(3).toggleClass() - 对被选元素进行添加/删除类的切换操作
+例：$("h1,h2,p").addClass("blue");   $("#div").addClass("cssClass"))     // cssClass为style里的类.cssClass
+  <b>(1).css基础操作:</b>
+    <b>1).基础--css</b>:注意每种写法的不同
+例：console.log($("div>div").css("color","red"))       // 设置单个属性
+	console.log($("div>div").css( { "backgroung-color":" green","color":"red" } ))    // 设置多个属性
+	console.log($("ul>li").css("color",function(index,value){     // 函数
+	         console.log(index+","+value);
+		var str ="blue";    return value =str;  }))
+    <b>2).尺寸</b>
+        width() , height() : 设置或返回元素的宽度、高度（不包括内边距、边框或外边距）
+	innerWidth() , innerHeight() : 返回元素的宽度、高度（包括内边距）。
+	outerWidth() , outerHeight() : 返回元素的宽度、高度（包括内边距和边框）。
+	<img src="http://www.runoob.com/images/img_jquerydim.gif">
+    <b>3).位置</b>
+    offset()：获取匹配元素在当前视口的相对偏移。
+    position()：获取匹配元素相对父元素的偏移。
+    scrollTop()：获取匹配元素相对滚动条顶部的偏移。
+  scrollLeft()：获取匹配元素相对滚动条左侧的偏移
+			</pre>
+			<h3>jQuery 效果Animation</h3>
+			<a href="Animation(1).svg">Animation内容框架</a>
+			<pre>  <b>1.隐藏和显示:</b>
+   语法:hide():  $(selector).hide(speed,callback);
+	show():   $(selector).show(speed,callback); 
+	toggle():  $(selector).toggle(speed,callback);        // 切换 hide() 和 show() 方法。
+	可选的 speed 参数规定隐藏/显示的速度，可以取以下值："slow"、"fast" 或毫秒。
+	可选的 callback 参数是隐藏或显示完成后所执行的函数名称。			
+  例：$("p").show();         $("p").hide(1000);           $("p").toggle();
+ <b>2.滑动:</b>
+   语法：slideDown():  $(selector).slideDown(speed,callback); 
+   通过高度变化（向下增大）来动态地显示所有匹配的元素，在显示完成后可选地触发一个回调函数
+       slideUp():    $(selector).slideUp(speed,callback);         // 高度变化（向上减小）
+       slideToggle():   $(selector).slideToggle(speed,callback);  //通过高度变化来切换所有匹配元素的可见性
+ <b>3.淡入淡出:</b>
+   语法: fadeIn():  $(selector).fadeIn(speed,callback);
+	fadeOut():  $(selector).fadeOut(speed,callback);
+	fadeToggle():  $(selector).fadeToggle(speed,callback);
+	fadeTo():  $(selector).fadeTo(speed,callback);
+ <b>4.自定义:</b>
+       animate():  animate(params,[speed],[easing],[fn])
+       params:一组包含作为动画属性和终值的样式属性和及其值的集合
+	   speed: 三种预定速度之一的字符串("slow","normal", or "fast")或表示动画时长的毫秒数值(如：1000)
+	   easing: 要使用的擦除效果的名称(需要插件支持).默认jQuery提供"linear" 和 "swing".
+	   fn: 在动画完成时执行的函数，每个元素执行一次。
+   例：$("#block").animate({ 
+	    width: "90%",  height: "100%", fontSize: "10em", borderWidth: 10   }, 1000 );
+	    使用“easein”函数提供不同动画样式：$("p").animate( { opacity: 'show'}, "slow", "easein");
+    stop():停止所有在指定元素上正在运行的动画。
+    delay(): 设置一个延时来推迟执行队列中之后的项目。	
+      例： $('#foo').slideUp(300).delay(800).fadeIn(400);
+			</pre>
+			<h3>jQuery - AJAX</h3>
+			<a href="AJAX(1).SVG">AJAX内容框架</a>
+			<pre>  <b>1.AJAX基础原理</b>:异步请求服务器(XMLHttpRequest)。
+  <b>2.load</b>:
+        (1).作用：a.通过AJAX请求从服务器加载数据，并把返回的数据放置到指定的元素中。(加载服务器文件)
+                          b.默认使用GET方式	。([data]参数有传递数据进去，会自动转换为POST方式。)
+        (2).参数：url(String):请求的HTML页的URL地址。
+                   data(Map):(可选参数)发送至服务器的key/value数据。
+                   callback(Callback):(可选参数)请求完成时(不需要是success的)的回调函数。
+        (3).通用格式：$("#links").load("http://www.ex.com");
+  <b>3.get</b>:
+     get:  (1).作用：a.通过get请求载入信息。
+                          b.发送数据给服务器。
+            (2).参数：url(String):发送请求的URL地址。
+                   data(Map):(可选) 要发送给服务器的数据，以 Key/value 的键值对形式表示。
+                          地址栏：ex.jsp?username=Hungking&pwd=123456
+                          {key1:value1,key2:value2}
+                   callback(Callback):(可选) 载入成功时回调函数(只有当Response的返回状态是success才是调用该方法)。
+            (3).通用格式：$.get("ex.php",{name:Hungking,pwd:123456});
+      getJSON:
+      getScript:
+  <b>4.post</b>:   (1).url: 发送请求地址
+		(2).data: 待发送 Key/value 参数
+		(3).callback: 发送成功时回调函数
+		(4).ype: 返回内容格式，xml, html, script, json, text, _default
+		(5).通用格式: $.post("ex.asp", { "txt": "123" },function(data){}   
+  <b>5.ajax</b>: (1).ajax: 在不重新加载整个页面的情况下，与服务器交换数据并更新部分网页	
+             (2).过程:	ajaxComplete：AJAX 请求完成时执行函数。
+			ajaxError： AJAX 请求失败时显示信息。
+			ajaxSend：AJAX 请求发送前显示信息。
+			ajaxStart：AJAX 请求开始时显示信息。
+			ajaxStop：AJAX 请求结束时执行函数。
+			ajaxSuccess：当 AJAX 请求成功后显示消息。
+	  (3).其他: serialize：序列表表格内容为字符串。
+			serializeArray：序列化表格元素 (类似 '.serialize()' 方法) 返回 JSON 数据结构数据。
+例：//jquery AJAX     数据获取和处理
+<div style="float: left;">	                    var _data = {};
+			_data.pageNum = 1;   _data.pageSize = 20;
+			<b>$.ajax</b>( {
+				//	url: "ajaxfiles/txt.txt",
+				<b>url</b>: "http://www.hemijiaoyu.com/service/searchApply",
+				<b>type</b>: "GET",
+				//	datatype: "text",
+				<b>datatype</b>: "JSON",
+				<b>data</b>: "_data",
+				<b>success</b>: function(msg) {
+				//	console.log("服务器返回成功：" + msg);
+				var str = "< table border='1' style='width: 1000px;'>";
+				var arr = msg.list;</div>	
+	<div>			for(var i = 0; i < arr.length; i++) {
+						var obj = arr[i];
+						str += "< tr>";
+						for(var j in obj) {
+							if(j != "homeTel") {
+							str += "< td>" + obj[j] + "< /td>"; }
+						}str += "< /tr>";  }
+							str += "< /table>";
+							$("#div").html(str);
+						},error: function(error) {
+							console.log("错误：" + error);        }    })</div>	
+
+			</pre>
+		</div>
+	</body>
+</html>
