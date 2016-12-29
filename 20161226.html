@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title>苏雁雁_JQuery_20161226</title>
@@ -53,131 +54,124 @@
 			<h3>4.jQuery  选择器</h3>
 			<pre>jQuery 选择器基于元素的 id、类、类型、属性、属性值等"查找"（或选择）HTML 元素。 它基于已经存在的 CSS 选择器，
 	除此之外，它还有一些自定义的选择器。jQuery 中所有选择器都以美元符号开头：$()。
-    <a href="Selecter(1).svg">查看选择器类型</a>
+    <a href="Selecter(1).svg">jQuery selector结构组成框架</a> : 基础选择器、层级选择器、过滤选择器、属性选择器、表单域选择器。
 事例：  <div style="float: left;"> $(function () {
-				//        $("#id1").click(function () {
-				//            alert("啊，戳中我了！");
-				//        });
-        /****************ID选择器**********************/
-		        $("#span1").click(function () {
-		            $("#id1").toggleClass("class");
-		        });
-        /****************Class选择器**********************/
+        /****************<b>ID选择器</b>**********************/
+		        $("#span1").click(function () {     //  click()事件
+		           <b>$("#id1").toggleClass("class")</b> ;
+		        });       // toggleClass()如果存在（不存在）就删除（添加）一个类。
+        /****************<b>Class选择器</b>**********************/
 		        $("#span4").click(function () {
-		            $(".class1").toggleClass("class");
+		           <b>$(".class1").toggleClass("class")</b> ;
 		        });
-        /****************标签选择器**********************/
+        /****************<b>标签选择器</b>**********************/
 		        $("#span6").click(function () {
-		            $("span").toggleClass("class");
+		            <b>$("span").toggleClass("class")</b>;
 		        });
-        /****************组合选择器**********************/
+        /****************<b>组合选择器</b>**********************/
 		        $("#span7").click(function () {
-		            $("#id1,#id3,.class1").toggleClass("class");
+		            <b>$("#id1,#id3,.class1").toggleClass("class")</b>;
 		        });
-        /****************后代（家族）选择器**********************/
+        /****************<b>后代（家族）选择器</b>**********************/
 		        $("#span8").click(function () {
-		            $("ul span").toggleClass("class");
+		            <b>$("ul span").toggleClass("class")</b>;
 		        });
-        /****************子代（父子）选择器**********************/
+        /****************<b>子代（父子）选择器</b>**********************/
 		        $("#span9").click(function () {
-		            $("#li3>#id1").toggleClass("class");
+		           <b>$("#li3>#id1").toggleClass("class")</b> ;
 		        });
-		        $("#span10").click(function () {
-		            $("#li3>span").toggleClass("class");
-		        });</div><div>
-        /****************相邻元素选择器**********************/
+        /****************<b>相邻元素选择器</b>**********************/
 		        $("#span11").click(function () {
-		            $("#id1+span").toggleClass("class");
-		        });
-        /****************兄弟(同辈)元素选择器**********************/
+		            <b>$("#id1+span").toggleClass("class")</b>; });</div><div>
+        /****************<b>兄弟(同辈)元素选择器</b>**********************/
 		        $("#span12").click(function () {
-		            $("#id1~span").toggleClass("class");
+		            <b>$("#id1~span").toggleClass("class")</b>;
 		        });
-        /****************过滤选择器**********************/
+        /****************<b>过滤选择器</b>**********************/
 		        $("#span13").click(function () {
-		            $(".class1:even").toggleClass("class");
-		        });
+		            <b>$(".class1:even").toggleClass("class")</b>;
+		        });        // 选取索引是</b>偶数</b>的class1元素
 		        $("#span14").click(function () {
-		            $(".class1:odd").toggleClass("class");
-		        });
+		            <b>$(".class1:odd").toggleClass("class")</b>;
+		        });     //选取索引是</b>奇数</b>的class1元素 
 		        $("#span15").click(function () {
-		            $("#li5 span:has(a)").toggleClass("class");
-		        });
-        /****************属性选择器**********************/
+		           <b> $("#li5 span:has(a)").toggleClass("class")</b>;
+		        });    //<b>检查#li5后代下的span元素有没有a元素 </b>  
+        /****************<b>属性选择器</b>**********************/
 		        $("#span16").click(function () {
-		            $("input[name='input1']").toggleClass("class");
-		        });
+		            <b>$("input[name='input1']").toggleClass("class")</b>;
+		        });      //筛选给定属性等于某特定值的所有元素
 		        $("#span17").click(function () {
-		            $("input[name!='input2']").toggleClass("class");
-		        });
+		            <b>$("input[name!='input2']").toggleClass("class")</b>; });    
 		        $("#span18").click(function () {
-		            $("input[name*='input3']").toggleClass("class");
-		        });
+		            <b>$("input[name*='input3']").toggleClass("class")</b>;
+		        });     //<b>选择指定属性值包含给定字符串的所有元素</b>
 		        $("#span19").click(function () {
-		            $("input[name$='4']").toggleClass("class");    });      });	</div></pre>
-		    <h3>5.jQuery 事件</h3>
-		    <pre><img src="http://a3.qpic.cn/psb?/V143g8u60T94kH/*M*AHGLGMxgVTUQ*rIIm02pzSfaQ6rmU8VQBxfM*LIg!/b/dN0AAAAAAAAA&bo=3AK6AAAAAAADB0Y!&rf=viewer_4">
+		           <b> $("input[name$='4']").toggleClass("class")</b>; 
+		           //选择给定属性是以某特定值结尾的所有元素  });      });	</div></pre>
+			<h3>5.jQuery 事件</h3>
+			<pre><img src="http://a3.qpic.cn/psb?/V143g8u60T94kH/*M*AHGLGMxgVTUQ*rIIm02pzSfaQ6rmU8VQBxfM*LIg!/b/dN0AAAAAAAAA&bo=3AK6AAAAAAADB0Y!&rf=viewer_4">
 <strong>常用的 jQuery 事件方法: </strong>
-	1).  $(document).ready():  在文档完全加载完后执行函数.
-	2).  click():  当按钮点击事件被触发时会调用一个函数。	例：$("p").click( function(){ $(this).hide(); } );
-	3).  dblclick():  当双击元素时，会发生 dblclick 事件.   例：$("p").dblclick( function(){ $(this).hide();} );
-       4).  mouseenter():  当鼠标指针穿过元素时，会发生 mouseenter 事件。
+	1).<b> $(document).ready()</b>:  在文档完全加载完后执行函数.
+	2). <b> click()</b>:  当按钮点击事件被触发时会调用一个函数。	例：$("p").click( function(){ $(this).hide(); } );
+	3). <b> dblclick()</b>:  当双击元素时，会发生 dblclick 事件.   例：$("p").dblclick( function(){ $(this).hide();} );
+       4).<b>  mouseenter()</b>:  当鼠标指针穿过元素时，会发生 mouseenter 事件。
           例：$("#p1").mouseenter( function(){ alert('您的鼠标移到了 id="p1" 的元素上!');} );
-       5).  mouseleave():  鼠标指针离开元素时，会发生 mouseleave 事件。
-	6).  mousedown():   当鼠标指针移动到元素上方，并按下鼠标按键时，会发生 mousedown 事件。
-	7).  mouseup():  当在元素上松开鼠标按钮时，会发生 mouseup 事件。
-	8).  hover():  用于模拟光标悬停事件。
-	9).  focus():  当元素获得焦点时，发生 focus 事件.    
+       5).<b>  mouseleave()</b>:  鼠标指针离开元素时，会发生 mouseleave 事件。
+	6). <b> mousedown()</b>:   当鼠标指针移动到元素上方，并按下鼠标按键时，会发生 mousedown 事件。
+	7). <b> mouseup()</b>:  当在元素上松开鼠标按钮时，会发生 mouseup 事件。
+	8). <b> hover()</b>:  用于模拟光标悬停事件。
+	9). <b> focus()</b>:  当元素获得焦点时，发生 focus 事件.    
 	   例： $("input").focus(  function(){ $(this).css("background-color","#cccccc");} );
-      10). blur():  当元素失去焦点时，发生 blur 事件。
+      10).<b> blur()</b>:  当元素失去焦点时，发生 blur 事件。
           例：$("input").blur( function(){ $(this).css("background-color","#ffffff");} );
-
-事例：<div style="float: left;">   $(window).resize(function () {
-        $("#span").text(parseInt($("#span").text()) + 1);
+事例：
+<div style="float: left;">   $(window).resize(function () {
+        <b>$("#span").text(parseInt($("#span").text()) + 1)</b>;
     });
     $(window).scroll(function () {
-        $("#span").text(parseInt($("#span").text()) + 1);
+        $("#span").text(parseInt($("#span")<b>.text()</b>) + 1);
     });
     $(function () {
-        $("#click1").click(function () {
+        $("#click1")<b>.click</b>(function () {
             $("#click1").toggleClass("class1");
-        });
-        $("#click1").hover(function () {
+        });      //点击事件
+        $("#click1")<b>.hover(function () {
             $("#click1").toggleClass("class1",true);
         },function () {
             $("#click1").toggleClass("class1",false);
-        });
-        $("#inpt").focus(function () {
+        });</b>      // 悬停事件  （两个函数逗号隔开）
+        $("#inpt")<b>.focus</b>(function () {
             $("#inpt").toggleClass("class1",true);
-        });
-        $("#inpt").blur(function () {
+        });     // 获取焦点事件
+        $("#inpt")<b>.blur</b>(function () {
             $("#inpt").toggleClass("class1",false);
-        });
+        });     //失去焦点事件
         </div><div>
-        $("#inpt2").keydown(function () {
+        $("#inpt2")<b>.keydown</b>(function () {
             $("#inpt2").toggleClass("class1");
-        });
-        $("#inpt3").keyup(function () {
+        });    //键盘或按钮按下事件
+        $("#inpt3")<b>.keyup</b>(function () {
             $("#inpt3").toggleClass("class1");
-        });
-        $("#inpt4").keypress(function () {
+        });     //按钮被松开时
+        $("#inpt4")<b>.keypress</b>(function () {
             $("#inpt4").toggleClass("class1");
-        });
-        $("#sp1").on("click",function () {
+        });     //键盘或按钮被按下
+        $("#sp1")<b>.on</b>("click",function () {
             $("#sp1").toggleClass("class1");
-        });
-        $("#sp2").bind("click",function () {
+        });    //在选择元素上绑定一个或多个事件的事件处理函数。
+        $("#sp2")<b>.bind</b>("click",function () {
             $("#sp2").toggleClass("class1");
-        });
+        });    //为每个匹配元素的特定事件绑定事件处理函数。
         $("#sp3").click(function () {
-            alert("我要触发trigger事件了");
-            $("#sp1").trigger("click");
-        });
+            $("#sp1")<b>.trigger</b>("click");
+        });   //在每一个匹配的元素上触发某类事件。
         $("#sp4").click(function () {
-            $("#ds").append('<span onclick="alert(123)";>我是来代替live的</span>');      });        });</div>
+            $("#ds")<b>.append</b>('< span onclick="alert(123)";>我是来代替live的< /span>'); 
+            //  向每个匹配的元素内部追加内容。	     });        });</div>
  </pre>
-     <h3>二级省市联动</h3>
-     <pre>原生Javascript版： var arr = [
+			<h3>二级省市联动</h3>
+			<pre>原生Javascript版： var arr = [
         {"河南":["郑州市","商丘市","开封市"]},
         {"四川":["成都市","绵阳市"]}  ];
     var st1 = document.getElementById("st1");
@@ -197,19 +191,21 @@
                         }
                     }     str += "< /select>";
                            st2.innerHTML = str;}  }  }  }
-     JQuery版：var arr = [
+JQuery版：var arr = [
 				 {"河南":["郑州市","商丘市","开封市"]},
-        		   {"四川":["成都市","绵阳市"]}  ];
-			$("#slt1").change(function() {
-				for(var i = 0; i < arr.length;i++) {
-					for(var j in arr[i]){
-						var m =$("#slt1").get(0).options[$("#slt1").get(0).selectedIndex].text;
-						if(m ==j){
-							var arr2 =arr[i][j];    var str;
-							for(var k =0;k<arr2.length;k++){
-								str +="<option>"+arr2[k]+"</option>";
-							} $("#slt2").html(str); } } } })  
+        		        {"四川":["成都市","绵阳市"]}  ];
+	<b>$("#slt1").change(function() {
+		for(var i = 0; i < arr.length;i++) {
+			for(var j in arr[i]){
+			var m =$("#slt1").get(0).options[$("#slt1").get(0).selectedIndex].text;
+			if(m ==j){
+				var arr2 =arr[i][j];    var str;
+				for(var k =0;k< arr2.length;k++){
+				str +="<option>"+arr2[k]+"</option>";
+			} $("#slt2").html(str);    } ;    } ;    } ;     })  </b>
+	<a href="jquery 表单作业12-26.html">今天作业</a>
      </pre>
 		</div>
 	</body>
+
 </html>
