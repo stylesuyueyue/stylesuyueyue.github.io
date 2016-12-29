@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>苏雁雁_JQuery 表单提交和分页插件_20161229</title>
+		<style type="text/css">
+			.box {
+				width: 1200px;
+				height: auto;
+				margin: auto;
+				font-family: "微软雅黑";
+			}
+			
+			p,
+			pre {
+				font-size: 16px;
+				font-family: "微软雅黑";
+
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<h3>表单提交：</h3>
+			<pre>步骤：1.先将静态表单排版出来。
+      所得：a.border-collapse:collapse;可以将单元格之间的空隙祛除。
+	                b.在table表格中插入input，使其变成可填写空格，同时td长度应事先设计好。
+	                c.同理可添加下拉列表框select。
+	                d.< input type="month" />可自动生成日历表，但兼容性有问题，火狐等浏览器不支持。
+	                e.outline: none;可使得鼠标点击input框时，不显示边框。
+	                f.td里设置colspan="number",表示合并多少行；设置rowspan="number"，表示合并多少列。
+	                g.input里type值不同，代表的意思不同。如radio指单选框，checkbox指复选框，reset清楚，email，password...。
+	                h.< textarea>< /textarea>多文本输入框，文字可换行。
+	2.设置提交条件判断。
+	   所得：a.input里设置maxlength可限制输入长度。
+	            b.正则表达式使用，先var reg =表达式，reg.test(phr)。
+	            例：var reg =  /^(13[\d]{9}|15[\d]{9}|18[\d]{9})$/;
+					var phone = $("#phone").val();	//获取手机号码
+					if(!reg.test(phone)){
+						alert("手机号码格式不对！");  
+					}
+			    c. $("#username").val().length
+			    d.用jquery获取被选下拉列表框内容：sex = $("#sex option:checked").text();
+			    e..用jquery获取被选单选框：info = $("#sel input[name='info']:checked").val();
+	3.提交数据：a.先设置post方式的提交接口。
+	                   b.传递数据。例：var _data = { };
+						_data.name = $("#name").val();
+					   c.之后$.ajax。
+			$.ajax({
+				url: _url,
+				data: _data,
+				dataType: "text",
+				type: "POST",
+				success: function(msg) {
+					console.log("提交成功：" + msg);
+					alert("提交成功");
+				},
+				error: function(msg) {
+					console.log("提交失败：" + msg);
+					alert("提交失败");
+				}
+			})
+	4.数据调试：要会使用控制台（chrome）。
+	<a href="">表单实例</a>
+			</pre>
+			<h3>分页插件：</h3>
+		</div>
+	</body>
+
+</html>
