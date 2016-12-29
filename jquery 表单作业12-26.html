@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			span {
+				width: 80px;
+				display: inline-block;
+				text-align: left;
+				/*border: 1px solid #7FFF00;*/
+			}
+			
+			input {
+				margin-top: 10px;
+			}
+			select{
+				display: none;
+			}
+			/*.cssClass{
+				color: red;
+			}*/
+		</style>
+	</head>
+
+	<body>
+		<div id="reminder"></div>
+		<span>用户名：</span><input type="text" placeholder="请输入用户名" id="inpt" class="ipt"/><br />
+		<span>邮箱：</span><input type="email" placeholder="请输入邮箱号" id="inpt2" class="ipt"/><br />
+		<span>密码：</span><input type="password" placeholder="请输入密码" id="inpt3" class="ipt"/><br />
+		<span>确认密码：</span><input type="password" placeholder="请再次输入密码" id="inpt4" class="ipt"/><br />
+
+		<input type="button" value="验证"  id="btn"/><br />
+		<input type="button" value="所在城市" id="slt" />
+		<select id="slt1">
+			<option>选择省</option>
+			<option>安徽</option>
+			<option>河南</option>
+		</select>
+		<select id="slt2">
+			<option>选择市</option>
+		</select>
+
+		<script src="tcshjt/jquery-3.1.0.min.js"></script>
+		<script>
+		    var n;
+			$("#btn").click(function(){																								
+				var rdReg =/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/ 
+				
+				if( $("#inpt").val() == ""||$("#inpt2").val() == ""||$("#inpt3").val() == ""||$("#inpt4").val() == ""){
+					$("#reminder").html("输入内容不能为空");
+				}else if(!rdReg.test($("#inpt2").val())){
+					$("#reminder").html("邮箱格式错误");
+				}else if($("#inpt4").val() != $("#inpt3").val()){
+					$("#reminder").html("密码输入错误");
+				}else{
+					$("#reminder").html("");
+					return true;
+				}
+				$("#reminder").css({color:'red'});
+
+			})
+			
+			$("#slt").click(function(){
+				$('#slt1').css({display:"inline-block"});
+				$('#slt2').css({display:"inline-block"});
+			})
+		
+			var arr = [{
+				"安徽": ["六安市", "阜阳市", "合肥市"]
+			}, {
+				"河南": ["郑州市","商丘市","开封市"]
+			}];
+			$("#slt1").change(function() {
+				for(var i = 0; i < arr.length;i++) {
+					for(var j in arr[i]){
+						var m =$("#slt1").get(0).options[$("#slt1").get(0).selectedIndex
+].text;
+//						console.log($("#slt1").get(0).options[$("#slt1").get(0).selectedIndex
+//].text)
+						if(m ==j){
+							var arr2 =arr[i][j];
+							var str;
+							for(var k =0;k<arr2.length;k++){
+								str +="<option>"+arr2[k]+"</option>";
+							}
+							$("#slt2").html(str);
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>
