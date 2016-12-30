@@ -177,15 +177,15 @@
     var st1 = document.getElementById("st1");
     var st2 = document.getElementById("st2");
     st1.onchange = function (e) {
-        for(var i = 0;i<arr.length;i++){
-            for(var j in arr[i]){
+        for(var i = 0;i< arr.length;i++){
+            for(var j in arr [i]){
                 console.log(j);
                 if(st1.options[st1.selectedIndex].innerText == j){
                     var arr1 = arr[i][j];
                     var str = "<select><option>选择市</option>";
-                    for(var k = 0;k<arr1.length;k++){
+                    for(var k = 0;k< arr1.length;k++){
                         if(k == 0){
-                            str += "<option selected>" + arr1[k] + "< /option>";
+                            str += "< option selected>" + arr1[k] + "< /option>";
                         }else{
                             str += "< option>" + arr1[k] + "< /option>";
                         }
@@ -201,7 +201,7 @@ JQuery版：var arr = [
 			if(m ==j){
 				var arr2 =arr[i][j];    var str;
 				for(var k =0;k< arr2.length;k++){
-				str +="<option>"+arr2[k]+"</option>";
+				str +=" < option>"+arr2[k]+"< /option>";
 			} $("#slt2").html(str);    } ;    } ;    } ;     })  </b>
 	<a href="jquery 表单作业12-26.html">今天作业</a>
      </pre>
