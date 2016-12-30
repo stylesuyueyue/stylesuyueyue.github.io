@@ -178,11 +178,11 @@
     var st2 = document.getElementById("st2");
     st1.onchange = function (e) {
         for(var i = 0;i< arr.length;i++){
-            for(var j in arr [i]){
+            for(var j in arr[i]){
                 console.log(j);
                 if(st1.options[st1.selectedIndex].innerText == j){
                     var arr1 = arr[i][j];
-                    var str = "<select><option>选择市</option>";
+                    var str = "< select>< option>选择市< /option>";
                     for(var k = 0;k< arr1.length;k++){
                         if(k == 0){
                             str += "< option selected>" + arr1[k] + "< /option>";
