@@ -66,6 +66,22 @@
 	<a href="提交表单12-29.html">表单实例</a>
 			</pre>
 			<h3>分页插件：</h3>
+			<pre>a.下载插件 ； b.将插件插入文件 ；
+				c. //分页
+            kkpager.generPageHtml({
+				pno: '${p.pageNo}',
+				mode: 'click', //设置为click模式
+				total: msg.pageTotal, //总页数
+				totalRecords: msg.dataTotal, //多少项
+				click: function(n) {
+					_pageNum=n;
+                                       demo(n);
+					this.selectPage(n);
+				},
+				getHref: function(n) {
+					return '#';
+				}</pre>
+				<a href="分页插件12-29.html">分页插件实例</a>
 		</div>
 	</body>
 
