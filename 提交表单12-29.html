@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>禾米科技免费培训申请表</title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				font-size: 16px;
+			}
+			
+			h1 {
+				width: 400px;
+				height: 30px;
+				text-align: center;
+				font-size: 24px;
+				line-height: 30px;
+				margin: 0 auto;
+			}
+			
+			p {
+				width: 1000px;
+				height: 30px;
+				text-align: center;
+				line-height: 30px;
+				margin: 0 auto;
+			}
+			
+			table {
+				width: 900px;
+				height: 480px;
+				border: 1px solid #999;
+				border-collapse: collapse;
+				margin: 0 auto;
+			}
+			
+			td {
+				border: 1px solid #999;
+				width: 160px;
+				height: 30px;
+				text-align: center;
+			}
+			
+			input,
+			select {
+				border: 0;
+			}
+			
+			input,
+			textarea {
+				outline: none;
+			}
+			
+			#sex,
+			#sel {
+				width: 120px;
+			}
+			
+			#btn1 {
+				display: block;
+				width: 50px;
+				height: 24px;
+				margin: 10px auto 0;
+				border: 1px solid #999;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>禾米科技免费培训申请表</h1>
+		<p>方式一、在线填写（如果信息提交失败或者您使用的是IE10版本以下的浏览器请选择）</p>
+		<form action="http://www.hemijiaoyu.com/service/addApply" method="post">
+			<table cellspacing="0">
+				<tr>
+					<td colspan="6" style="text-align:left;">
+						个人信息及联系方式
+					</td>
+				</tr>
+				<tr>
+					<td>
+						*姓名
+					</td>
+					<td>
+						<input type="text" id="username" class="tip" placeholder="" maxlength="20"/>
+						<!--<input type="text" id="userTip" placeholder="" value="姓名长度不得少于两个字符" style="color:red;display:none;"/>-->
+					</td>
+					<td>
+						*性别
+					</td>
+					<td>
+						<select name="" id="sex">
+							<option value="" checked>男</option>
+							<option value="">女</option>
+						</select>
+					</td>
+					<td>*出生年月</td>
+					<td><input type="month" id="birth" placeholder="" /></td>
+				</tr>
+				<tr>
+					<td>*手机号码</td>
+					<td><input type="text" id="phone" class="tip" placeholder="" maxlength="11" /></td>
+					<td>*政治面貌</td>
+					<td>
+						<select name="" id="sel">
+							<option value="" checked>团员</option>
+							<option value="">党员</option>
+							<option value="">群众</option>
+						</select>
+					</td>
+					<td>*QQ</td>
+					<td><input type="text" id="qq" class="tip" placeholder="" maxlength="20" /></td>
+				</tr>
+				<tr>
+					<td>*学院</td>
+					<td><input type="text" id="college" class="tip" placeholder="" maxlength="100" /></td>
+					<td>系</td>
+					<td><input type="text" id="pol" placeholder="" maxlength="100" /></td>
+					<td>*专业</td>
+					<td><input type="text" id="major" class="tip" placeholder="" maxlength="100" /></td>
+				</tr>
+				<tr>
+					<td colspan="6" style="text-align: left;">家庭联系方式</td>
+					<!--<td colspan="5"><input type="text" id="" placeholder="" style="width:100%" maxlength="11" /></td>-->
+				</tr>
+				<tr>
+					<td>父亲姓名</td>
+					<td colspan="2"><input type="text" id="father" placeholder="" style="width:100%" maxlength="20" /></td>
+					<td>父亲电话</td>
+					<td colspan="2"><input type="text" id="fatherMobile" placeholder="" style="width:100%" maxlength="11" /></td>
+				</tr>
+				<tr>
+					<td>母亲姓名</td>
+					<td colspan="2"><input type="text" id="mather" placeholder="" style="width:100%" maxlength="20" /></td>
+					<td>母亲电话</td>
+					<td colspan="2"><input type="text" id="matherMobile" placeholder="" style="width:100%" maxlength="11" /><br /></td>
+
+				</tr>
+				<tr>
+					<td>*家庭住址</td>
+					<td colspan="5"><input type="text" id="address" class="tip" placeholder="" style="width:100%" maxlength="100" /></td>
+				</tr>
+				<tr>
+					<td>*信息来源</td>
+					<td colspan="5" id="sel" style="text-align:left;">
+						<input type="radio" name="info" value="熟人介绍"/>1、熟人介绍
+						<input type="radio" name="info" value="杂志"/>2、杂志
+						<input type="radio" name="info" value="媒体广告"/>3、媒体广告
+						<input type="radio" name="info" value="其他"/>4、其他
+					</td>
+
+				</tr>
+				<tr>
+					<td colspan="6" style="text-align:left;">
+						个人能力与自我评价（关于自己所学的专业知识与能力、获奖情况以及自己的有点与兴趣爱好
+					</td>
+
+				</tr>
+				<tr>
+					<td rowspan="2">*专业能力描述</td>
+					<td colspan="5" rowspan="2"><textarea type="text" id="majorDes" class="tip" placeholder="" style="height:90%; width:100%;border:0;resize: none;" maxlength="200"></textarea></td>
+				</tr>
+				<tr></tr>
+				<tr>
+					<td rowspan="2">*自我评价描述</td>
+					<td colspan="5" rowspan="2"><textarea type="text" id="selfDes" class="tip" placeholder="" style="height:90%; width:100%;border:0;resize: none;" maxlength="200"></textarea></td>
+				</tr>
+				<tr></tr>
+
+			</table>
+
+			<input type="button" name="btn1" id="btn1" value="提交" />
+			<div id="tip" style="color:red; width:300px; height:20px; text-align:center; margin:10px auto 0; display:none;">带有*的信息为必填信息</div>
+		</form>
+		<p style="margin-top:30px;">方式二、
+			<a href="">申请表下载</a>填写好后请把该申请表格及时发送到hemikeji.hr@hemikeji.com，以便联系面试，谢谢！</p>
+
+		<script src="jquery-3.1.0.js">
+		</script>
+		<script>
+			//			console.log($("#username").val().length)
+			$(document).ready(function() {
+				$("#btn1").click(function() {
+					//获取性别
+					var sex = $("#sex option:checked").text();
+					
+					//获取出生年月
+					var str = $("#birth").val();
+					var arr = str.split("-");
+					var _str = arr[0] + arr[1];
+					//console.log(_str);
+					
+					//获取政治面貌
+					var selp = $("#sel option:checked").text();
+					//console.log(selp);
+					
+					//获取家庭地址
+					var address = $("#address").val();
+					
+					//获取信息来源
+					var info = $("#sel input[name='info']:checked").val();
+					//console.log(info);
+					
+					if(_str == "undefined" || $("#username").val() == "" || $("#phone").val() == "" 
+					|| $("#qq").val() == "" || $("#college").val() == ""
+					|| $("#major").val() == "" || $("#address").val() == ""
+					|| $("#majorDes").val() == "" || $("#selfDes").val() == ""
+					|| ($("#sel input[name='info']:checked").val() == null)){
+						//console.log($("#sel input[name='info']:checked").val())
+						$("#tip").css("display","block");
+						//alert("信息不完整！");
+					}else{
+						$("#tip").css("display","none");
+					}
+					
+					//验证姓名长度
+					//console.log($("#username").val().length);
+					var user = $("#username").val();
+					if(user.length < 2){
+						alert("姓名长度为2——20个字符!");
+						return false;
+					}
+					
+					
+					//验证手机号码
+					var reg =  /^(13[\d]{9}|15[\d]{9}|18[\d]{9})$/;
+					var phone = $("#phone").val();	//获取手机号码
+					if(!reg.test(phone)){
+						alert("手机号码格式不对！");
+						return false;
+					}
+					
+					//验证qq
+					var qqL = /^\d{6,11}$/;
+					var qq = $("#qq").val();	//获取qq
+					if( !qqL.test(qq)){
+						alert("qq账号不存在！");
+						return false;
+					}
+					
+					//验证学院
+					var college = $("#college").val();
+					if(college.length < 4){
+						alert("学院名称长度为4——100个字符!");
+						return false;
+					}
+					
+					//验证系
+					var pol = $("#pol").val();
+					if(pol.length < 4){
+						alert("院系名称长度为4——100个字符!");
+						return false;
+					}
+					
+					//验证专业
+					var major = $("#major").val();
+					if(major.length < 4){
+						alert("专业名称长度为4——100个字符!");
+						return false;
+					}
+					
+					//验证父亲姓名
+					var father = $("#father").val();
+					if(father.length < 2){
+						alert("父亲姓名长度为2——20个字符!");
+						return false;
+					}
+					
+					//验证父亲电话
+					var fatherMobile = $("#fatherMobile").val();
+					if(!reg.test(fatherMobile)){
+						alert("父亲手机号码格式不对！");
+						return false;
+					}
+					
+					//验证母亲姓名
+					var mather = $("#mather").val();
+					if(mather.length < 2){
+						alert("母亲姓名长度为2——20个字符!");
+						return false;
+					}
+					
+					//验证母亲电话
+					var matherMobile = $("#matherMobile").val();
+					if(!reg.test(matherMobile)){
+						alert("母亲手机号码格式不对！");
+						return false;
+					}
+					
+					//验证能力描述
+					var majorDes = $("#majorDes").val();
+					if(majorDes.length < 12){
+						alert("能力描述长度为12——200个字符!");
+						return false;
+					}
+					
+					//自我评价描述
+					var selfDes = $("#selfDes").val();
+					if(selfDes.length < 12){
+						alert("自我评价描述长度为12——200个字符!");
+						return false;
+					}
+					
+					
+					
+					var _data = {};
+					_data.name = user;
+					_data.sex = sex;
+					_data.birthday = _str;
+					_data.mobile = phone;
+					_data.political = selp;
+					_data.qq = qq;
+					_data.college = college;
+					_data.faculty = pol;
+					_data.major = major;
+					_data.fatherName = father;
+					_data.fatherMobile = fatherMobile;
+					_data.matherName = mather;
+					_data.matherMobile = matherMobile;
+					_data.homeAddress = address;
+					_data.source = info;
+					_data.majorMemo = majorDes;
+					_data.selfMemo = selfDes;
+					
+					
+					var _url = "http://www.hemijiaoyu.com/service/addApply";
+					
+					$.ajax({
+						type:"post",
+						url:_url,
+						dataType:"text",
+						data:_data,
+						success:function(msg){
+							console.log(msg)
+							alert("数据提交成功！");
+						},
+						error:function(error){
+							alert("数据提交失败！");
+						}
+					});
+					
+					
+					
+				});
+			});
+		</script>
+
+	</body>
+	
+</html>
