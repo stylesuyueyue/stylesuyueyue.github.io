@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		    .box{
+		    	width: 1000px;
+		    	height: auto;
+		    	margin: auto;
+		    } 
+			ul>li{
+				width: 280px;
+				height: 200px;
+				display: block;
+				position: relative;
+				list-style: none;
+				margin-right: 30px;
+                margin-bottom: 30px;
+                float: left;
+                overflow: hidden;
+			}
+			li .words {
+				width: 280px;
+				height: 40px;
+				position: absolute;
+				font-size: 14px;
+				color: #fff;
+				background-color: rgba(0, 0, 0, 0.6);
+				text-align: center;
+				line-height: 40px;
+				bottom: 0px;
+			}
+			.cover{
+				width: 280px;
+				height: 200px;
+				text-align: center;
+				line-height: 24px;
+				font-size: 12px;
+				color: #fff;
+				background-color: rgba(0, 0, 0, 0.6);
+				position: absolute;
+				left: -280px;
+				top: 0px;
+			}
+			.cover>span{
+				font-size: 16px;
+				display: block;
+				padding-top: 54px;
+			}
+			li .caption{
+				width: 280px;
+				height: 150px;
+				position: absolute;
+				font-size: 14px;
+				color: #fff;
+				background-color: rgba(0, 0, 0, 0.6);
+				text-align: center;
+				line-height: 40px;
+				top: 160px;
+			}
+		</style>
+		
+		<script src="tcshjt/jquery-3.1.0.js"></script>
+		<script type="text/javascript">
+			$(function(){			
+				$("li").mouseenter(function(){
+					$(".words",$(this)).stop().slideUp(300);
+					$(".cover",$(this)).stop().show().animate({
+						"left":0,
+					},300)
+				})
+				$("li").mouseleave(function(){
+					$(".words",$(this)).stop().slideDown(300);
+					$(".cover",$(this)).stop().hide().animate({
+						"left":-280,
+					},300)
+				})
+				
+				$("li").each(function(){
+					var $this =$(this);
+					$(this).hover(function(){
+						$(".caption",$this).stop().animate({
+							"top":$this.height()-$(".caption",$this).outerHeight(true)
+						},300)
+					},function(){
+						$(".caption",$this).stop().animate({
+							"top":$this.height()-40
+						},300)
+					})
+				})
+			})
+		</script>
+	</head>
+
+	<body>
+		<div class="box">
+			<ul>
+				<li>
+					<img src="http://www.zjsupermax.com/uploadfile/upfiles/20150930095023560b3fdf2e04c.jpg" />
+					<div class="words">亚太 纯水</div>
+					<div class="cover">
+						<span>亚太 纯水</span>
+						<p>废水种类：</p>
+					</div>
+				</li>
+				<li>
+					<img src="http://www.zjsupermax.com/uploadfile/upfiles/20150930095023560b3fdf2e04c.jpg">
+					<div class="words">亚太 纯水</div>
+					<div class="cover">
+						<span>亚太 纯水</span>
+						<p>废水种类：</p>
+					</div>
+				</li>
+				
+				<li>
+					<img src="http://www.zjsupermax.com/uploadfile/upfiles/20150930095023560b3fdf2e04c.jpg">
+					<div class="caption">
+						亚太 纯水
+						<p>亚太 纯水</p>
+						<p>废水种类：</p>
+					</div>					
+				</li>
+			</ul>
+
+		</div>
+	</body>
+
+</html>

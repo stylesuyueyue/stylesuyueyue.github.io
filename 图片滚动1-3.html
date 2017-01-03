@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.left {
+				position: absolute;
+				top: 10px;
+				left: 50px;
+			}
+			
+			.right {
+				position: absolute;
+				top: 10px;
+				right: 50px;
+			}
+			
+			.bot {
+				width: 150px;
+				border: 1px solid saddlebrown;
+				position: fixed;
+				bottom: 20px;
+				right: 20px;
+				display: none;
+			}
+			
+			.order {
+				position: absolute;
+				left: 100px;
+				display: none;
+			}
+			
+			.order li {
+				width: 50px;
+				height: 50px;
+				border: 1px solid #999;
+				text-align: center;
+				letter-spacing: 5px;
+				line-height: 25px;
+				list-style: none;
+				margin-bottom: 1px;
+				background: #999999;
+				color: #fff;
+			}
+		</style>
+		<script src="tcshjt/jquery-3.1.0.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				//图片滚动
+				window.onscroll = function() {
+						var tp = $(document).scrollTop();
+//					console.log(tp)
+						$(".left,.right").stop().animate({
+							"top": tp + 100,
+						}, 300)
+
+						//移动导航
+						if(tp>1000) {
+							console.log(tp)
+							$(".order").show().stop().animate({
+								"top":tp+150,
+							},300)
+						}else{
+							$(".order").hide()
+						}
+
+					}
+					//广告弹窗
+				$(".bot").slideDown("slow").click(function() {
+					$(this).hide()
+				})
+
+			})
+		</script>
+	</head>
+
+	<body>
+		<!--移动导航-->
+		<div class="order">
+			<ul>
+				<li style="line-height: 50px;background: red;">导航</li>
+				<li>美丽人生</li>
+				<li>潮电酷玩</li>
+				<li>居家生活</li>
+				<li>打造爱巢</li>
+				<li>户外出行</li>
+				<li>亲子时光</li>
+				<li>品牌旗舰</li>
+				<li>猜你喜欢</li>
+				<li style="line-height: 50px;">顶部</li>
+			</ul>
+		</div>
+
+		<!--图片滚动-->
+		<div class="left">
+			<img src="http://i03.pictn.sogoucdn.com/85ebd6a0f34ba76f" />
+		</div>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<p>欢迎光临</p>
+		<div class="right">
+			<img src="http://i03.pictn.sogoucdn.com/85ebd6a0f34ba76f" />
+		</div>
+
+		<!--广告弹窗-->
+		<div class="bot">
+			<a href="#"><img src="http://i02.pictn.sogoucdn.com/a78d74851bef83db" /></a>
+		</div>
+	</body>
+
+</html>

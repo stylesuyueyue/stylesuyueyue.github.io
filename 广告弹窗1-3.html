@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 150px;
+				border: 1px solid saddlebrown;
+				position: absolute;
+				bottom: 0px;
+				right: 0px;
+				display: none;
+			}
+		</style>
+		
+		<script src="tcshjt/jquery-3.1.0.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("div").slideDown("slow").click(function(){
+					$(this).hide()
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div>
+			<a href="#"><img src="img/7.png" /></a>
+		</div>
+	</body>
+</html>
