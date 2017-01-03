@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>苏雁雁_JQuery 各种实例_20170103</title>
+		<style type="text/css">
+			.box {
+				width: 1200px;
+				height: auto;
+				margin: auto;
+				font-family: "微软雅黑";
+				line-height: 28px;
+				letter-spacing: 1px;
+			}
+			
+			p,
+			pre {
+				font-size: 17px;
+				font-family: "微软雅黑";
+
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<h3>(1)点击切换内容：</h3>
+			<pre>	a.鼠标移入时，红色条跟随移动，同时切换到相应照片。
+	b.为所选目标增加addClass("active")，同时将其兄弟的active取消siblings(".tab-item").removeClass("active")。
+	c.获取移入目标的索引$(".main").eq($(this).index())，用其找到对应的图片，为其增加addClass("selected")，同理也要取消其兄弟的selected：
+	   siblings(".main").removeClass("selected")。
+	d.eq(i):寻找到索引的值；siblings(".main"):寻找出本身的兄弟元素。
+	e.主要代码：$(function(){
+    	<b>	$(".tab li").mouseenter (function(){
+    			$(this).addClass("active").siblings(".tab-item").removeClass("active");
+    			var ind =$(this).index();
+    			console.log(ind)        //索引值
+    			$(".main").eq(ind).addClass("selected").siblings(".main").removeClass("selected")
+    		})</b>
+ })<a href="联调1-3.html">点击切换内容实例查看</a>    	
+			</pre>
+				<h3>(2)轮播：</h3>
+			<pre>	a.鼠标移入数字是，轮播到相应图片。
+   	b.为所选目标增加addClass("active")，同时将其兄弟的active取消siblings().removeClass("active")。
+	c.通过索引值获得对应图片，为其加上CSS。
+	d.主要代码：var idx =0;
+			$(".wrap ol li").mouseenter(function(){
+		<b>		idx +=1;
+				$(this).addClass("active").siblings().removeClass("active");
+				$(".wrap ul li").eq($(this).index()).css({
+					"left":650,
+					"z-index":idx,
+				}).animate({
+					"left":0,
+				},300)          })</b>     <a href="轮播1-3.html">轮播实例查看</a></pre>
+				<h3>(3)手风琴：</h3>
+				<pre>	a.首先用each为其添加背景图片。
+   	b.设置鼠标移入移出时，宽变化。
+	c.设置时，注意要清除影响。
+	d.主要代码：var idx =0;
+		$(".wrap li").each(function (i,ele) {
+         <b>       $(this).css("background-image","url(img/" + (i + 1) +".jpg)");
+            }).mouseenter(function () {
+                $(this).stop().animate({
+                    "width":600
+                },300).siblings().stop().animate({
+                    "width":200
+                },300)
+            }).mouseleave(function () {
+                $(this).stop().animate({
+                    "width":200
+                },300)     });</b>     <a href="手风琴.html">手风琴实例查看</a></pre>
+                <h3>(4)图片滚动、广告弹窗、移动导航：</h3>
+				<pre>主要代码：//图片滚动
+		window.onscroll = function() {
+<b>			var tp = $(document).scrollTop();
+			$(".left,.right").stop().animate({
+				"top": tp + 100,
+			}, 300)
+			//移动导航
+			if(tp>1000) {
+				console.log(tp)
+				$(".order").show().stop().animate({
+					"top":tp+150,
+				},300)
+			}else{
+				$(".order").hide()
+			}					}
+			//广告弹窗
+			$(".bot").slideDown("slow").click(function() {
+				$(this).hide()
+			})</b>     <a href="图片滚动1-3.html">实例查看</a></pre>
+			<h3>(5)图片切换：</h3>
+				<pre>主要代码：$("#left li").mouseenter(function(){
+				$("#center li").eq($(this).index()).show().siblings().hide()
+			})
+			$("#right li").mouseenter(function(){
+				$("#center li").eq($(this).index()+9).show().siblings().hide()
+			})</b>     <a href="图片切换1-3.html">实例查看</a></pre>
+			<h3>(6)作业：</h3>
+				<pre>//第一种情况
+<b>	$("li").mouseenter(function(){
+		$(".words",$(this)).stop().slideUp(300);
+		$(".cover",$(this)).stop().show().animate({
+			"left":0,
+		},300)
+	})
+	$("li").mouseleave(function(){
+		$(".words",$(this)).stop().slideDown(300);
+		$(".cover",$(this)).stop().hide().animate({
+			left":-280,
+		},300)
+	})
+	//第二种情况
+	$("li").each(function(){
+	    var $this =$(this);
+	    $(this).hover(function(){
+		$(".caption",$this).stop().animate({
+			"top":$this.height()-$(".caption",$this).outerHeight(true)
+			},300)
+		},function(){
+			$(".caption",$this).stop().animate({
+				"top":$this.height()-40
+			},300)
+		})
+	})</b>     <a href="作业1-3.html">实例查看</a></pre>
+	</body>
+</html>
