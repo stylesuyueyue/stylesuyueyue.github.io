@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>苏雁雁_HTML5_20170104</title>
+		<style type="text/css">
+			.box {
+				width: 1200px;
+				height: auto;
+				margin: auto;
+				font-family: "微软雅黑";
+				line-height: 28px;
+				letter-spacing: 1px;
+			}
+			
+			p,
+			pre {
+				font-size: 17px;
+				font-family: "微软雅黑";
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<h2>HTML5、HTML5 地理定位、SQLite</h2>
+			<a href="HTML5.svg">HTML5结构框架</a>
+			<h2>HTML5</h2>
+			<h3>1.HTML5 新特性：</h3>
+			<pre>	(1).语义化：能够让你更恰当地描述你的内容是什么。
+	(2).连通性：能够让你和服务器之间通过创新的新技术方法进行通信。
+	(3).离线存储：能够让网页在客户端本地存储数据以及更高效地离线运行。
+	(4).多媒体：使video和audio播放音视频。
+	(5).绘图/动画效果：提供了一个更加分化范围的呈现选择。
+	(6).性能集成：提供了非常显著的性能优化和更有效的计算机硬件实用。
+	(7).设备访问：能过处理各种输入和输出设备。
+	(8).兼容性：百度CDN：http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js
+			</pre>
+			<h3>2.主题定义：</h3>
+			<pre>	(1).< !DOCTYPE>：定义文档类型。
+		a.HTML4:< !DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+			"http ://www.w3.org/TR/html4/loose.dtd">
+		b.XHTML 1.0:< !DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+			"http ://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	(2).< html>：: 定义HTML文档.   HTML4: 等同。
+	(3).< header>： 定义文档的头部.(头部内包含)。
+            < base>:定义页面上的所有链接规定默认地址或默认目标。
+	(4).< body>: 定义文档的主体(脚本在非必须情况时在主体内容最后)。
+		< template> 通过JavaScript在运行时实例化内容的容器。
+			</pre>
+			<h3>3.章节结构：</h3>
+			<pre>	(1).< section> 定义文档中的一个章节，一般来说会有包含一个 heading。
+ 		HTML4:  < div>< /div>	
+	(2).< nav>定义一个含有多个超链接的区域，这个区域包含转到其他页面，或者页面内部其他部分的链接列表。
+  		HTML4:  < ul>< /ul>
+	(3).< article> 表示文档、页面、应用或网站中的独立结构，其意在成为可独立分配的或可复用的结构。
+		HTML4:  < div>< /div>
+	(4).< aside> 定义和页面内容联度较低的内容--如果被删除，剩下的内容仍然很合理。
+		HTML4:  < div>Aside 的内容是独立的内容，但应与文档内容相关。< /div>
+	(5).< header> 定义页面或章节的头部。它经常包含logo、页面标题和导航性的目录。
+		HTML4: < div>< /div>
+	(6).< footer> 定义页面或章节的尾部。它经常包含版权信息、法律信息链接和反馈建议用的地址。
+		HTML4: < div>< /div>
+	(7).< main> ：定义文档中主要或重要的独一无二的内容。一个文档中不能出现一个以上的。
+		注意： 不能再一个document中有多个main，不能在article、aside、footer、header或者nav中包含main。
+		HTML4 ：无。
+	(8).< figure> 代表一个和文档有关的图例。
+		HTML4: < dl>< h1>PRC< /h1>< p>The People's Republic of China was born in 1949...< /p>< /dl>
+	(9).< figcaption> 代表一个图例的说明。
+		HTML4 ：无。
+	(10).< hgroup> 标签用于对网页或区段（section）的标题进行组合
+		HTML4: < div>< /div>
+			</pre>
+			<h3>4.章节格式：</h3>
+			<pre>	(1).< data> 将一个指定内容和机器可读的翻译联系在一起。但如果内容是与time和date相关的，一定要使用< time>。
+ 		HTML4:  无。	
+	(2).< time> 代表日期和时间值；机器可读的等价形式通过datetime属性指定。
+		HTML4: < span>< /span>
+	(3).< mark> 代表一段需要被高亮的引用文字，用来表示上下文的关联性。
+		HTML4: < span>< /span>
+	(4).< ruby> 表示被ruby注释标记的文本，如中文汉字和它的拼音。
+		HTML4:  无。	
+	(5).< rt> 代表ruby注释，如中文拼音
+		HTML4:  无。	
+	(6).< rp> 代表ruby注释两边的额外插入文本，用于在不支持ruby注释显示的浏览器中提供友好的注释显示。
+		HTML4:  无。	
+	(7).< bdi> :代表需要脱离父元素文本方向的一段文本。它允许嵌入一段不同或未知文本方向格式的文本。
+	(8).< wbr> 代表建议换行，当文本太长需要换行时将会在此处添加换行符。
+		HTML4 ：无。
+			</pre>
+			<h3>5.媒介标记：</h3>
+			<pre>	(1).< video> 代表一段视频及其视频文件和字幕，并提供了播放视频的用户界面
+		HTML4: < object type="video/ogg" data="movie.ogv">< param name="src" value="movie.ogv">< /object>
+	(2).< audio> 代表一段声音或音频流。 < audio> 元素可以包含多个音频资源， 这些音频资源可以使用 src 属性或者< source> 元素来进行描述。
+		HTML4:< object type="application/ogg" data="someaudio.wav">< param name="src" value="someaudio.wav">< /object>
+	(3).< source> 为< video>或< audio>这类媒体元素指定媒体源
+		HTML4: < param>
+	(4).< track> 为< video>或< audio>这类媒体元素指定文本轨道（字幕）。
+		HTML4 ：无。
+	(5).< embed> 代表一个嵌入的外部资源，如应用程序或交互内容，换句话说，就是一个插件。
+		如< embed type="video/quicktime" src="movie.mov" width="640" height="480">
+		HTML4: < object data="flash.swf"  type="application/x-shockwave-flash">< /object>
+	(6).< canvas> 代表位图区域，可以通过脚本在它上面实时呈现图形，如图表、游戏绘图等
+		HTML4:< object data="inc/hdr.svg" type="image/svg+xml" width="200" height="200">< /object>
+	(7).< svg> 定义一个嵌入式矢量图。
+		HTML4 ：无。
+	(8).< math> 定义一段数学公式
+		HTML4 ：无。
+			</pre>
+			<h3>6.表单域：</h3>
+			<pre>	(1).< datalist> 代表提供给其他控件的一组预定义选项/ 代表一个用户可以（点击）获取额外信息或控件的小部件。与summary配合使用。
+		HTML4：参考comboBox JavaScript自定义组件。
+	(2).< keygen> 代表一个密钥对生成器控件
+		HTML4 ：无。
+	(3).< output> 定义不同类型的输出，比如脚本的输出
+		HTML4: < span>< /span>
+	(4).< meter>定义度量衡。仅用于已知最大和最小值的度量
+		HTML4 ：无。
+	(5).< progress> 代表进度条，用来显示一项任务的完成进度。
+		HTML4 ：无。
+			</pre>
+			<h3>7.交互标记：</h3>
+			<pre>	(1).< details> 代表一个用户可以（点击）获取额外信息或控件的小部件。与summary配合使用。
+		HTML4: < dl style="display:hidden">< /dl>
+	(2).< summary> 代表 < details> 元素的综述或标题，summary” 元素应该是 “details” 元素的第一个子元素。
+		HTML4 ：无。
+	(3).< menuitem> 代表一个用户可以点击的菜单项
+		HTML4: 无。
+	(4).< menu> 代表菜单，呈现了一组用户可执行或激活的命令。
+		这既包含了可能出现在屏幕顶端的列表菜单，也包含了那些隐藏在按钮之下、当点击按钮后显示出来的文本菜单
+		HTML4 ：无。
+			</pre>
+			<h3>8.其他：</h3>
+			<pre>	(1).< command>定义命令按钮，比如单选按钮、复选框或按钮
+		HTML4 ：无。
+	(2).ARIA ：<a href="http://www.zhangxinxu.com/wordpress/2012/03/wai-aria-无障碍阅读/">无障碍阅读：详见</a>
+			</pre>
+			<h3>9.自定义元素--微数据：</h3>
+			<pre>	(1).在如 span、div 的标签内添加属性，让机器（如搜索引擎）识别其意义，
+		一些特定类型的信息，例如评论、人物信息或事件都有相应的属性，用来描述其意义
+	(2).传统写法：
+		< div>   < span>Hungking< /span>
+		< span>2015年12月19日10:40< /span>
+		< span>评论内容< /span>     < /div>
+	(3).新写法：
+		< div itemscope itemtype="http://data-vocabulary.org/Review">
+		< span itemprop="reviewer">Hungking< /span>
+		< span itemprop="dtreviewed" datatime="2015-12-19T10:40:30.10+08:00">2015年12月19日 10:40</span>
+		< span itemprop="description">评论内容< /span>
+		< /div>
+	(4).使用： 在一项微数据的最外层 div ，需要用 itemscop 标识，并用 itemtype 指定微数据类型，
+ 		itemtype 的值是一个 url ，用于引入一个微数据词汇表（即各种微数据的类型定义）
+ 	(5).作用： 让机器识别网页内容
+ 	(6).<a href="http://blog.csdn.net/jackyrongvip/article/details/9218459">详情</a>
+			</pre>
+			<h3>10.已被遗弃元素：</h3>
+			<pre>	< acronym>,< applet>,< basefont>,< big>,< center>,< dir>,< font>,
+				< frame />,< frameset>,< noframes>,< strike>,< tt>
+			</pre>
+			<h2>HTML5 地理定位</h2>
+			<pre><a href="HTML5+地理定位（Geolocation）.svg">结构图</a></pre>
+			<h2>SQLite</h2>
+		</div>
+	</body>
+</html>
