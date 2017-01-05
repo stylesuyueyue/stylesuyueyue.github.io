@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>css3 矩阵转换</title>
+		<style>
+			#div{
+				width: 500px;
+				height: auto;
+				margin:0 auto;
+				perspective: 1000px;      /* 透视效果*/
+			}
+			#div img{
+				transition: all 3s linear;		/*过渡对所有元素,3s完成,匀速运动*/		
+			}
+			#div:hover img{
+				transform: rotateX(180deg);       /*沿着x轴旋转180度*/
+				transform: translateZ(180PX);   /*沿着z轴移动*/
+				transform: scaleX(2);     /* x轴缩放*/
+			}
+			
+			#circle{
+				width: 400px;
+				height: 400px;
+				border-radius: 200px;
+				border: 2px solid #6666FF;
+				position: relative;
+				top: -100px;
+			}
+			#smallCircle{
+				width: 300px;
+				height: 300px;
+				border-radius: 150px;
+				background-color: #6666FF;
+				position: absolute;
+				top: 50px;
+				left: 50px;
+				transition: all 1s;        /*过渡*/
+			}
+			#circle:hover #smallCircle{
+				transform: scale(1.333);      /*缩放*/
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div">
+			<img src="http://pic44.nipic.com/20140717/2531170_194615292000_2.jpg" width="400px"/>
+		</div>
+		
+		
+		<div id="circle">
+			<div id="smallCircle"></div>
+		</div>
+	</body>
+</html>

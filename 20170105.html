@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>苏雁雁_HTML5 WEB存储、CSS3_20161228</title>
+		<style type="text/css">
+			.box {
+				width: 1200px;
+				height: auto;
+				margin: auto;
+				font-family: "微软雅黑";
+			}
+			
+			p,
+			pre {
+				font-size: 17px;
+				font-family: "微软雅黑";
+				line-height: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<h2>HTML5 WEB存储、CSS3</h2>
+			<h3>HTML5 WEB存储</h3>
+			<pre> <b>  1.Cookie存储:</b>是一种客户端（浏览器）把用户信息以文件形式存储到本地硬盘的技术，说白了就是一种浏览器技术。
+	a.作用是存储客户数据，数据是存储到Cookie文件中的（硬盘），是一种长期存储。（存储数据的文件叫Cookie文件）
+	b.向Cookie中写入数据：document.cookie = 'username=leo';。
+	c.cookie不适合大量数据的存储，因为它们由每个队服务器的请求来传递，使得cookie速度慢且效率不高。
+ <b>  2.web Storage存储:</b>HTML5提供了两种在客户端存储数据的新方法：
+                       a.localStorage-没有时间限制的数据存储
+                       b.sessionStorage-针对一个session的数据存储
+                       c.在HTML5中，只有在请求时使用数据，在不影响网站性能的情况下存储大量数据。
+                       d.对于不同的网站，数据存储与不同区域，并且一个网站只能访问其自身的数据。
+                       e.HTML5使用JavaScript来存储和访问数据。
+      <b>(1).localStorage方法：</b>增加数据：例：localStorage.setItem("name","张三")
+      					获取数据：例：localStorage.getItem("name")
+      	例：对用户访问页面的次数进行计数：if(window.localStorage) {
+									localStorage.pagecount = Number(localStorage.pagecount) + 1;
+								} else {
+									localStorage.pagecount = 1;
+								}
+								document.write("Visits " + localStorage.pagecount + " time(s).");
+		在浏览器中查看：Application-->localStorage          
+
+		主要代码：<  script type="text/javascript">		<a href="存储1-05.html">存储实例查看</a>
+	  	var i= 0;
+	  	var  storageObj = {        //将函数封装在storageObj内
+			isSupport:  function(){      //web存储前检查浏览器是否支持localStorage
+			  			if(!window.localStorage){
+	   	                 console.log("不支持");
+	   	                 return false;  
+	   	              }else{    return turn;   }          },
+			setData:  function(nameT,sexT,ageT){    //保存数据  函数内部传的参数就是数据信息   下面通过window保存数据括号内（键值，参数）
+			  		try{
+			  			window.localStorage.setItem("name"+i,nameT) //后面name是传的参数value值       前面是键值（自己取得名字）
+			  		        window.localStorage.setItem("age"+i,ageT)
+			  		        window.localStorage.setItem("sex"+i,sexT)
+			  		}catch(e){	 //TODO handle the exception   }			  		},
+			getData:   function(_item){    //读取数据 括号内只需要填写键值（name） 此处使用_item是获取所有的键值减少代码
+			  	    	window.localStorage.getItem(_item);	  	    },
+			clear:   function(){     //删除所有数据 不需要填写键值 和 参数
+			  	    	window.localStorage.clear();	  	    },
+			remove:   function(nameT,ageT,sexT){  //删除单个数据  要填写键值
+			  	    	window.localStorage.removeItem("name"+i);
+			  	    	window.localStorage.removeItem("age"+i); 
+			  	    	window.localStorage.removeItem("sex"+i);   }      
+			}
+	  	     var nameT = document.querySelector("#nameT")......
+	  	     btn.onclick = function(){       //点击函数调用获取对象下的函数storageObj.setData();
+	  	     	storageObj.setData(nameT.value,ageT.value,sexT.value)
+	  	     	i++;    //此处的i是为了改变不同的键值  例如  name1  name2 name3.......
+	  	     }              < /script>	
+	  	     	
+	<b>(2).sessionStorage方法：</b>针对session进行数据存储。当用户关闭浏览器窗口后，数据会被删除。
+	             创建并访问数据：sessionStorage.setItem("sex","男")
+	             sessionStorage.getItem("sex")
+	<b>(3).清除所有数据方法：window.localStorage.clear();</b>
+	<b>(4).清除选中数据方法：如：window.localStorage.removeItem("name");</b>
+ <b>  3.IndexedDB存储:</b>是Web SQL数据库的取代品，存储大型数据。
+     try{  window.indexedDB }catch(e){ try{ window.localStorage }catch(e){ window.cookie } }:兼容性
+</pre>
+            <h3>HTML5 应用缓存</h3>
+            <pre>	(1).使用HTML5，通过创建cache manifest文件，可以轻松地创建web应用的离线版本。
+        (2).应用程序缓存（Application Cache）优势：离线浏览 -- 用户可在应用离线时使用它们。
+          	  速度 -- 已缓存资源加载得更快 ；减少服务器负载 -- 浏览器将只从服务器下载更新过或更改过的资源。
+        (3).实例：< !DOCTYPE HTML>
+			< html <b>manifest="demo.appcache"</b>>  .....  < /html>
+	    每个指定manifest的页面在用户对其访问时都会被缓存。未指定，则不会（除非在manifest文件中直接指定该页面）。
+	 manifest文件的文件扩展名是：".appcache"。
+	 注意：manifest 文件需要配置正确的 MIME-type，即 "text/cache-manifest"。必须在 web 服务器上进行配置。
+        (4).manifest 文件可分为三个部分：CACHE MANIFEST - 在此标题下列出的文件将在首次下载后进行缓存 
+								NETWORK - 在此标题下列出的文件需要与服务器的连接，且不会被缓存 
+								FALLBACK - 在此标题下列出的文件规定当页面无法访问时的回退页面（比如 404 页面） 
+	       例：CACHE MANIFEST      //是必需的
+		      #2012-02-21  v1.0.0
+			/hteme.css     /logo.gif      /main.js
+		    NETWORK:         // "login.asp" 永远不会被缓存    
+			  login.asp
+		    FALLBACK:         //无法连接时， "offline.html" 替代 /html5/ 目录中的所有文件    
+			   /html5/ /404.html
+            </pre>
+            <h3>CSS3 3D 转换</h3>
+            <pre>  <b>   1.转换属性：</b> <a href="http://www.runoob.com/css3/css3-tutorial.html">主要查看菜鸟教程</a> 
+            transform:浏览器支持：Internet Explorer 10 和 Firefox 支持 3D 转换。
+	Chrome 和 Safari 需要前缀 -webkit-。
+	Opera 仍然不支持 3D 转换（它只支持 2D 转换）。
+  	实例：div{    transform: rotateX(120deg);
+			-webkit-transform: rotateX(120deg);	       /* Safari 和 Chrome */
+			-moz-transform: rotateX(120deg);	       /* Firefox */         }
+   2. 例：<a href="CSS3 1-05.html">实例1</a>: 图片放大效果
+        transform: scale(n)    //缩放n;
+  	transition: all 1s;   //过渡
+  <a href="css3 立方体1-05.html">实例2</a>：3D效果立方体          a.先布好框架；     
+   	b.先从左面做起，确定面的位置，沿着什么方向怎么旋转移动：transform: rotateY(90deg) translateZ(-200px);
+  	c.之后上下面，上面：transform: rotateX(90deg) translateZ(200px);
+  	d.前后面，前面：transform: translateZ(200px);
+  	e.css动画：@keyframes name{   from{}    to{}     }
+  			transform-style: preserve-3d;
+				margin-top: 100px;
+				animation: move 5s linear infinite;
+</pre>
+		</div>
+	</body>
+</html>

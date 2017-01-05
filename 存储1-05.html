@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-3.1.0.js"></script>
+	</head>
+
+	<body>
+		歌曲名：<input type="text" id="songName" /><br /> 歌手：
+		<input type="text" id="userName" /><br /> 性别：
+		<input type="text" id="sex" /><br /> 年龄：
+		<input type="text" id="age" /><br />
+		<button id="btn">提交</button><br />
+		<script type="text/javascript">
+			$(function() {
+				//封装
+			// 	var obj = {
+			// 	isSupport: function() {
+			// 		if(!window.localStorage) {
+			// 			console.log("不支持");
+			// 			return false;
+			// 		} else {
+			// 			return true;
+			// 		}
+			// 	},
+			// 	set: function(_item, value) {
+			// 		window.localStorage.setItem(_item, value);
+			// 	},
+			// 	get: function(_item) {
+			// 		return window.localStorage.getItem(_item);
+			// 	},
+			// 	clear: function(_item) {
+			// 		window.localStorage.clear();
+			// 	},
+			// 	remove: function(_item) {
+			// 		window.localStorage.removeItem(_item);
+			// 	}
+			// }	
+
+
+				var i = 0;
+				var strName;
+				var userName;
+				var sex;
+				var age;
+				$("#btn").click(function(e) {
+					strName = "songName" + i;
+					userN = "userName" + i;
+					sx = "sex" + i;
+					ag = "age" + i
+					ipt($("#songName").val(), $("#userName").val(), $("#sex").val(), $("#age").val());
+					i++;
+					
+				})
+				function ipt(songName, userName, sex, age) {
+					try {
+						window.localStorage.setItem(strName, songName);
+						window.localStorage.setItem(userN, userName);
+						window.localStorage.setItem(sx, sex);
+						window.localStorage.setItem(ag, age);
+					}catch(e){
+						
+					}
+				}				
+			})
+		</script>
+	</body>
+
+</html>
