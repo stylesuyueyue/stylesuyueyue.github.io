@@ -33,6 +33,11 @@
                        c.在HTML5中，只有在请求时使用数据，在不影响网站性能的情况下存储大量数据。
                        d.对于不同的网站，数据存储与不同区域，并且一个网站只能访问其自身的数据。
                        e.HTML5使用JavaScript来存储和访问数据。
+                       f.在使用 web 存储前,应检查浏览器是否支持 localStorage 和sessionStorage:
+			     if(typeof(Storage)!=="undefined"){
+					    // 是的! 支持 localStorage  sessionStorage 对象!
+					    // 一些代码.....
+				} else {    // 抱歉! 不支持 web 存储。}
       <b>(1).localStorage方法：</b>增加数据：例：localStorage.setItem("name","张三")
       					获取数据：例：localStorage.getItem("name")
       	例：对用户访问页面的次数进行计数：if(window.localStorage) {
@@ -41,8 +46,8 @@
 									localStorage.pagecount = 1;
 								}
 								document.write("Visits " + localStorage.pagecount + " time(s).");
-		在浏览器中查看：Application-->localStorage          
 
+		在浏览器中查看：Application-->localStorage          
 		主要代码：<  script type="text/javascript">		<a href="存储1-05.html">存储实例查看</a>
 	  	var i= 0;
 	  	var  storageObj = {        //将函数封装在storageObj内
@@ -77,6 +82,14 @@
 	             sessionStorage.getItem("sex")
 	<b>(3).清除所有数据方法：window.localStorage.clear();</b>
 	<b>(4).清除选中数据方法：如：window.localStorage.removeItem("name");</b>
+	
+	不管是 localStorage，还是 sessionStorage，可使用的API都相同，常用的有如下几个（以localStorage为例）：
+		保存数据：localStorage.setItem(key,value);
+		读取数据：localStorage.getItem(key);
+		删除单个数据：localStorage.removeItem(key);
+		删除所有数据：localStorage.clear();
+		得到某个索引的key：localStorage.key(index);
+	
  <b>  3.IndexedDB存储:</b>是Web SQL数据库的取代品，存储大型数据。
      try{  window.indexedDB }catch(e){ try{ window.localStorage }catch(e){ window.cookie } }:兼容性
 </pre>
@@ -92,6 +105,8 @@
         (4).manifest 文件可分为三个部分：CACHE MANIFEST - 在此标题下列出的文件将在首次下载后进行缓存 
 								NETWORK - 在此标题下列出的文件需要与服务器的连接，且不会被缓存 
 								FALLBACK - 在此标题下列出的文件规定当页面无法访问时的回退页面（比如 404 页面） 
+	    (5).一旦应用被缓存，它就会保持缓存直到发生下列情况：
+			用户清空浏览器缓存;      manifest 文件被修改（参阅下面的提示）;		由程序来更新应用缓存 .
 	       例：CACHE MANIFEST      //是必需的
 		      #2012-02-21  v1.0.0
 			/hteme.css     /logo.gif      /main.js
