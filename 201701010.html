@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>苏雁雁_响应式布局--媒体查询 Media Queries_201701010</title>
+		<style type="text/css">
+			.box {
+				width: 1200px;
+				height: auto;
+				margin: auto;
+				font-family: "微软雅黑";
+				line-height: 25px;
+			}
+			
+			p,
+			pre {
+				font-size: 16px;
+				font-family: "微软雅黑";
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<h2>多媒体查询</h2>
+			<pre><b>多媒体查询  Media Queries</b>
+  1.多媒体查询语法:  @media not|only mediatype and (expressions) {    CSS 代码...;    }
+  2.介绍： 多媒体查询由多种媒体组成，可以包含一个或多个表达式，表达式根据条件是否成立返回 true 或 false。
+             如果指定的多媒体类型匹配设备类型则查询结果返回 true，文档会在匹配的设备上显示指定样式效果。
+  3.除非你使用了 not 或 only 操作符，否则所有的样式会适应在所有设备上显示效果。
+	not:  not是用来排除掉某些特定的设备的，比如 @media not print（非打印设备）。
+	only:  用来定某种特别的媒体类型。对于支持Media Queries的移动设备来说，如果存在only关键字，移动设备的Web浏览器会
+	     忽略only关键字并直接根据后面的表达式应用样式文件。对于不支持Media Queries的设备但能够读取Media Type类型的Web浏览器，
+	    遇到only关键字时会忽略这个样式文件。
+	all:   所有设备，这个应该经常看到。
+  4.CSS3多媒体类型：all----用于所有多媒体类型设备。                     print----用于打印。                   
+                  screen----用于电脑屏幕、平板、智能手机。                       speech----用于屏幕阅读器。
+  5.实例：@media screen and ( min-width: 480px ) {
+		    #leftsidebar { width: 200px; float: left; }
+		    #main { margin-left:216px; }         }
+
+<b>CSS3 @media 查询</b>
+  1.使用 @media 查询，你可以针对不同的媒体类型定义不同的样式。
+  2.CSS 语法： @media mediatype and|not|only (media feature) {    CSS-Code;    }
+  3.也可以针对不同的媒体使用不同 stylesheets : 
+     < link rel="stylesheet" media="mediatype and|not|only (media feature)" href="mystylesheet.css">
+  4.使用 @media 查询来制作响应式设计：@media only screen and ( min-width: 500px ) and ( max-width: 500px ) {
+		    .gridmenu {       width:100%;    }
+		    .gridright {        width:100%;    }    }
+			</pre>
+		</div>
+	</body>
+</html>
